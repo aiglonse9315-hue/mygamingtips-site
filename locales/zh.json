@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "lang": "zh",
+    "dir": "ltr",
+    "htmlLang": "zh-CN"
+  },
+  "seo": {
+    "title": "MyGamingTips — 最优质的游戏内容，已整理并验证。",
+    "description": "MyGamingTips 汇集了实用的游戏视频、攻略与链接，按游戏整理并由社区验证。免费，无广告。手机 + Windows。"
+  },
+  "nav": {
+    "features": "功能",
+    "mobile": "手机版",
+    "windows": "Windows",
+    "community": "社区",
+    "plus": "Plus",
+    "download": "下载"
+  },
+  "brand": {
+    "name": "MyGamingTips",
+    "tagline": "最优质的游戏内容，已整理并验证。"
+  },
+  "hero": {
+    "eyebrow": "鲜活的街机厅",
+    "title_pre": "每款游戏都有它的",
+    "title_highlight": "最佳内容",
+    "title_post": "，已整理并验证。",
+    "subtitle": "MyGamingTips 汇集了按游戏整理的视频、指南和实用链接。每条内容都经过 AI 分析，再由人工审核，以确保为您提供可靠、优质的信息。",
+    "cta_play": "在 Google Play 获取",
+    "cta_windows": "下载 Windows 版",
+    "trust_games": "已收录游戏",
+    "trust_verified": "内容由 AI 分析，再由人工审核",
+    "badge_new": "新品",
+    "badge_free": "100% 免费",
+    "badge_lang": "12 种语言"
+  },
+  "features": {
+    "eyebrow": "为什么选 MyGamingTips",
+    "title": "为快速找到而生，不被淹没。",
+    "intro": "一切都源于一个简单的想法：对的内容早已存在，只是被算法的噪音淹没。",
+    "f1_title": "已整理并验证",
+    "f1_desc": "不是算法，是真人。每条内容都经过挑选与验证，才配得上它的位置。",
+    "f2_title": "会结束的清单",
+    "f2_desc": "每款游戏的有用内容是有限的。你满意离开，而不是被推送流困住。",
+    "f3_title": "收藏与播放列表",
+    "f3_desc": "一键找到你的内容，按你的方式排序、整理，跨多次会话。",
+    "f4_title": "日间与夜间模式",
+    "f4_desc": "夜晚是鲜活的街机，白天是易读的退守。主题跟随你的风格，而非相反。",
+    "f5_title": "12 种语言",
+    "f5_desc": "用你的语言找到内容。即便还没有，英语也总能覆盖你。",
+    "f6_title": "即时启动",
+    "f6_desc": "本地缓存，后台同步。在你想完之前，App 就已打开。"
+  },
+  "mobile": {
+    "eyebrow": "手机端体验",
+    "title": "为短时使用而设计。",
+    "intro": "两局比赛之间、通勤途中、下载等待时。点几下，找到对的内容，关掉。",
+    "home_title": "首页",
+    "home_caption": "你所有的技巧、攻略与贴士集中一处。即时启动。",
+    "explore_title": "探索",
+    "explore_caption": "发现最受欢迎的游戏，由社区分享，经过排序和验证。",
+    "mygames_title": "我的游戏",
+    "mygames_caption": "你的个性化清单，一点即达。",
+    "playlist_title": "My Playlist",
+    "playlist_caption": "无需搜索即可找到你的内容。按你的方式排序、整理。",
+    "playlist_bygame_title": "按游戏分播放列表",
+    "playlist_bygame_caption": "逐款游戏，组织愈发清晰。",
+    "profile_title": "个人资料",
+    "profile_caption": "自定义你的形象图，并发现月度贡献者。",
+    "swipe_hint": "滑动以探索"
+  },
+  "windows": {
+    "eyebrow": "Windows 伴侣",
+    "title": "无广告的悬浮视频播放器。",
+    "intro": "在玩游戏的同时，以悬浮方式观看你喜爱的攻略。无广告，无打断，永远。",
+    "b1": "在游戏之上悬浮播放",
+    "b2": "零广告，零打断",
+    "b3": "所有内容与手机端同步",
+    "demo_hint": "点击启动悬浮视频",
+    "demo_active": "悬浮视频已启动——无广告",
+    "demo_idle": "视频已隐藏",
+    "demo_show": "显示视频",
+    "demo_hide": "隐藏视频",
+    "home_title": "Windows 首页",
+    "home_caption": "MyGamingTips 的全部实力，尽在大屏。",
+    "mygames_title": "我的游戏",
+    "mygames_caption": "你的资料库，桌面版。",
+    "overlay_title": "无广告悬浮播放器",
+    "overlay_caption": "在玩游戏的同时以悬浮方式观看喜爱的攻略。无广告，无打断。",
+    "languages_title": "12 种语言",
+    "languages_caption": "用你的语言找到内容。即便还没有，英语也总能覆盖你。"
+  },
+  "community": {
+    "eyebrow": "社区",
+    "title": "先由 AI 校验。很快会由你来校验。",
+    "intro": "内容不是由盲目的算法推送的。今天，一个超活跃的 AI 校验每一条内容 —— 已超过 3000 条。明天，人类社区将接手。",
+    "month_badge": "AI 贡献者",
+    "month_desc": "目前，一个<strong>超级活跃的 AI</strong>在填充和验证数据库——已验证<strong>超过 3,000 条内容</strong>。但这款应用旨在<strong>由社区主导、为社区服务</strong>：最终，玩家将贡献、整理并让每款游戏保持活力。",
+    "contrib_eyebrow": "你也可以贡献",
+    "contrib_desc": "直接从你喜欢的应用通过<strong>分享</strong>功能分享你的发现到 MyGamingTips。每个月，<strong>前 3 名贡献者</strong>将获得<strong>一个月 Premium 订阅</strong>——排名每月重置一次，让每个人都有机会。",
+    "stat_contents": "已校验内容",
+    "stat_ai": "贡献机器人",
+    "stat_community": "由社区而活"
+  },
+  "personalize": {
+    "eyebrow": "个性化",
+    "title": "夜晚是鲜活的街机。白天是易读的退守。",
+    "intro": "实时切换网站主题。这正是 App 所做的：一个让霓虹焕发意义的夜间模式，以及在烈日下清晰易读的日间模式。",
+    "toggle_dark": "夜间",
+    "toggle_light": "日间",
+    "toggle_label": "实时切换主题",
+    "caption": "夜里是鲜活的街机厅，白天是清爽可读的界面。这就是你的风格。",
+    "day_label": "白天",
+    "night_label": "夜晚"
+  },
+  "plus": {
+    "eyebrow": "MyGamingTips Plus",
+    "title": "升级到 MyGamingTips Plus",
+    "subtitle": "App 保持免费。My Playlist 菜单升级为 Plus。",
+    "free_badge": "App 100% 免费",
+    "b1_label": "My Playlist",
+    "b1_desc": "无需搜索即可整理、排序并找到你所有内容（唯一专为 Plus 保留的菜单）。",
+    "b2_label": "3 张独家壁纸",
+    "b2_desc": "用 3 张高级壁纸个性化你的 App。",
+    "b3_label": "专属 Windows 应用",
+    "b3_desc": "在 Windows PC 上找到你所有内容，与手机同步。",
+    "plan_monthly_name": "月度",
+    "plan_monthly_price": "¥14.9",
+    "plan_monthly_unit": "/ 月",
+    "plan_yearly_name": "年度",
+    "plan_yearly_price": "¥149",
+    "plan_yearly_unit": "/ 年",
+    "plan_yearly_badge": "节省 16%",
+    "plan_yearly_sub": "约 ¥12.4 / 月",
+    "microcopy": "随时取消。无承诺。",
+    "cta": "升级到 Plus",
+    "badge": "Plus"
+  },
+  "promo": {
+    "title_1": "所有攻略",
+    "title_2": "尽在一处",
+    "subtitle": "Aion 2、Diablo 4、Star Citizen 等游戏的视频、链接和技巧。",
+    "store_play": "已在 Google Play 上架",
+    "store_ios": "iOS 版即将推出",
+    "alt": "MyGamingTips 应用截图 — 精选并验证的游戏攻略。"
+  },
+  "download": {
+    "eyebrow": "下载",
+    "title": "免费。无广告。无需账号。",
+    "intro": "MyGamingTips 对所有人免费，支持手机与 Windows。",
+    "mobile_title": "在手机上",
+    "mobile_btn": "在 Google Play 获取",
+    "windows_title": "在 Windows 上",
+    "windows_btn": "免费下载",
+    "windows_req": "Windows 10 或更高 · 150 MB 空间",
+    "microcopy": "无广告。无需账号。无过度收集。"
+  },
+  "footer": {
+    "about": "关于",
+    "privacy": "隐私",
+    "contact": "联系",
+    "verified_note": "内容由社区验证。",
+    "copyright": "© 2026 MyGamingTips。保留所有权利。",
+    "lang_label": "语言"
+  },
+  "protections": {
+    "toast": "内容受保护。"
+  },
+  "a11y": {
+    "skip": "跳到主要内容",
+    "menu_open": "打开菜单",
+    "menu_close": "关闭菜单",
+    "lang_open": "选择语言",
+    "theme_dark": "启用夜间模式",
+    "theme_light": "启用日间模式",
+    "logo_alt": "MyGamingTips 标志"
+  }
+}

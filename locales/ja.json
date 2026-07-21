@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "lang": "ja",
+    "dir": "ltr",
+    "htmlLang": "ja"
+  },
+  "seo": {
+    "title": "MyGamingTips — あなたに最適なゲームコンテンツを、整理・検証済みで。",
+    "description": "MyGamingTips は、役立つゲーム動画・ガイド・リンクをゲーム別に整理し、コミュニティが検証した形で集約します。無料、広告なし。モバイル + Windows。"
+  },
+  "nav": {
+    "features": "機能",
+    "mobile": "モバイル",
+    "windows": "Windows",
+    "community": "コミュニティ",
+    "plus": "Plus",
+    "download": "ダウンロード"
+  },
+  "brand": {
+    "name": "MyGamingTips",
+    "tagline": "あなたに最適なゲームコンテンツを、整理・検証済みで。"
+  },
+  "hero": {
+    "eyebrow": "生きたアーケード",
+    "title_pre": "すべてのゲームに、その",
+    "title_highlight": "最高のコンテンツ",
+    "title_post": "がある。整理・検証済み。",
+    "subtitle": "MyGamingTips は、ゲームごとに整理された動画、ガイド、便利なリンクを集約しています。すべてのコンテンツは AI によって分析され、その後人間によって確認されることで、信頼性の高い品質の情報をお届けします。",
+    "cta_play": "Google Play で入手",
+    "cta_windows": "Windows 版をダウンロード",
+    "trust_games": "収録ゲーム数",
+    "trust_verified": "コンテンツは AI によって分析され、人間によって確認されます",
+    "badge_new": "NEW",
+    "badge_free": "100%無料",
+    "badge_lang": "12言語"
+  },
+  "features": {
+    "eyebrow": "MyGamingTips の特徴",
+    "title": "素早く見つけるために、溺れずに。",
+    "intro": "すべてはシンプルな考えから始まります。正しいコンテンツはすでに存在し、ただアルゴリズムのノイズに埋もれているだけ。",
+    "f1_title": "整理・検証済み",
+    "f1_desc": "アルゴリズムではなく人。すべてのコンテンツは選ばれ、位置にふさわしいか検証されています。",
+    "f2_title": "終わるリスト",
+    "f2_desc": "各ゲームに有用なコンテンツは有限です。満足して離脱でき、フィードの囚人にはなりません。",
+    "f3_title": "お気に入りとプレイリスト",
+    "f3_desc": "ワンタップでコンテンツを見つけ、あなた流に並べ替え、複数セッションで整理できます。",
+    "f4_title": "昼と夜のモード",
+    "f4_desc": "夜は生きたアーケード、昼は読みやすい退避。テーマはあなたのスタイルに従い、逆ではありません。",
+    "f5_title": "12 言語",
+    "f5_desc": "あなたの言語でコンテンツを見つけられます。まだ無ければ、英語が必ずカバーします。",
+    "f6_title": "瞬時に起動",
+    "f6_desc": "ローカルキャッシュ、バックグラウンド同期。考える前にアプリが開きます。"
+  },
+  "mobile": {
+    "eyebrow": "モバイル体験",
+    "title": "短いセッションのために。",
+    "intro": "マッチの合間、通勤中、ダウンロード待ち。数回のタップで正しいコンテンツ、閉じる。",
+    "home_title": "ホーム",
+    "home_caption": "あなたのヒント、ガイド、ティップスが一箇所に。瞬時に起動。",
+    "explore_title": "見つける",
+    "explore_caption": "コミュニティがシェアした人気ゲームを、整理・検証された状態で発見しよう。",
+    "mygames_title": "マイゲーム",
+    "mygames_caption": "あなた専用のリスト、ワンタップで。",
+    "playlist_title": "My Playlist",
+    "playlist_caption": "探さずにコンテンツを見つけられます。あなた流に並べ替え・整理。",
+    "playlist_bygame_title": "ゲーム別プレイリスト",
+    "playlist_bygame_caption": "ゲームごとに、より明快な整理。",
+    "profile_title": "プロフィール",
+    "profile_caption": "セットアップ画像をカスタマイズし、月間コントリビューターを発見。",
+    "swipe_hint": "スワイプして見る"
+  },
+  "windows": {
+    "eyebrow": "Windows のパートナー",
+    "title": "広告なしのオーバーレイ動画プレーヤー。",
+    "intro": "遊びながら、お気に入りのガイドを重ねて視聴できます。広告も中断も、一切なし。",
+    "b1": "ゲームの上にオーバーレイ再生",
+    "b2": "広告ゼロ、中断ゼロ",
+    "b3": "すべてのコンテンツをモバイルと同期",
+    "demo_hint": "クリックしてオーバーレイ動画を起動",
+    "demo_active": "オーバーレイ動画がアクティブ — 広告なし",
+    "demo_idle": "動画は非表示",
+    "demo_show": "動画を表示",
+    "demo_hide": "動画を非表示",
+    "home_title": "Windows ホーム",
+    "home_caption": "MyGamingTips の全機能を大画面で。",
+    "mygames_title": "マイゲーム",
+    "mygames_caption": "あなたのライブラリ、デスクトップ版。",
+    "overlay_title": "広告なしオーバーレイプレーヤー",
+    "overlay_caption": "遊びながら、お気に入りのガイドを重ねて視聴。広告も中断もなし。",
+    "languages_title": "12 言語",
+    "languages_caption": "あなたの言語でコンテンツを見つけられます。まだ無ければ、英語が必ずカバーします。"
+  },
+  "community": {
+    "eyebrow": "コミュニティ",
+    "title": "まずはAIが検証。すぐにあなたが。",
+    "intro": "コンテンツは盲目的なアルゴリズムでは提供されません。今日は超アクティブなAIがひとつひとつ検証し、すでに3,000件以上。明日は人間のコミュニティが引き継ぎます。",
+    "month_badge": "AIコントリビューター",
+    "month_desc": "現在、<strong>超活性の IA</strong> がデータベースを充実・検証しており、<strong>3,000件以上</strong>が確認済みです。しかし、このアプリは<strong>コミュニティによって、コミュニティのために</strong>生きるように作られています。いずれはプレイヤー自身が投稿し、整理し、ゲームごとに活気を保ちます。",
+    "contrib_eyebrow": "あなたも貢献しよう",
+    "contrib_desc": "お気に入りのアプリから<strong>「共有」</strong>機能で MyGamingTips に良い発見を直接シェアしましょう。毎月、<strong>上位3名の貢献者</strong>には<strong>1ヶ月分の Premium サブスクリプション</strong>が贈られます——ランキングは毎月リセットされ、誰にでもチャンスがあります。",
+    "stat_contents": "検証済みコンテンツ",
+    "stat_ai": "貢献ボット",
+    "stat_community": "コミュニティで生きる"
+  },
+  "personalize": {
+    "eyebrow": "パーソナライズ",
+    "title": "夜は生きたアーケード。昼は読みやすい退避。",
+    "intro": "サイトのテーマをライブで切り替えられます。それはまさにアプリの挙動。ネオンが意味を持つ鮮やかな夜モードと、強い日差しの下で読みやすい昼モード。",
+    "toggle_dark": "夜",
+    "toggle_light": "昼",
+    "toggle_label": "テーマをライブ切替",
+    "caption": "夜は生きたアーケード、昼は読みやすい静けさ。それはあなたのスタイル。",
+    "day_label": "昼",
+    "night_label": "夜"
+  },
+  "plus": {
+    "eyebrow": "MyGamingTips Plus",
+    "title": "MyGamingTips Plus へ",
+    "subtitle": "アプリは無料のまま。My Playlist メニューが Plus になります。",
+    "free_badge": "アプリは 100% 無料",
+    "b1_label": "My Playlist",
+    "b1_desc": "探さずに、すべてのコンテンツを整理・並べ替え・発見（Plus 専用の唯一のメニュー）。",
+    "b2_label": "3 つの限定壁紙",
+    "b2_desc": "3 つのプレミアム壁紙でアプリをカスタマイズ。",
+    "b3_label": "専用 Windows アプリ",
+    "b3_desc": "Windows PC であなたの全コンテンツを、モバイルと同期して利用。",
+    "plan_monthly_name": "月額",
+    "plan_monthly_price": "¥250",
+    "plan_monthly_unit": "/ 月",
+    "plan_yearly_name": "年額",
+    "plan_yearly_price": "¥2,500",
+    "plan_yearly_unit": "/ 年",
+    "plan_yearly_badge": "16% お得",
+    "plan_yearly_sub": "約 ¥208 / 月",
+    "microcopy": "いつでも解約可能。縛りなし。",
+    "cta": "Plus に切り替え",
+    "badge": "Plus"
+  },
+  "promo": {
+    "title_1": "すべてのガイド",
+    "title_2": "ひとつに",
+    "subtitle": "Aion 2、Diablo 4、Star Citizen などの動画、リンク、ヒント。",
+    "store_play": "Google Play で配信中",
+    "store_ios": "iOS 版は近日公開",
+    "alt": "MyGamingTips アプリのスクリーンショット — 厳選・検証されたゲームガイド。"
+  },
+  "download": {
+    "eyebrow": "ダウンロード",
+    "title": "無料。広告なし。アカウント不要。",
+    "intro": "MyGamingTips は、モバイルでも Windows でも、すべての人に無料です。",
+    "mobile_title": "モバイルで",
+    "mobile_btn": "Google Play で入手",
+    "windows_title": "Windows で",
+    "windows_btn": "無料でダウンロード",
+    "windows_req": "Windows 10 以降 ・ 150 MB の空き容量",
+    "microcopy": "広告なし。アカウント不要。過剰な収集なし。"
+  },
+  "footer": {
+    "about": "概要",
+    "privacy": "プライバシー",
+    "contact": "お問い合わせ",
+    "verified_note": "コミュニティが検証したコンテンツ。",
+    "copyright": "© 2026 MyGamingTips. All rights reserved.",
+    "lang_label": "言語"
+  },
+  "protections": {
+    "toast": "コンテンツは保護されています。"
+  },
+  "a11y": {
+    "skip": "メインコンテンツへ",
+    "menu_open": "メニューを開く",
+    "menu_close": "メニューを閉じる",
+    "lang_open": "言語を選択",
+    "theme_dark": "夜モードを有効化",
+    "theme_light": "昼モードを有効化",
+    "logo_alt": "MyGamingTips ロゴ"
+  }
+}

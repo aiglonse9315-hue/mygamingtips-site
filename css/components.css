@@ -1,0 +1,2122 @@
+/* ============================================================
+   components.css — header, hero, cards, mockups, buttons,
+   nav, pricing, footer.
+   Règles respectées :
+   - Néon = signal uniquement (carte au repos = pas de néon)
+   - PAS de side-stripe (border-left/right > 1px banni)
+   - Surfaces alpha >= 0.86 nuit
+   - Roboto w800 pour titres/labels
+   - reduced-motion respecté
+   ============================================================ */
+
+/* ============================================================
+   HEADER (sticky, transparent -> opaque au scroll)
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--t-fast),
+              border-color var(--t-fast),
+              backdrop-filter var(--t-fast);
+}
+
+.site-header.is-scrolled {
+  background: var(--surface);
+  border-bottom-color: var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.site-header__inner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* Brand */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.3px;
+  font-size: 1.0625rem;
+  flex-shrink: 0;
+}
+.brand__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.brand__name { color: var(--text-primary); }
+
+/* Nav desktop */
+.site-nav {
+  display: none;
+  margin-inline: auto;
+  gap: var(--space-xs);
+}
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  transition: color var(--t-fast), background-color var(--t-fast);
+}
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+  color: var(--text-primary);
+  background: var(--surface-alt);
+}
+
+/* Header actions */
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+/* Icon button (lang, theme) */
+.iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border);
+  transition: background-color var(--t-fast),
+              border-color var(--t-fast),
+              color var(--t-fast);
+}
+.iconbtn:hover,
+.iconbtn:focus-visible {
+  background: var(--surface-alt);
+  border-color: var(--border-strong);
+}
+.iconbtn svg { width: 20px; height: 20px; }
+
+.iconbtn--lang {
+  width: auto;
+  padding-inline: var(--space-md);
+  gap: var(--space-xs);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-small);
+}
+.iconbtn--lang .lang-code { letter-spacing: 0.5px; }
+
+/* Burger mobile */
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+.burger svg { width: 22px; height: 22px; }
+
+@media (min-width: 900px) {
+  .site-nav { display: inline-flex; }
+  .burger   { display: none; }
+}
+
+/* Drawer mobile full-screen */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-solid);
+  padding: var(--space-2xl) var(--space-lg);
+  transform: translateX(100%);
+  transition: transform var(--t-theme);
+}
+.drawer.is-open { transform: translateX(0); }
+html[dir="rtl"] .drawer { transform: translateX(-100%); }
+html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
+
+.drawer__close {
+  position: absolute;
+  top: var(--space-lg);
+  inset-inline-end: var(--space-lg);
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+}
+.drawer__nav { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-xl); }
+.drawer__link {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-black);
+  font-size: 1.125rem;
+  color: var(--text-primary);
+}
+.drawer__link:hover { background: var(--surface-alt); }
+
+/* Lang switcher dropdown */
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  min-width: 220px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-xs);
+  z-index: 210;
+  display: none;
+}
+.lang-menu.is-open { display: block; }
+.lang-menu__opt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--fs-body);
+  text-align: start;
+}
+.lang-menu__opt:hover,
+.lang-menu__opt:focus-visible { background: var(--surface-alt); }
+.lang-menu__opt[aria-current="true"] {
+  background: var(--surface-alt);
+  font-weight: var(--fw-black);
+  color: var(--accent);
+}
+.lang-menu__flag {
+  width: 22px;
+  height: 16px;
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface-alt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: var(--fw-black);
+}
+.lang-switch { position: relative; }
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-body);
+  letter-spacing: 0.3px;
+  line-height: 1;
+  border: 1px solid transparent;
+  transition: background-color var(--t-fast),
+              border-color var(--t-fast),
+              color var(--t-fast),
+              box-shadow var(--t-fast),
+              transform var(--t-fast);
+  text-align: center;
+}
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* NeonButton primary — fond transparent au repos, halo actif */
+.btn--neon {
+  background: rgba(var(--accent-rgb), 0.18);
+  color: var(--text-primary);
+  border-color: rgba(var(--accent-rgb), 0.6);
+  box-shadow: var(--glow-violet);
+}
+[data-theme="light"] .btn--neon {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(106, 17, 203, 0.3);
+}
+.btn--neon:hover,
+.btn--neon:focus-visible {
+  background: rgba(var(--accent-rgb), 0.32);
+}
+[data-theme="light"] .btn--neon:hover {
+  background: #5a0eab;
+}
+.btn--neon .pulse { animation: btn-pulse var(--t-pulse) ease-in-out infinite; }
+
+/* Ghost / Secondary : bordure cyan, fond transparent */
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+[data-theme="dark"] .btn--ghost {
+  border-color: rgba(0, 229, 255, 0.55);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--surface-alt);
+  border-color: var(--accent-2);
+}
+
+/* Plus button : dégradé violet-plus -> or */
+.btn--plus {
+  background: linear-gradient(95deg, var(--plus-violet), var(--plus-gold));
+  color: #0C0414;
+  border-color: transparent;
+  box-shadow: var(--glow-plus);
+}
+.btn--plus:hover,
+.btn--plus:focus-visible {
+  filter: brightness(1.08);
+}
+
+/* Size variants */
+.btn--lg { padding: 16px 28px; font-size: 1rem; }
+.btn--block { width: 100%; }
+
+@keyframes btn-pulse {
+  0%, 100% { box-shadow: var(--glow-violet); opacity: 1; }
+  50%      { box-shadow: var(--glow-violet), 0 0 36px rgba(138,43,226,0.25); opacity: 0.92; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn--neon .pulse { animation: none !important; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero__grid { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-3xl); }
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+.hero__title { margin-top: var(--space-lg); }
+.hero__subtitle {
+  margin-top: var(--space-lg);
+  max-width: 36ch;
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+}
+.hero__subtitle strong { color: var(--text-primary); }
+
+.hero__ctas {
+  margin-top: var(--space-xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/* Bandeau de confiance */
+.trust {
+  margin-top: var(--space-2xl);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.trust__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  font-weight: var(--fw-bold);
+}
+.trust__item strong { color: var(--text-primary); }
+.trust__stars { color: var(--plus-gold); letter-spacing: 1px; }
+
+/* Hero visual : mockup téléphone flottant + halo */
+.hero__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 480px;
+}
+.hero__halo {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+              var(--halo-a) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  animation: gbg-float-a 18s ease-in-out infinite;
+}
+[data-theme="light"] .hero__halo {
+  background: radial-gradient(circle,
+              rgba(106, 17, 203, 0.18) 0%, transparent 70%);
+}
+
+/* ============================================================
+   MOCKUPS
+   ============================================================ */
+
+/* Téléphone générique (cadre arrondi + encoche) */
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 9 / 19;
+  border-radius: 36px;
+  background: var(--surface-solid);
+  border: 2px solid var(--border-strong);
+  padding: 10px;
+  box-shadow: var(--shadow-soft), 0 30px 60px rgba(0,0,0,0.35);
+  overflow: hidden;
+  z-index: 1;
+}
+.phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.phone__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Encoche */
+.phone__notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 18px;
+  background: var(--surface-solid);
+  border-radius: var(--radius-pill);
+  z-index: 3;
+}
+
+.phone--hero {
+  max-width: 300px;
+  box-shadow: var(--shadow-soft), var(--glow-violet);
+}
+.float { animation: mockup-float 6s ease-in-out infinite; }
+@keyframes mockup-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float { animation: none !important; }
+}
+
+/* Fenêtre desktop (Windows) */
+.window {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  background: var(--surface-solid);
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft), 0 24px 50px rgba(0,0,0,0.3);
+}
+.window__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+.window__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.window__dot--r { background: #FF5F57; }
+.window__dot--y { background: #FEBC2E; }
+.window__dot--g { background: #28C840; }
+.window__title {
+  margin-inline: auto;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  padding-inline-end: 36px; /* compense les 3 dots */
+}
+.window__body {
+  position: relative;
+  background: var(--bg);
+}
+.window__body img {
+  width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   CARDS / GRIDS
+   ============================================================ */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+.grid--features {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) {
+  .grid--features { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .grid--features { grid-template-columns: repeat(3, 1fr); }
+}
+
+.grid--gallery {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color var(--t-fast),
+              background-color var(--t-fast),
+              box-shadow 200ms ease-out,
+              transform var(--t-fast);
+}
+/* Hover subtil : pas de néon sur une carte au repos (Règle du Signal) */
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+/* Feature card */
+.feature__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-alt);
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+.feature__icon svg { width: 24px; height: 24px; }
+.feature__title { margin-bottom: var(--space-xs); }
+
+/* Variante icône par catégorie (signal, jamais fond plein) */
+.feature__icon--cyan   { color: var(--neon-cyan); }
+.feature__icon--green  { color: var(--neon-green); }
+.feature__icon--magenta{ color: var(--neon-magenta); }
+[data-theme="light"] .feature__icon--cyan,
+[data-theme="light"] .feature__icon--green,
+[data-theme="light"] .feature__icon--magenta {
+  color: var(--accent);
+}
+
+/* ============================================================
+   GALLERY captions (réutilisées pour les figcaptions Windows)
+   ============================================================ */
+.gallery {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  padding: var(--space-md) var(--space-lg) var(--space-xl);
+  scroll-snap-type: x mandatory;
+  margin-inline: calc(-1 * var(--space-lg));
+  -webkit-overflow-scrolling: touch;
+}
+.gallery::-webkit-scrollbar { height: 6px; }
+.gallery__item {
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.gallery__caption {
+  padding-inline: var(--space-sm);
+}
+.gallery__caption strong { color: var(--text-primary); }
+.gallery__caption .t-body { font-size: var(--fs-small); }
+
+/* ============================================================
+   CHANTIER 1 — Mobile : composition asymétrique éparse.
+   Chaque screenshot avec son commentaire en regard.
+   Rotations ±2-4deg, décalages verticaux, tailles variées.
+   ============================================================ */
+.mobile-scenes {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-sm), 1.5vw, var(--space-md));
+  padding-block: var(--space-xs) var(--space-sm);
+}
+.mobile-scene {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+@media (min-width: 760px) {
+  /* Composition asymétrique : grid 0.9fr 1.3fr, alternance gauche/droite */
+  .mobile-scene {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--space-lg);
+  }
+  .mobile-scene--left .mobile-scene__phone { order: 1; }
+  .mobile-scene--left .mobile-scene__text  { order: 2; }
+  .mobile-scene--right .mobile-scene__text  { order: 1; }
+  .mobile-scene--right .mobile-scene__phone { order: 2; }
+}
+/* Décalages verticaux pour casser l'alignement (desktop) */
+@media (min-width: 760px) {
+  .mobile-scene--offset-down { margin-top: var(--space-sm); }
+  .mobile-scene--offset-up   { margin-top: calc(-1 * var(--space-xs)); }
+}
+
+/* Le conteneur du phone : position relative pour le step-badge flottant */
+.mobile-scene__phone {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mobile-scene__phone .phone {
+  max-width: 260px;
+}
+.mobile-scene__phone--sm .phone { max-width: 220px; }
+.mobile-scene__phone--featured .phone {
+  max-width: 280px;
+  box-shadow: var(--shadow-soft), var(--glow-violet);
+}
+.mobile-scene__phone--featured .phone__screen { border: 1px solid rgba(138,43,226,0.45); }
+
+/* Rotations légères alternées (jamais > 4deg) */
+.phone--tilt-l { transform: rotate(-3deg); }
+.phone--tilt-r { transform: rotate(2.5deg); }
+@media (min-width: 760px) {
+  /* Sur desktop on pousse un peu plus l'asymétrie via le conteneur */
+  .mobile-scene__phone--featured { transform: translateY(-4px); }
+}
+
+/* V8 Chantier B — Réduit l'écart entre #mobile et #windows.
+   On écrase le padding-block standard de .section pour ces 2 sections
+   uniquement (sans toucher au padding-block global des autres sections).
+   Économie : ~112px → ~32px sur desktop. */
+#mobile   { padding-block-end:   clamp(8px, 1.5vw, 16px); }
+#windows  { padding-block-start: clamp(8px, 1.5vw, 16px); }
+
+/* Step-badge flottant (numéro d'étape) */
+.step-badge {
+  position: absolute;
+  top: -14px;
+  inset-inline-end: -6px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-solid);
+  border: 1px solid rgba(138,43,226,0.55);
+  color: var(--accent);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.5px;
+  box-shadow: var(--glow-violet);
+}
+.mobile-scene--right .step-badge { inset-inline: auto -6px; }
+.step-badge--cyan {
+  border-color: rgba(0,229,255,0.55);
+  color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Texte de scène */
+.scene-title {
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-headline);
+  color: var(--text-primary);
+}
+.scene-desc {
+  margin-top: var(--space-sm);
+  color: var(--text-secondary);
+  max-width: 42ch;
+}
+/* Sur desktop, les scènes --right ont le texte aligné à fin pour le rythme */
+@media (min-width: 760px) {
+  .mobile-scene--right .mobile-scene__text { text-align: end; }
+  .mobile-scene--right .scene-desc { margin-inline-start: auto; }
+}
+
+/* Respect reduced motion : annule rotations et décalages */
+@media (prefers-reduced-motion: reduce) {
+  .phone--tilt-l,
+  .phone--tilt-r { transform: none; }
+  .mobile-scene--offset-down,
+  .mobile-scene--offset-up,
+  .mobile-scene__phone--featured { margin-top: 0; transform: none; }
+}
+
+/* Grille pour les 3 autres windows screenshots (home, mygames, languages) */
+.grid--windows {
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+@media (min-width: 700px) {
+  /* Grid asymétrique : la 2e colonne plus large (DA transverse) */
+  .grid--windows { grid-template-columns: 0.95fr 1.15fr; }
+}
+@media (min-width: 1000px) {
+  .grid--windows { grid-template-columns: repeat(3, 1fr); gap: var(--space-2xl); }
+}
+
+/* DA transverse : asymétrie de la galerie Windows.
+   Chaque screenshot : rotation + décalage + taille variée, jamais > 4deg. */
+.windows-gallery { align-items: start; }
+.windows-gallery__item { transition: transform var(--t-fast); }
+.windows-gallery__item--a { transform: rotate(-2deg) translateY(8px); }
+.windows-gallery__item--b { transform: rotate(1.5deg) translateY(-6px); z-index: 2; }
+.windows-gallery__item--c { transform: rotate(-1deg) translateY(4px); }
+.windows-gallery__item:hover { transform: rotate(0) translateY(-4px); }
+@media (max-width: 999px) {
+  /* Sur 2 colonnes : la 3e (languages) prend toute la largeur, plus petite,
+     décalée pour casser l'alignement. */
+  .windows-gallery__item--c { grid-column: 1 / -1; max-width: 460px; margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .windows-gallery__item,
+  .windows-gallery__item--a,
+  .windows-gallery__item--b,
+  .windows-gallery__item--c { transform: none; }
+}
+
+/* Réduction de la taille des screenshots Windows : max-width contrôlé.
+   Les attributs width/height naturels (1280x720) restent pour le ratio (anti-CLS),
+   mais on plafonne la largeur affichée. */
+.window--sm {
+  max-width: 100%;
+  margin-inline: auto;
+}
+.window--sm .window__body img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Sur la grille 3 colonnes desktop : on borne encore pour garder de l'air */
+@media (min-width: 1000px) {
+  .window--sm { max-width: 360px; }
+}
+
+/* ============================================================
+   WINDOWS — feature signature (overlay vidéo)
+   ============================================================ */
+.windows-feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .windows-feature { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+.windows-feature__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+.bullet {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+.bullet__icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-alt);
+  color: var(--neon-green);
+}
+.bullet__icon svg { width: 18px; height: 18px; }
+
+/* Démo overlay interactive — CHANTIER 2 (refonte vraie image + slide). */
+.overlay-demo {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-solid);
+  box-shadow: var(--shadow-soft);
+}
+.overlay-demo__stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  cursor: pointer;
+  background: #070912; /* fallback avant chargement de l'image de jeu */
+}
+/* Le "jeu" en arrière-plan = screenshot Windows réel */
+.overlay-demo__game {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay-demo__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #EAF0FF;
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  background: linear-gradient(180deg, rgba(7,9,18,0.15) 0%, rgba(7,9,18,0.55) 100%);
+  z-index: 4;
+  transition: opacity var(--t-theme);
+  pointer-events: none;
+}
+.overlay-demo.is-active .overlay-demo__hint { opacity: 0; }
+
+/* Flèche latérale "handle" : quasi-transparente avant clic (opacity 0.2),
+   puis invisible une fois la vidéo sortie. Positionnée à droite du stage. */
+.overlay-demo__handle {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 72px;
+  border: 1px solid rgba(0,229,255,0.45);
+  border-inline-end: none;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  background: rgba(7,9,18,0.55);
+  color: var(--neon-cyan);
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.2;
+  transition: opacity var(--t-fast), background-color var(--t-fast);
+}
+.overlay-demo__handle:hover,
+.overlay-demo__handle:focus-visible {
+  opacity: 1;
+  background: rgba(0,229,255,0.18);
+  outline: none;
+}
+.overlay-demo__handle-icon {
+  font-size: 20px;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+}
+/* RTL : la flèche pointe dans l'autre sens */
+html[dir="rtl"] .overlay-demo__handle-icon { transform: scaleX(-1); }
+.overlay-demo.is-active .overlay-demo__handle { opacity: 0; pointer-events: none; }
+
+/* Le VRAI player overlay = l'image windows-overlay.png réelle.
+   Caché par défaut : opacity 0 + translateX(40px) depuis le bord.
+   Au clic (is-active) : opacity 1 + translateX(0), transition 400ms. */
+.overlay-demo__player {
+  position: absolute;
+  bottom: 14px;
+  inset-inline-end: 14px;
+  width: min(52%, 360px);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px solid var(--neon-violet);
+  box-shadow: var(--glow-violet);
+  background: #0a0d14;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  z-index: 6;
+}
+html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
+.overlay-demo.is-active .overlay-demo__player {
+  opacity: 1;
+  transform: translateX(0);
+}
+.overlay-demo__player img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.overlay-demo__ad-badge {
+  position: absolute;
+  top: 6px;
+  inset-inline-start: 6px;
+  font-size: 9px;
+  font-weight: var(--fw-black);
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(57,255,20,0.20);
+  color: var(--neon-green);
+  border: 1px solid rgba(57,255,20,0.45);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.overlay-demo__toggle {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.overlay-demo__status {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  font-weight: var(--fw-bold);
+}
+.overlay-demo__status strong { color: var(--neon-green); }
+
+/* Respect reduced motion : transition instantanée (opacity seule, pas de translate) */
+@media (prefers-reduced-motion: reduce) {
+  .overlay-demo__player,
+  html[dir="rtl"] .overlay-demo__player {
+    transform: none;
+    transition: opacity 120ms linear;
+  }
+  .overlay-demo__handle { transition: opacity 120ms linear; }
+  .overlay-demo__hint { transition: opacity 120ms linear; }
+}
+
+/* ============================================================
+   COMMUNITY — Contributeur du mois
+   ============================================================ */
+.community {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .community { grid-template-columns: 0.9fr 1.1fr; }
+}
+.community__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+.stat {
+  position: relative;
+  text-align: center;
+  padding: var(--space-lg) var(--space-sm);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform var(--t-fast), border-color var(--t-fast);
+}
+/* DA transverse : asymétrie — chaque stat légèrement décalée et pivotée */
+.stat:nth-child(1) { transform: rotate(-1.5deg) translateY(6px); }
+.stat:nth-child(2) { transform: rotate(0deg)   translateY(-8px); z-index: 2; }
+.stat:nth-child(3) { transform: rotate(1.5deg) translateY(6px); }
+.stat:hover { border-color: var(--border-strong); }
+@media (prefers-reduced-motion: reduce) {
+  .stat:nth-child(1),
+  .stat:nth-child(2),
+  .stat:nth-child(3) { transform: none; }
+}
+.stat__num {
+  font-weight: var(--fw-black);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--text-primary);
+  line-height: 1;
+}
+.stat__label {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  font-weight: var(--fw-bold);
+}
+/* Stat IA (accent) — halo violet doux, c'est le signal */
+.stat--accent {
+  border-color: rgba(var(--accent-rgb), 0.55);
+  box-shadow: var(--glow-violet);
+}
+.stat--accent .stat__num { color: var(--accent); }
+/* Stat ∞ (vision communauté) — halo cyan, le signal d'avenir */
+.stat--infinity {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: var(--glow-cyan);
+}
+.stat--infinity .stat__num {
+  color: var(--accent-2);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+@media (min-width: 900px) {
+  .stat--infinity .stat__num { font-size: clamp(2.25rem, 5vw, 3rem); }
+}
+
+/* Crown badge — variante bot (cyan au lieu d'or) pour signaler l'IA */
+.crown--bot {
+  background: rgba(0, 229, 255, 0.10);
+  border-color: rgba(0, 229, 255, 0.45);
+  color: var(--neon-cyan);
+}
+
+/* Crown badge Or Plus */
+.crown {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 201, 60, 0.12);
+  border: 1px solid rgba(255, 201, 60, 0.4);
+  color: var(--plus-gold);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   PERSONNALISATION — démo live jour/nuit
+   ============================================================ */
+.personalize {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .personalize { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+.theme-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+/* Toggle switch */
+.switch {
+  position: relative;
+  width: 56px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-alt);
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.switch__thumb {
+  position: absolute;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface-solid);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--t-fast), inset-inline-start var(--t-fast);
+}
+[data-theme="light"] .switch__thumb { inset-inline-start: calc(100% - 26px); }
+
+/* ============================================================
+   CHANTIER 5 — Switch LOCAL jour/nuit du mockup téléphone.
+   IMPORTANT : ne change PAS le thème global du site.
+   Le switch est data-phone-theme-toggle (≠ data-theme-toggle).
+   ============================================================ */
+
+/* Switch local : par défaut sur NUIT (arcade vivante vedette).
+   La position du thumb dépend de la classe is-day posée par le JS
+   sur le conteneur [data-phone-theme-demo], PAS du data-theme global. */
+.switch--phone {
+  background: linear-gradient(95deg,
+              rgba(138, 43, 226, 0.45),
+              rgba(0, 229, 255, 0.55));
+  border-color: rgba(0, 229, 255, 0.75); /* cyan vif au lieu du violet atténué */
+  box-shadow:
+    0 0 0 1px rgba(0, 229, 255, 0.35),
+    0 0 16px rgba(0, 229, 255, 0.45),
+    0 0 32px rgba(0, 229, 255, 0.25);
+}
+/* V5 Chantier A — Variante mode clair : cyan bien saturé pour
+   rester très visible sur fond blanc. */
+[data-theme="light"] .switch--phone {
+  background: linear-gradient(95deg,
+              rgba(106, 17, 203, 0.20),
+              rgba(0, 229, 255, 0.65));
+  border-color: rgba(0, 180, 210, 0.85); /* cyan un peu plus foncé pour contraster */
+  box-shadow:
+    0 0 0 1px rgba(0, 180, 210, 0.45),
+    0 0 14px rgba(0, 229, 255, 0.55),
+    0 0 28px rgba(0, 229, 255, 0.30);
+}
+.switch--phone .switch__thumb {
+  inset-inline-start: calc(100% - 26px); /* NUIT = thumb à droite */
+  background: radial-gradient(circle at 35% 35%,
+              #EAF0FF 0%,
+              #B8E8FF 40%,
+              var(--neon-cyan) 100%);
+  box-shadow:
+    0 0 8px var(--neon-cyan),
+    0 0 16px rgba(0, 229, 255, 0.6),
+    0 0 24px rgba(0, 229, 255, 0.35);
+  transition: inset-inline-start 200ms ease-out, background 200ms ease-out,
+              box-shadow 200ms ease-out;
+}
+/* Position JOUR = thumb à gauche + orbe or/orange (gradient + glow or) */
+[data-phone-theme-demo].is-day .switch--phone .switch__thumb {
+  inset-inline-start: 2px;
+  background: radial-gradient(circle at 35% 35%,
+              #FFF5D6 0%,
+              #FFE89A 40%,
+              var(--plus-gold) 100%);
+  box-shadow:
+    0 0 8px var(--plus-gold),
+    0 0 16px rgba(255, 201, 60, 0.6),
+    0 0 24px rgba(255, 201, 60, 0.35);
+}
+/* V6 Chantier C — Variante mode clair global : thumb reste lisible sur
+   fond blanc (cyan renforcé en NUIT, or en JOUR déjà géré ci-dessus). */
+[data-theme="light"] .switch--phone .switch__thumb {
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #B8E8FF 45%, var(--neon-cyan) 100%);
+  box-shadow:
+    0 0 6px rgba(0, 229, 255, 0.55),
+    0 0 12px rgba(0, 229, 255, 0.35);
+}
+[data-theme="light"] [data-phone-theme-demo].is-day .switch--phone .switch__thumb {
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #FFE89A 45%, var(--plus-gold) 100%);
+  box-shadow:
+    0 0 6px rgba(255, 201, 60, 0.55),
+    0 0 12px rgba(255, 201, 60, 0.35);
+}
+/* Reset : on NE réutilise PAS la règle [data-theme="light"] .switch__thumb
+   ici — ce switch est purement local. */
+
+/* Pills jour/nuit sous le switch */
+.theme-demo__labels { min-width: 0; }
+.theme-demo__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+  transition: color var(--t-fast), border-color var(--t-fast),
+              background-color var(--t-fast), box-shadow var(--t-fast);
+}
+.theme-demo__pill--night.is-on {
+  color: var(--accent);
+  border-color: rgba(138,43,226,0.55);
+  box-shadow: var(--glow-violet);
+  background: rgba(138,43,226,0.12);
+}
+.theme-demo__pill--day.is-on {
+  color: var(--plus-gold);
+  border-color: rgba(255,201,60,0.55);
+  box-shadow: 0 0 0 1px rgba(255,201,60,0.55), 0 0 18px rgba(255,201,60,0.35);
+  background: rgba(255,201,60,0.12);
+}
+/* Bascule des pills : nuit ON par défaut, jour ON quand is-day */
+[data-phone-theme-demo].is-day .theme-demo__pill--night { box-shadow: none; background: var(--surface-alt); color: var(--text-secondary); border-color: var(--border); }
+[data-phone-theme-demo].is-day .theme-demo__pill--day { color: var(--plus-gold); border-color: rgba(255,201,60,0.55); box-shadow: 0 0 0 1px rgba(255,201,60,0.55), 0 0 18px rgba(255,201,60,0.35); background: rgba(255,201,60,0.12); }
+
+/* Mockup themable : 2 images superposées, crossfade 400ms */
+.personalize__figure {
+  position: relative;
+  margin-inline: auto;
+  width: fit-content;
+  max-width: 100%;
+}
+.phone--themable {
+  max-width: 300px;
+  margin-inline: auto;
+  /* Légère rotation pour DA transverse (asymétrie), jamais excessive */
+  transform: rotate(-2deg);
+  box-shadow: var(--shadow-soft), var(--glow-violet);
+}
+[data-phone-theme-demo].is-day ~ * .phone--themable,
+.personalize .phone--themable { /* par défaut nuit = halo violet */ }
+/* Quand le visiteur bascule en JOUR sur le mockup : halo or */
+[data-phone-theme-demo].is-day ~ * .phone--themable,
+[data-phone-theme-demo].is-day ~ .personalize__figure .phone--themable {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(255,201,60,0.55),
+              0 0 28px rgba(255,201,60,0.35);
+}
+.phone--themable .phone__screen { position: relative; }
+.phone--themable .phone__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 400ms ease-out;
+}
+.phone--themable .phone__img--night { opacity: 1; z-index: 2; } /* défaut = nuit */
+.phone--themable .phone__img--day   { opacity: 0; z-index: 3; } /* caché par défaut */
+/* is-day sur le conteneur [data-phone-theme-demo] -> on inverse.
+   On cible via le parent .personalize pour rester simple et robuste. */
+.personalize:has([data-phone-theme-demo].is-day) .phone--themable .phone__img--night { opacity: 0; }
+.personalize:has([data-phone-theme-demo].is-day) .phone--themable .phone__img--day   { opacity: 1; }
+/* Fallback : si :has() n'est pas supporté, le JS pose aussi is-day sur le phone */
+.phone--themable.is-day .phone__img--night { opacity: 0; }
+.phone--themable.is-day .phone__img--day   { opacity: 1; }
+.phone--themable.is-day {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(255,201,60,0.55),
+              0 0 28px rgba(255,201,60,0.35);
+}
+
+/* Badges flottants jour/nuit autour du mockup (DA transverse) */
+.personalize__badge-night,
+.personalize__badge-day {
+  position: absolute;
+  z-index: 5;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.4px;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.personalize__badge-night {
+  top: -10px;
+  inset-inline-start: -18px;
+  transform: rotate(-6deg);
+  opacity: 1;
+}
+.personalize__badge-day {
+  bottom: 60px;
+  inset-inline-end: -22px;
+  transform: rotate(5deg);
+  opacity: 0.45;
+}
+/* Quand le visiteur bascule le mockup en jour : les badges s'inversent.
+   On cible la figure parent qui recoit is-day via le JS (fonctionne partout),
+   + double sécurité via :has() sur le demo. */
+.personalize__figure.is-day .personalize__badge-night,
+.personalize:has([data-phone-theme-demo].is-day) .personalize__badge-night { opacity: 0.4; }
+.personalize__figure.is-day .personalize__badge-day,
+.personalize:has([data-phone-theme-demo].is-day) .personalize__badge-day { opacity: 1; }
+
+/* Respect reduced motion : transition instantanée */
+@media (prefers-reduced-motion: reduce) {
+  .phone--themable .phone__img { transition: none; }
+  .switch--phone .switch__thumb { transition: none; }
+  .theme-demo__pill { transition: none; }
+}
+
+/* ============================================================
+   FLOAT-BADGES (DA transverse) — badges décoratifs flottants
+   ============================================================ */
+.float-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-soft);
+}
+.float-badge--cyan {
+  color: var(--neon-cyan);
+  border-color: rgba(0,229,255,0.55);
+  box-shadow: var(--glow-cyan);
+}
+.float-badge--gold {
+  color: var(--plus-gold);
+  border-color: rgba(255,201,60,0.55);
+  box-shadow: 0 0 0 1px rgba(255,201,60,0.55), 0 0 16px rgba(255,201,60,0.30);
+}
+.float-badge--violet {
+  color: var(--accent);
+  border-color: rgba(138,43,226,0.55);
+  box-shadow: var(--glow-violet);
+}
+.float-badge--green {
+  color: var(--neon-green);
+  border-color: rgba(57,255,20,0.45);
+  box-shadow: 0 0 0 1px rgba(57,255,20,0.45), 0 0 14px rgba(57,255,20,0.25);
+}
+
+/* ============================================================
+   DA TRANSVERSE — Hero badges flottants + rotations
+   ============================================================ */
+.hero__visual .phone--hero {
+  /* On conserve la rotation tilt-r du Chantier DA, la float anime déjà */
+  transform: rotate(2.5deg);
+}
+.hero__visual .phone--hero.float {
+  /* Combine float (animation) + rotation : on applique la rotation
+     sur un wrapper mental via une animation qui préserve le rotate. */
+  animation: mockup-float-tilt 6s ease-in-out infinite;
+}
+@keyframes mockup-float-tilt {
+  0%, 100% { transform: rotate(2.5deg) translateY(0); }
+  50%      { transform: rotate(2.5deg) translateY(-12px); }
+}
+
+.hero__badge {
+  position: absolute;
+  z-index: 5;
+  animation: badge-bob 5s ease-in-out infinite;
+}
+.hero__badge--new {
+  top: 8%;
+  inset-inline-start: -4%;
+  transform: rotate(-8deg);
+}
+.hero__badge--free {
+  top: 40%;
+  inset-inline-end: -8%;
+  transform: rotate(6deg);
+  animation-delay: 0.8s;
+}
+.hero__badge--lang {
+  bottom: 6%;
+  inset-inline-start: 8%;
+  transform: rotate(-4deg);
+  animation-delay: 1.6s;
+}
+@keyframes badge-bob {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+/* Respect reduced motion : badges figés */
+@media (prefers-reduced-motion: reduce) {
+  .hero__visual .phone--hero.float { animation: none; transform: rotate(2.5deg); }
+  .hero__badge { animation: none; }
+}
+
+/* ============================================================
+   DA TRANSVERSE — Features : rotations alternées très légères
+   ============================================================ */
+@media (min-width: 600px) {
+  .grid--features .card:nth-child(1) { transform: rotate(-1deg); }
+  .grid--features .card:nth-child(2) { transform: rotate(0.5deg) translateY(6px); }
+  .grid--features .card:nth-child(3) { transform: rotate(-0.5deg); }
+  .grid--features .card:nth-child(4) { transform: rotate(1deg) translateY(-4px); }
+  .grid--features .card:nth-child(5) { transform: rotate(-0.5deg) translateY(6px); }
+  .grid--features .card:nth-child(6) { transform: rotate(1deg); }
+  /* Le hover remet à plat pour l'effet "tap" */
+  .grid--features .card:hover { transform: rotate(0) translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid--features .card,
+  .grid--features .card:nth-child(n) { transform: none; }
+}
+
+/* ============================================================
+   DA TRANSVERSE — Plus : poster + plan Or légèrement pivotés
+   ============================================================ */
+.plus__poster { position: relative; }
+@media (min-width: 900px) {
+  .plus__poster { transform: rotate(-2deg); }
+}
+.plus__poster-badge {
+  position: absolute;
+  top: -14px;
+  inset-inline-end: -10px;
+  z-index: 4;
+  transform: rotate(8deg);
+}
+/* Le plan sélectionné (Or) légèrement pivoté + surélevé.
+   V6 Chantier D — suit is-selected (anciennement plan--featured).
+   V6 Chantier B — translateY atténué (-6px -> -4px). */
+@media (min-width: 600px) {
+  .plan.is-selected { transform: rotate(-1.5deg) translateY(-4px); }
+  .plan.is-selected:hover { transform: rotate(0) translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plus__poster,
+  .plan.is-selected { transform: none; }
+}
+
+/* ============================================================
+   DA TRANSVERSE — Download : cartes au même niveau au repos,
+   montée identique au hover (V5 Chantier D — mouvement symétrique).
+   On garde les rotations légères (-1deg / +1deg) au repos pour
+   l'effet "jeune/pub gamer", mais les translateY sont identiques (0).
+   ============================================================ */
+@media (min-width: 760px) {
+  .download-grid > .download-card:first-child { transform: translateY(0) rotate(-1deg); }
+  .download-grid > .download-card:last-child  { transform: translateY(0) rotate(1deg); }
+  .download-grid > .download-card { transition: transform var(--t-fast); }
+  .download-grid > .download-card:hover { transform: translateY(-12px) rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .download-grid > .download-card { transform: none; }
+}
+
+/* ============================================================
+   PLUS / PRICING — section premium
+   ============================================================ */
+
+/* V8 Chantier C.1 — Remonte la section Plus d'environ 5cm (~150px desktop).
+   Mobile : remontée moindre pour ne pas coller la section précédente. */
+#plus {
+  /* V9.1 : remontée réduite pour éviter le chevauchement avec la
+     section Communauté. Valeur réduite de ~3cm par rapport à la V8. */
+  margin-block-start: 0;
+}
+@media (min-width: 900px) {
+  #plus { margin-block-start: calc(-1 * clamp(16px, 2vw, 32px)); }
+}
+
+/* V8 Chantier C.3 — Titre Plus décalé à droite, au-dessus du panneau pricing.
+   Desktop uniquement (≥900px). Sur mobile on garde le centrage standard.
+   La colonne pricing fait 1.15fr sur 2fr (0.85fr + 1.15fr) = 57.5%. */
+@media (min-width: 900px) {
+  #plus .section__head {
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+    max-width: 57.5%;
+    text-align: center;
+    /* V9.3 : réduit l'espace entre le titre et le panneau ★ Plus en dessous.
+       Contrebalance le margin-top du panneau .neon-premium. */
+    margin-bottom: var(--space-xs);
+  }
+}
+
+.plus {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: start;  /* V8 C.5 : start (au lieu de center) — le pricing
+                          est plus haut avec download intégré, l'alignement
+                          en haut garde la cohérence colonne-gauche/colonne-droite. */
+}
+@media (min-width: 900px) {
+  .plus { grid-template-columns: 0.85fr 1.15fr; }
+}
+
+/* Colonne gauche : image promo + badge gratuité */
+.plus__visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+/* V9.2 : remonte la bannière publicitaire de quelques cm en desktop
+   pour qu'elle arrive plus haut, en contrepoint du pricing descendu. */
+@media (min-width: 900px) {
+  .plus__visual { margin-top: calc(-1 * clamp(40px, 5vw, 80px)); }
+}
+  justify-content: flex-start;
+}
+.plus__poster {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft), var(--glow-violet);
+}
+.plus__poster img { width: 100%; display: block; }
+.plus__free {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-weight: var(--fw-black);
+  color: var(--text-primary);
+}
+
+/* NeonContainer premium : bordure dégradé + halo double */
+.neon-premium {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  box-shadow: var(--shadow-soft), var(--glow-plus);
+}
+/* V9 : redescend le panneau pricing en desktop pour qu'il ne rentre
+   plus en conflit avec l'image au-dessus (décalage avec le poster).
+   V9.2 : descendu encore de quelques cm, couplé à la remontée du poster. */
+@media (min-width: 900px) {
+  .neon-premium { margin-top: clamp(80px, 9vw, 140px); }
+}
+.neon-premium::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--plus-violet), var(--plus-gold));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.neon-premium__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 201, 60, 0.14);
+  border: 1px solid rgba(255, 201, 60, 0.5);
+  color: var(--plus-gold);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-sm);
+}
+
+.plus__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-block: var(--space-md);
+}
+.benefit {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+.benefit__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-alt);
+  color: var(--plus-violet);
+  font-size: 18px;
+}
+[data-theme="light"] .benefit__icon { color: var(--accent); }
+.benefit__label {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-body);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.benefit__desc { font-size: var(--fs-small); color: var(--text-secondary); }
+
+/* Plans de prix */
+.plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-block: var(--space-md);
+}
+.plan {
+  position: relative;
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+/* V5 Chantier B — reset button pour que <button class="plan"> rende comme un div */
+button.plan {
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+/* V5 Chantier B + V6 Chantier D — état sélectionné (halo or + violet premium).
+   La bordure dégradée gold->violet (ci-dessous ::before) suit la classe
+   is-selected (anciennement .plan--featured permanent dans le HTML). */
+.plan.is-selected {
+  background: var(--surface);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    0 0 0 2px rgba(255, 201, 60, 0.6),
+    0 0 24px rgba(255, 201, 60, 0.35),
+    0 0 48px rgba(176, 38, 255, 0.20);
+}
+.plan.is-selected .plan__name {
+  color: var(--plus-gold);
+}
+/* V5 Chantier B — hover sur plan non sélectionné (feedback cliquable) */
+.plan:not(.is-selected):hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  transition: transform var(--t-fast), border-color var(--t-fast);
+}
+/* En mode clair, le name sélectionné passe en violet profond (cohérent avec
+   le reste du mode clair qui remplace le gold par le violet). */
+[data-theme="light"] .plan.is-selected .plan__name { color: var(--accent); }
+.plan.is-selected::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--plus-gold), var(--plus-violet));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: -1;
+}
+/* Masquer le badge "Économisez 16%" quand le plan annuel n'est pas sélectionné */
+.plan:not(.is-selected) .plan__badge { display: none; }
+.plan__badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--plus-gold);
+  color: #1a0f00;
+  font-size: 10px;
+  font-weight: var(--fw-black);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.plan__name {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.plan__price {
+  font-weight: var(--fw-black);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--text-primary);
+  margin-top: var(--space-xs);
+  line-height: 1;
+}
+.plan__price small {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--text-secondary);
+}
+.plan__sub {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+.plan.is-selected .plan__price { color: var(--plus-gold); }
+[data-theme="light"] .plan.is-selected .plan__price { color: var(--accent); }
+
+.microcopy {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+/* ============================================================
+   DOWNLOAD
+   ============================================================ */
+.download-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+@media (min-width: 760px) {
+  .download-grid { grid-template-columns: 1fr 1fr; }
+}
+.download-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color var(--t-fast),
+              box-shadow 200ms ease-out,
+              transform var(--t-fast);
+}
+.download-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+.download-card__icon {
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.download-card__icon svg { width: 100%; height: 100%; }
+.download-card__title {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-headline);
+}
+.download-card__req {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* ============================================================
+   V8 Chantier C.4 — .download-inline : grille download intégrée
+   dans le panneau pricing (.neon-premium), sous la CTA "Passer à Plus".
+   Le panneau étant plus étroit qu'une section pleine large, on compacte
+   les cartes et on force la grille en 2 colonnes plus tôt.
+   ============================================================ */
+.download-inline {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+.download-inline .download-grid {
+  grid-template-columns: 1fr 1fr;  /* toujours 2 colonnes dans le panneau */
+  gap: var(--space-md);
+}
+.download-inline .download-card {
+  /* Cartes plus compactes que la version section standalone */
+  padding: var(--space-md) var(--space-sm);
+  gap: var(--space-sm);
+}
+.download-inline .download-card__icon {
+  width: 44px;
+  height: 44px;
+}
+.download-inline .download-card__title {
+  font-size: var(--fs-body);
+}
+/* Les boutons des cartes download inline : on les tasse légèrement pour
+   rester lisibles dans une carte compacte (le btn--neon garde son halo). */
+.download-inline .download-card .btn {
+  font-size: var(--fs-small);
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-md);
+}
+.download-inline .microcopy {
+  margin-top: var(--space-sm);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding-block: var(--space-2xl) var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+@media (min-width: 760px) {
+  .site-footer__top { grid-template-columns: 2fr 1fr 1fr; }
+}
+.site-footer__brand .brand { margin-bottom: var(--space-md); }
+.site-footer__tagline { color: var(--text-secondary); max-width: 32ch; }
+.site-footer__col h4 {
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: var(--fw-black);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+.site-footer__col ul { display: flex; flex-direction: column; gap: var(--space-sm); }
+.site-footer__col a {
+  color: var(--text-primary);
+  font-size: var(--fs-body);
+}
+.site-footer__col a:hover { color: var(--accent); }
+.site-footer__bottom {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   TOAST (protections)
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--surface-solid);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+  z-index: 500;
+  max-width: 90vw;
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   SCROLL CUE
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   IMAGES — anti-drag + non-sélection
+   ============================================================ */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ============================================================
+   CHANTIER 2 (V3) — Contours néon sur les cartes (mode DARK)
+   Glow doux au repos, renforcé au hover.
+   UNIQUEMENT en mode dark : en mode clair, --glow-card = none,
+   donc box-shadow: var(--glow-card) n'a aucun effet (rendu V2 inchangé).
+   Pas de side-stripe : on passe par box-shadow (outline-like), pas border.
+   ============================================================ */
+[data-theme="dark"] .card,
+[data-theme="dark"] .download-card,
+[data-theme="dark"] .trust,
+[data-theme="dark"] .theme-demo,
+[data-theme="dark"] .lang-menu {
+  box-shadow: var(--glow-card);
+}
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .download-card:hover {
+  box-shadow: var(--glow-card-hover);
+}
+
+/* Fenêtres et téléphones : halo doux en dark (en plus de l'ombre existante). */
+[data-theme="dark"] .window {
+  box-shadow: var(--shadow-soft), 0 24px 50px rgba(0,0,0,0.3),
+              0 0 0 1px rgba(0, 229, 255, 0.18);
+}
+[data-theme="dark"] .phone {
+  box-shadow: var(--shadow-soft), 0 30px 60px rgba(0,0,0,0.35),
+              0 0 0 1px rgba(138, 43, 226, 0.22),
+              0 0 18px rgba(138, 43, 226, 0.12);
+}
+/* Survol léger des fenêtres de galerie (elles n'ont pas de hover glow natif). */
+[data-theme="dark"] .windows-gallery__item:hover .window {
+  box-shadow: var(--shadow-soft), 0 24px 50px rgba(0,0,0,0.3),
+              0 0 0 1px rgba(0, 229, 255, 0.35),
+              0 0 24px rgba(0, 229, 255, 0.18);
+}
+
+/* Boutons ghost : bordure néon plus marquée en mode dark (déjà partiellement
+   fait en V2, on renforce le halo au hover). */
+[data-theme="dark"] .btn--ghost:hover,
+[data-theme="dark"] .btn--ghost:focus-visible {
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.55),
+              0 0 18px rgba(0, 229, 255, 0.22);
+}
+
+/* Badges .step-badge : ils ont déjà un glow en V2 ; on ajoute une pulsation
+   très douce en mode dark pour qu'ils attirent l'oeil (cf. Chantier 4). */
+
+/* Reduced motion : les box-shadow ne sont pas animées par elles-mêmes ici
+   (transitions courtes 200ms), on les laisse : ce n'est pas du mouvement.
+   Les pulsations sont gérées au Chantier 4 avec leur propre garde. */
+
+/* ============================================================
+   CHANTIER 4 (V3) — Glow néon intense sur les éléments clés (mode DARK)
+   Les "signaux" (CTA primaires, cards featured, badges, screenshots
+   mis en avant) deviennent des panneaux lumineux d'arcade.
+   TOUT est sous [data-theme="dark"] ; mode clair 100% inchangé.
+   ============================================================ */
+
+/* --- Pulsation néon (cf. DESIGN.md §4) ---
+   Opacité + box-shadow, 1600ms. Sur les CTA primaires seulement. */
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.6),
+                0 0 20px rgba(138, 43, 226, 0.30),
+                0 0 40px rgba(138, 43, 226, 0.18);
+  }
+  50% {
+    opacity: 0.92;
+    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.85),
+                0 0 30px rgba(138, 43, 226, 0.50),
+                0 0 60px rgba(138, 43, 226, 0.28);
+  }
+}
+
+/* Bouton CTA primaire néon : glow intense + pulsation.
+   On surcharge le box-shadow statique du V2 par l'animation.
+   Un hover désactive la pulsation (pour laisser le hover prendre le relais). */
+[data-theme="dark"] .btn--neon {
+  animation: neon-pulse var(--t-pulse) ease-in-out infinite;
+  will-change: box-shadow, opacity;
+}
+[data-theme="dark"] .btn--neon:hover,
+[data-theme="dark"] .btn--neon:focus-visible {
+  animation: none;
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.85),
+              0 0 34px rgba(138, 43, 226, 0.55),
+              0 0 64px rgba(138, 43, 226, 0.30);
+}
+
+/* --- Cards featured : bordure néon colorée + halo double couche --- */
+
+/* Phone featured (mobile scene) : halo violet renforcé. */
+[data-theme="dark"] .mobile-scene__phone--featured .phone {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(138, 43, 226, 0.6),
+              0 0 28px rgba(138, 43, 226, 0.40),
+              0 0 56px rgba(138, 43, 226, 0.20);
+}
+
+/* Phone hero : halo violet renforcé + pulsation très douce. */
+@keyframes hero-phone-glow {
+  0%, 100% {
+    box-shadow: var(--shadow-soft),
+                0 0 0 1px rgba(138, 43, 226, 0.55),
+                0 0 26px rgba(138, 43, 226, 0.35),
+                0 0 52px rgba(138, 43, 226, 0.18);
+  }
+  50% {
+    box-shadow: var(--shadow-soft),
+                0 0 0 1px rgba(138, 43, 226, 0.8),
+                0 0 38px rgba(138, 43, 226, 0.50),
+                0 0 70px rgba(138, 43, 226, 0.25);
+  }
+}
+[data-theme="dark"] .phone--hero {
+  animation: hero-phone-glow var(--t-pulse) ease-in-out infinite;
+  will-change: box-shadow;
+}
+/* Le hero phone a déjà une animation mockup-float-tilt (transform). On compose
+   via une seconde animation ? Non : une seule propriété `animation` par élément.
+   Ici .phone--hero.float porte déjà mockup-float-tilt. Pour éviter le conflit,
+   on n'anime le glow QUE si l'élément n'est pas .float (sinon on garde un glow
+   statique renforcé pour ne pas écraser le transform de flottaison). */
+[data-theme="dark"] .hero__visual .phone--hero.float {
+  animation: mockup-float-tilt 6s ease-in-out infinite;
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(138, 43, 226, 0.7),
+              0 0 32px rgba(138, 43, 226, 0.42),
+              0 0 60px rgba(138, 43, 226, 0.22);
+}
+
+/* V6 Chantier D — Plan sélectionné (Plus annuel ou mensuel, or) :
+   halo or/violet renforcé suit is-selected. */
+[data-theme="dark"] .plan.is-selected {
+  box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.7),
+              0 0 26px rgba(176, 38, 255, 0.40),
+              0 0 52px rgba(176, 38, 255, 0.20);
+}
+
+/* Plus poster : halo violet renforcé (déjà --glow-violet en V2). */
+[data-theme="dark"] .plus__poster {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(138, 43, 226, 0.6),
+              0 0 26px rgba(138, 43, 226, 0.40),
+              0 0 52px rgba(138, 43, 226, 0.18);
+}
+
+/* --- Badges : pulse très léger selon leur couleur --- */
+/* On ne pulse QUE les badges qui "signalent" (hero, step-badge, float-badge).
+   Pas de pulse sur le texte corps ni sur les chips de catégorie. */
+@keyframes badge-pulse-violet {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.55), 0 0 14px rgba(138, 43, 226, 0.25); }
+  50%      { box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.8),  0 0 22px rgba(138, 43, 226, 0.45); }
+}
+@keyframes badge-pulse-cyan {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.5), 0 0 14px rgba(0, 229, 255, 0.22); }
+  50%      { box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.8), 0 0 22px rgba(0, 229, 255, 0.42); }
+}
+@keyframes badge-pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.55), 0 0 14px rgba(255, 201, 60, 0.25); }
+  50%      { box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.8),  0 0 22px rgba(255, 201, 60, 0.45); }
+}
+@keyframes badge-pulse-green {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.45), 0 0 12px rgba(57, 255, 20, 0.22); }
+  50%      { box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.7),  0 0 20px rgba(57, 255, 20, 0.40); }
+}
+
+/* Step-badges : pulse selon leur couleur (violet par défaut, cyan si --cyan). */
+[data-theme="dark"] .step-badge {
+  animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite;
+  will-change: box-shadow;
+}
+[data-theme="dark"] .step-badge--cyan {
+  animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite;
+}
+
+/* Float-badges (DA transverse) : pulse selon leur variante.
+   Attention : .hero__badge porte déjà badge-bob (translate). On n'écrase
+   pas cette animation : on pulse via les float-badge internes si présents,
+   et on laisse les hero__badge eux-mêmes avec leur bob. */
+[data-theme="dark"] .float-badge--violet { animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+[data-theme="dark"] .float-badge--cyan   { animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+[data-theme="dark"] .float-badge--gold   { animation: badge-pulse-gold var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+[data-theme="dark"] .float-badge--green  { animation: badge-pulse-green var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+
+/* Stat IA (accent violet) : pulse douce. La stat porte déjà un transform
+   nth-child (rotation) — on évite le conflit en n'animant QUE box-shadow
+   (les keyframes badge-pulse-* ne touchent que box-shadow, pas transform). */
+[data-theme="dark"] .stat--accent    { animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+[data-theme="dark"] .stat--infinity  { animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+
+/* --- Screenshots mis en avant : contour néon + halo ---
+   L'overlay-demo (démo vidéo Windows) reçoit un halo cyan pour le signaler
+   comme élément interactif. */
+[data-theme="dark"] .overlay-demo {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(0, 229, 255, 0.35),
+              0 0 24px rgba(0, 229, 255, 0.18);
+}
+[data-theme="dark"] .overlay-demo:hover {
+  box-shadow: var(--shadow-soft),
+              0 0 0 1px rgba(0, 229, 255, 0.6),
+              0 0 36px rgba(0, 229, 255, 0.30);
+  transition: box-shadow 200ms ease-out;
+}
+
+/* --- Reduced motion : on fige toutes les pulsations néon ---
+   Les glows restent visibles (box-shadow statique), sans animation. */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="dark"] .btn--neon,
+  [data-theme="dark"] .phone--hero,
+  [data-theme="dark"] .step-badge,
+  [data-theme="dark"] .step-badge--cyan,
+  [data-theme="dark"] .float-badge--violet,
+  [data-theme="dark"] .float-badge--cyan,
+  [data-theme="dark"] .float-badge--gold,
+  [data-theme="dark"] .float-badge--green,
+  [data-theme="dark"] .stat--accent,
+  [data-theme="dark"] .stat--infinity {
+    animation: none !important;
+    opacity: 0.9;
+  }
+  /* En reduced motion on garde quand même un glow statique marqué sur le CTA. */
+  [data-theme="dark"] .btn--neon {
+    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.7),
+                0 0 26px rgba(138, 43, 226, 0.40);
+  }
+}
+
+

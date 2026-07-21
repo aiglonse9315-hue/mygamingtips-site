@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Anti-flash : pose data-theme AVANT le rendu.
+       V3 : DARK par défaut, quel que soit le réglage système.
+       Le mode clair reste accessible via le toggle du header. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("mgt-theme");
+        if (t !== "dark" && t !== "light") {
+          t = "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+
+  <!-- SEO -->
+  <title>MyGamingTips — Vos meilleurs contenus gaming, triés et vérifiés.</title>
+  <meta name="description" content="MyGamingTips centralise les vidéos, guides et liens gaming utiles, organisés par jeu et vérifiés par la communauté. Gratuit, sans pub. Mobile + Windows." />
+  <meta name="theme-color" content="#070912" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="canonical" href="https://mygamingtips.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MyGamingTips" />
+  <meta property="og:title" content="MyGamingTips — Vos meilleurs contenus gaming, triés et vérifiés." />
+  <meta property="og:description" content="L'arcade vivante. Chaque jeu a ses meilleurs contenus, triés et vérifiés. Pas un feed infini." />
+  <meta property="og:image" content="assets/promo-hero.png" />
+  <meta property="og:image:alt" content="MyGamingTips — application mobile de contenus gaming triés et vérifiés" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MyGamingTips — Triés et vérifiés" />
+  <meta name="twitter:description" content="Chaque jeu a ses meilleurs contenus, triés et vérifiés. Pas un feed infini." />
+  <meta name="twitter:image" content="assets/promo-hero.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo/logo-192.png" />
+  <link rel="apple-touch-icon" href="assets/logo/logo-192.png" />
+
+  <!-- Fonts : preconnect + Roboto (400/700/800) + Noto fallbacks CJK/AR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/gaming-background.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/promo.css" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MyGamingTips",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Android, Windows",
+    "offers": [
+      { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Application gratuite" },
+      { "@type": "Offer", "price": "1.99", "priceCurrency": "EUR", "description": "Plus mensuel" },
+      { "@type": "Offer", "price": "19.99", "priceCurrency": "EUR", "description": "Plus annuel" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "ratingCount": "1"
+    },
+    "description": "Centralise les contenus gaming utiles — vidéos, guides, liens — organisés par jeu et vérifiés par la communauté."
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Skip link a11y -->
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Aller au contenu principal</a>
+
+  <!-- GamingBackground (signature) — V3 Arcade Vivante (mode dark) -->
+  <div class="gbg" aria-hidden="true">
+    <div class="gbg__aurora"></div>
+    <div class="gbg__halo gbg__halo--a"></div>
+    <div class="gbg__halo gbg__halo--b"></div>
+    <div class="gbg__halo gbg__halo--c"></div>
+    <div class="gbg__halo gbg__halo--d"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__particle"></div>
+    <div class="gbg__grid"></div>
+    <div class="gbg__veil"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="brand" href="#main" aria-label="MyGamingTips — accueil">
+        <img class="brand__logo"
+             src="assets/logo/logo-192.png"
+             width="32" height="32"
+             alt=""
+             data-i18n-alt="a11y.logo_alt" />
+        <span class="brand__name">MyGamingTips</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a class="site-nav__link" href="#features" data-i18n="nav.features">Fonctionnalités</a>
+        <a class="site-nav__link" href="#mobile" data-i18n="nav.mobile">Mobile</a>
+        <a class="site-nav__link" href="#windows" data-i18n="nav.windows">Windows</a>
+        <a class="site-nav__link" href="#community" data-i18n="nav.community">Communauté</a>
+        <a class="site-nav__link" href="#plus" data-i18n="nav.plus">Plus</a>
+        <a class="site-nav__link" href="#download" data-i18n="nav.download">Télécharger</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Lang switcher -->
+        <div class="lang-switch">
+          <button class="iconbtn iconbtn--lang"
+                  type="button"
+                  data-lang-btn
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-i18n-aria="a11y.lang_open">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            <span class="lang-code">FR</span>
+          </button>
+          <div class="lang-menu" data-lang-menu role="menu"></div>
+        </div>
+
+        <!-- Theme toggle -->
+        <button class="iconbtn"
+                type="button"
+                data-theme-toggle
+                aria-pressed="true"
+                aria-label="Activer le mode jour"
+                data-i18n-aria="a11y.theme_light">
+          <!-- Icône soleil (visible en nuit = pour passer en jour) -->
+          <svg data-icon="sun" viewBox="0 0 24 24" width="20" height="20" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <!-- Icône lune (visible en jour = pour passer en nuit) -->
+          <svg data-icon="moon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+               style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+
+        <!-- Burger mobile -->
+        <button class="burger"
+                type="button"
+                data-drawer-open
+                aria-label="Ouvrir le menu"
+                data-i18n-aria="a11y.menu_open">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer mobile -->
+  <div class="drawer" data-drawer aria-hidden="true">
+    <button class="drawer__close" type="button"
+            data-drawer-close
+            aria-label="Fermer le menu"
+            data-i18n-aria="a11y.menu_close">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <nav class="drawer__nav" aria-label="Navigation mobile">
+      <a class="drawer__link" href="#features" data-i18n="nav.features">Fonctionnalités</a>
+      <a class="drawer__link" href="#mobile" data-i18n="nav.mobile">Mobile</a>
+      <a class="drawer__link" href="#windows" data-i18n="nav.windows">Windows</a>
+      <a class="drawer__link" href="#community" data-i18n="nav.community">Communauté</a>
+      <a class="drawer__link" href="#personalize" data-i18n="nav.features">Personnalisation</a>
+      <a class="drawer__link" href="#plus" data-i18n="nav.plus">Plus</a>
+      <a class="drawer__link" href="#download" data-i18n="nav.download">Télécharger</a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="section hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__content" data-reveal>
+            <span class="hero__eyebrow t-eyebrow">
+              <span aria-hidden="true">▸</span>
+              <span data-i18n="hero.eyebrow">L'arcade vivante</span>
+            </span>
+            <h1 id="hero-title" class="hero__title t-display">
+              <span data-i18n="hero.title_pre">Chaque jeu a ses</span>
+              <span class="t-gradient" data-i18n="hero.title_highlight">meilleurs contenus</span>
+              <span data-i18n="hero.title_post">, triés et vérifiés.</span>
+            </h1>
+            <p class="hero__subtitle" data-i18n="hero.subtitle">
+              MyGamingTips centralise des vidéos, guides et liens utiles, organisés par jeu. Chaque contenu est analysé par l'IA puis vérifié par un humain afin de vous garantir des informations fiables et de qualité.
+            </p>
+            <div class="hero__ctas">
+              <a class="btn btn--neon btn--lg" href="#play-store">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35z" opacity=".9"/>
+                  <path d="M16.81 15.12 6.05 20.96l8.49-8.49 2.27 2.65zm3.99-5.02c.5.39.5 1.11 0 1.5l-2.98 1.84-2.59-2.59 2.59-2.59 2.98 1.84zM6.05 3.04l10.76 5.84-2.27 2.65L6.05 3.04z"/>
+                </svg>
+                <span data-i18n="hero.cta_play">Disponible sur Google Play</span>
+              </a>
+              <a class="btn btn--ghost btn--lg" href="#windows-download">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M3 5.5 10.5 4.4v7.1H3V5.5zM10.5 12.5v7.1L3 18.5v-6h7.5zM11.5 4.3 21 3v8.5h-9.5V4.3zM21 12.5V21l-9.5-1.3v-7.2H21z"/>
+                </svg>
+                <span data-i18n="hero.cta_windows">Télécharger pour Windows</span>
+              </a>
+            </div>
+
+            <!-- Bandeau de confiance -->
+            <div class="trust">
+              <div class="trust__item">
+                <strong>+120</strong>
+                <span data-i18n="hero.trust_games">jeux référencés</span>
+              </div>
+              <div class="trust__item">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                     stroke="var(--neon-green)" stroke-width="2.4"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span data-i18n="hero.trust_verified">Contenu analysé par l'IA puis vérifié par un humain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero visual : mockup téléphone flottant + badges flottants (DA transverse) -->
+          <div class="hero__visual" data-reveal>
+            <div class="hero__halo" aria-hidden="true"></div>
+            <div class="phone phone--hero float phone--tilt-r">
+              <div class="phone__screen">
+                <img src="assets/screenshots/mobile/mobile-home.jpg"
+                     width="540" height="1140"
+                     alt="Écran d'accueil MyGamingTips : astuces, guides et tips réunis"
+                     data-i18n-alt="mobile.home_title"
+                     fetchpriority="high" />
+              </div>
+            </div>
+            <!-- Badges flottants autour du mockup (DA transverse "pub gamers") -->
+            <span class="hero__badge hero__badge--new float-badge float-badge--violet" aria-hidden="true">
+              <span aria-hidden="true">✦</span>
+              <span data-i18n="hero.badge_new">NOUVEAU</span>
+            </span>
+            <span class="hero__badge hero__badge--free float-badge float-badge--green" aria-hidden="true">
+              <span aria-hidden="true">★</span>
+              <span data-i18n="hero.badge_free">100% GRATUIT</span>
+            </span>
+            <span class="hero__badge hero__badge--lang float-badge float-badge--cyan" aria-hidden="true">
+              <span aria-hidden="true">🌐</span>
+              <span data-i18n="hero.badge_lang">12 LANGUES</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section__head section__head--center" data-reveal>
+          <span class="t-eyebrow" data-i18n="features.eyebrow">Pourquoi MyGamingTips</span>
+          <h2 id="features-title" class="section__title t-headline" data-i18n="features.title">Conçu pour trouver vite, sans se noyer.</h2>
+          <p class="section__intro t-body" data-i18n="features.intro">Tout part d'une idée simple : le bon contenu existe déjà.</p>
+        </div>
+
+        <div class="grid grid--features">
+          <!-- F1 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f1_title">Trié et vérifié</h3>
+            <p class="t-body" data-i18n="features.f1_desc">Pas un algorithme, des humains.</p>
+          </article>
+
+          <!-- F2 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon feature__icon--cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="14" y2="18" />
+                <circle cx="3.5" cy="6" r="1.5" fill="currentColor" />
+                <circle cx="3.5" cy="12" r="1.5" fill="currentColor" />
+                <circle cx="3.5" cy="18" r="1.5" fill="currentColor" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f2_title">Des listes qui se terminent</h3>
+            <p class="t-body" data-i18n="features.f2_desc">Chaque jeu a un nombre fini de contenus.</p>
+          </article>
+
+          <!-- F3 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon feature__icon--magenta" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f3_title">Favoris & playlists</h3>
+            <p class="t-body" data-i18n="features.f3_desc">Retrouvez vos contenus en un tap.</p>
+          </article>
+
+          <!-- F4 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon feature__icon--cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f4_title">Mode jour et nuit</h3>
+            <p class="t-body" data-i18n="features.f4_desc">L'arcade vivante la nuit, le repli lisible le jour.</p>
+          </article>
+
+          <!-- F5 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon feature__icon--green" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f5_title">12 langues</h3>
+            <p class="t-body" data-i18n="features.f5_desc">Trouvez du contenu dans votre langue.</p>
+          </article>
+
+          <!-- F6 -->
+          <article class="card feature" data-reveal>
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            </span>
+            <h3 class="feature__title t-headline" data-i18n="features.f6_title">Démarrage instantané</h3>
+            <p class="t-body" data-i18n="features.f6_desc">Cache local, synchro en arrière-plan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MOBILE SHOWCASE ===================== -->
+    <section class="section" id="mobile" aria-labelledby="mobile-title">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <span class="t-eyebrow" data-i18n="mobile.eyebrow">L'expérience mobile</span>
+          <h2 id="mobile-title" class="section__title t-headline" data-i18n="mobile.title">Pensé pour les sessions courtes.</h2>
+          <p class="section__intro t-body" data-i18n="mobile.intro">Entre deux matches, dans les transports.</p>
+        </div>
+
+        <!-- Galerie asymétrique éparse (CHANTIER 1).
+             Chaque screenshot = une scène avec son commentaire en regard.
+             Alternance gauche/droite, rotations ±2-4deg, décalages verticaux.
+             6 screenshots (le 7e jour/nuit est géré dans la section Personnalisation). -->
+        <div class="mobile-scenes" data-reveal>
+
+          <!-- Scène 01 : Accueil — screenshot gauche, texte droite -->
+          <article class="mobile-scene mobile-scene--left">
+            <div class="mobile-scene__phone">
+              <div class="phone phone--tilt-l">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-home.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Accueil MyGamingTips"
+                       data-i18n-alt="mobile.home_title" />
+                </div>
+              </div>
+              <span class="step-badge" aria-hidden="true">01</span>
+            </div>
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.home_title">Accueil</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.home_caption">Toutes vos astuces réunies.</p>
+            </div>
+          </article>
+
+          <!-- Scène 02 : Explorer — texte gauche, screenshot droite (décalé bas) -->
+          <article class="mobile-scene mobile-scene--right mobile-scene--offset-down">
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.explore_title">Explorer</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.explore_caption">Découvrez les jeux les plus populaires, partagés par la communauté, triés et vérifiés.</p>
+            </div>
+            <div class="mobile-scene__phone">
+              <div class="phone phone--tilt-r">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-explore.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Explorer les jeux"
+                       data-i18n-alt="mobile.explore_title" />
+                </div>
+              </div>
+              <span class="step-badge" aria-hidden="true">02</span>
+            </div>
+          </article>
+
+          <!-- Scène 03 : Mes jeux — screenshot gauche, plus petit, texte droite -->
+          <article class="mobile-scene mobile-scene--left">
+            <div class="mobile-scene__phone mobile-scene__phone--sm">
+              <div class="phone phone--tilt-r">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-mygames.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Mes jeux"
+                       data-i18n-alt="mobile.mygames_title" />
+                </div>
+              </div>
+              <span class="step-badge" aria-hidden="true">03</span>
+            </div>
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.mygames_title">Mes jeux</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.mygames_caption">Votre liste personnalisée.</p>
+            </div>
+          </article>
+
+          <!-- Scène 04 : Playlist — texte gauche, screenshot droite MIS EN AVANT (halo néon) -->
+          <article class="mobile-scene mobile-scene--right mobile-scene--offset-up">
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.playlist_title">My Playlist</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.playlist_caption">Retrouvez vos contenus sans les chercher.</p>
+            </div>
+            <div class="mobile-scene__phone mobile-scene__phone--featured">
+              <div class="phone phone--tilt-l">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-playlist.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="My Playlist"
+                       data-i18n-alt="mobile.playlist_title" />
+                </div>
+              </div>
+              <span class="step-badge step-badge--cyan" aria-hidden="true">04</span>
+            </div>
+          </article>
+
+          <!-- Scène 05 : Playlists par jeu — screenshot gauche, texte droite -->
+          <article class="mobile-scene mobile-scene--left mobile-scene--offset-down">
+            <div class="mobile-scene__phone">
+              <div class="phone phone--tilt-l">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-playlist-bygame.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Playlists par jeu"
+                       data-i18n-alt="mobile.playlist_bygame_title" />
+                </div>
+              </div>
+              <span class="step-badge" aria-hidden="true">05</span>
+            </div>
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.playlist_bygame_title">Playlists par jeu</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.playlist_bygame_caption">Organisation jeu par jeu.</p>
+            </div>
+          </article>
+
+          <!-- Scène 06 : Profil — texte gauche, screenshot droite -->
+          <article class="mobile-scene mobile-scene--right">
+            <div class="mobile-scene__text">
+              <h3 class="scene-title t-headline" data-i18n="mobile.profile_title">Profil</h3>
+              <p class="scene-desc t-body" data-i18n="mobile.profile_caption">Setup image et contributeur du mois.</p>
+            </div>
+            <div class="mobile-scene__phone">
+              <div class="phone phone--tilt-r">
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img src="assets/screenshots/mobile/mobile-profile.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Profil"
+                       data-i18n-alt="mobile.profile_title" />
+                </div>
+              </div>
+              <span class="step-badge" aria-hidden="true">06</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WINDOWS SHOWCASE ===================== -->
+    <section class="section" id="windows" aria-labelledby="windows-title">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <span class="t-eyebrow" data-i18n="windows.eyebrow">Le compagnon Windows</span>
+          <h2 id="windows-title" class="section__title t-headline" data-i18n="windows.title">Le lecteur vidéo overlay sans pub.</h2>
+          <p class="section__intro t-body" data-i18n="windows.intro">Regardez vos guides préférés en superposition pendant que vous jouez.</p>
+        </div>
+
+        <!-- Feature signature : démo overlay interactive (vraie image) + bullets -->
+        <div class="windows-feature">
+          <div data-reveal>
+            <!-- Démo overlay : fond = screenshot du jeu, flèche latérale
+                 quasi-transparente (opacity 0.2), au clic la VRAIE image
+                 windows-overlay.png glisse depuis le bord (translateX) et
+                 devient opaque. Respect prefers-reduced-motion. -->
+            <div class="overlay-demo" data-overlay-demo>
+              <div class="overlay-demo__stage"
+                   data-overlay-stage
+                   role="button"
+                   tabindex="0"
+                   aria-label="Démo overlay vidéo">
+                <!-- Le "jeu" en arrière-plan -->
+                <img class="overlay-demo__game"
+                     src="assets/screenshots/windows/windows-mygames.png"
+                     width="1280" height="720" loading="lazy"
+                     alt="Jeu en cours en arrière-plan"
+                     data-i18n-alt="windows.mygames_title" />
+
+                <!-- Indice de démarrage (texte discret, masqué une fois actif) -->
+                <div class="overlay-demo__hint" data-overlay-hint data-i18n="windows.demo_hint">Cliquez pour lancer la vidéo overlay</div>
+
+                <!-- Flèche latérale "handle" : quasi-transparente avant clic,
+                     devient invisible une fois la vidéo sortie. -->
+                <button class="overlay-demo__handle" type="button" data-overlay-show
+                        aria-label="Ouvrir la vidéo overlay">
+                  <span class="overlay-demo__handle-icon" aria-hidden="true">◀</span>
+                </button>
+
+                <!-- Le VRAI player overlay = l'image windows-overlay.png réelle.
+                     Caché par défaut (opacity 0, translateX hors bord). -->
+                <div class="overlay-demo__player" data-overlay-player aria-hidden="true">
+                  <img src="assets/screenshots/windows/windows-overlay.png"
+                       width="1280" height="720" loading="lazy"
+                       alt="Lecteur vidéo overlay sans pub"
+                       data-i18n-alt="windows.overlay_title" />
+                  <span class="overlay-demo__ad-badge" data-i18n="windows.demo_active">NO ADS</span>
+                </div>
+              </div>
+              <div class="overlay-demo__toggle">
+                <button class="btn btn--ghost" type="button" data-overlay-show aria-pressed="false">
+                  <span data-i18n="windows.demo_show">Afficher la vidéo</span>
+                </button>
+                <button class="btn btn--ghost" type="button" data-overlay-hide>
+                  <span data-i18n="windows.demo_hide">Masquer la vidéo</span>
+                </button>
+                <span class="overlay-demo__status" data-overlay-status></span>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal>
+            <ul class="windows-feature__bullets">
+              <li class="bullet">
+                <span class="bullet__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <span class="t-body" data-i18n="windows.b1">Lecture en overlay par-dessus votre jeu</span>
+              </li>
+              <li class="bullet">
+                <span class="bullet__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <span class="t-body" data-i18n="windows.b2">Zéro publicité, zéro interruption</span>
+              </li>
+              <li class="bullet">
+                <span class="bullet__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <span class="t-body" data-i18n="windows.b3">Tous vos contenus synchronisés avec le mobile</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Grille secondaire : 3 screenshots Windows (home, mygames, languages).
+             home-2 supprimé (doublon de home). Asymétrie DA transverse. -->
+        <div class="grid grid--windows windows-gallery" style="margin-top: var(--space-2xl)">
+          <figure class="windows-gallery__item windows-gallery__item--a" data-reveal>
+            <div class="window window--sm">
+              <div class="window__bar">
+                <span class="window__dot window__dot--r" aria-hidden="true"></span>
+                <span class="window__dot window__dot--y" aria-hidden="true"></span>
+                <span class="window__dot window__dot--g" aria-hidden="true"></span>
+                <span class="window__title">MyGamingTips</span>
+              </div>
+              <div class="window__body">
+                <img src="assets/screenshots/windows/windows-home.png"
+                     width="1280" height="720" loading="lazy"
+                     alt="Accueil Windows"
+                     data-i18n-alt="windows.home_title" />
+              </div>
+            </div>
+            <figcaption class="gallery__caption" style="margin-top: var(--space-md)">
+              <strong class="t-title" data-i18n="windows.home_title">Accueil Windows</strong>
+              <span class="t-body" data-i18n="windows.home_caption">Toute la puissance sur grand écran.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="windows-gallery__item windows-gallery__item--b" data-reveal>
+            <div class="window window--sm">
+              <div class="window__bar">
+                <span class="window__dot window__dot--r" aria-hidden="true"></span>
+                <span class="window__dot window__dot--y" aria-hidden="true"></span>
+                <span class="window__dot window__dot--g" aria-hidden="true"></span>
+                <span class="window__title">MyGamingTips</span>
+              </div>
+              <div class="window__body">
+                <img src="assets/screenshots/windows/windows-mygames.png"
+                     width="1280" height="720" loading="lazy"
+                     alt="Mes jeux Windows"
+                     data-i18n-alt="windows.mygames_title" />
+              </div>
+            </div>
+            <figcaption class="gallery__caption" style="margin-top: var(--space-md)">
+              <strong class="t-title" data-i18n="windows.mygames_title">Mes jeux</strong>
+              <span class="t-body" data-i18n="windows.mygames_caption">Votre bibliothèque, version desktop.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="windows-gallery__item windows-gallery__item--c" data-reveal>
+            <div class="window window--sm">
+              <div class="window__bar">
+                <span class="window__dot window__dot--r" aria-hidden="true"></span>
+                <span class="window__dot window__dot--y" aria-hidden="true"></span>
+                <span class="window__dot window__dot--g" aria-hidden="true"></span>
+                <span class="window__title">MyGamingTips</span>
+              </div>
+              <div class="window__body">
+                <img src="assets/screenshots/windows/windows-languages.png"
+                     width="1280" height="720" loading="lazy"
+                     alt="12 langues Windows"
+                     data-i18n-alt="windows.languages_title" />
+              </div>
+            </div>
+            <figcaption class="gallery__caption" style="margin-top: var(--space-md)">
+              <strong class="t-title" data-i18n="windows.languages_title">12 langues</strong>
+              <span class="t-body" data-i18n="windows.languages_caption">Trouvez du contenu dans votre langue.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMMUNITY ===================== -->
+    <section class="section" id="community" aria-labelledby="community-title">
+      <div class="container">
+        <div class="community">
+          <div data-reveal>
+            <!-- Screenshot profile (contributeur du mois) -->
+            <div class="phone" style="margin-inline: auto">
+              <span class="phone__notch" aria-hidden="true"></span>
+              <div class="phone__screen">
+                <img src="assets/screenshots/mobile/mobile-profile.jpg"
+                     width="540" height="1140" loading="lazy"
+                     alt="Profil et contributeur du mois"
+                     data-i18n-alt="mobile.profile_title" />
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal>
+            <span class="t-eyebrow" data-i18n="community.eyebrow">La communauté</span>
+            <h2 id="community-title" class="section__title t-headline" style="margin-top: var(--space-sm)"
+                data-i18n="community.title">Trié et vérifié par des humains reconnus.</h2>
+            <p class="t-body" style="margin-top: var(--space-md)" data-i18n="community.intro">
+              Le contenu n'est pas servi par un algorithme.
+            </p>
+
+            <div style="margin-top: var(--space-lg)">
+              <span class="crown crown--bot" aria-hidden="false">
+                <span aria-hidden="true">🤖</span>
+                <span data-i18n="community.month_badge">IA contributrice</span>
+              </span>
+              <p class="t-body" style="margin-top: var(--space-sm)" data-i18n-html="community.month_desc">
+                Pour le moment, une <strong>IA super active</strong> nourrit et valide la base — <strong>plus de 3 000 contenus</strong> déjà validés. Mais l'app est conçue pour <strong>vivre par sa communauté, pour sa communauté</strong> : à terme, ce sont les joueurs qui contribueront, trieront et feront vivre chaque jeu.
+              </p>
+            </div>
+
+            <!-- V10 : Partage + concours contributeurs -->
+            <div style="margin-top: var(--space-lg)">
+              <span class="t-eyebrow" data-i18n="community.contrib_eyebrow">Contribuez vous aussi</span>
+              <p class="t-body" style="margin-top: var(--space-sm)" data-i18n-html="community.contrib_desc">
+                Partagez vos meilleures trouvailles directement depuis votre application favorite via la fonction <strong>Partager</strong> vers MyGamingTips. Chaque mois, les <strong>3 meilleurs contributeurs</strong> se voient offrir un <strong>abonnement Premium d'un mois</strong> — classement réinitialisé chaque mois pour que tout le monde ait sa chance.
+              </p>
+            </div>
+
+            <div class="community__stats">
+              <div class="stat stat--accent">
+                <div class="stat__num">1</div>
+                <div class="stat__label" data-i18n="community.stat_ai">Bot contributeur</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">3 000+</div>
+                <div class="stat__label" data-i18n="community.stat_contents">Contenus validés</div>
+              </div>
+              <div class="stat stat--infinity">
+                <div class="stat__num">∞</div>
+                <div class="stat__label" data-i18n="community.stat_community">Vivre par sa communauté</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PERSONALIZE ===================== -->
+    <section class="section" id="personalize" aria-labelledby="personalize-title">
+      <div class="container">
+        <div class="personalize">
+          <div data-reveal>
+            <span class="t-eyebrow" data-i18n="personalize.eyebrow">Personnalisation</span>
+            <h2 id="personalize-title" class="section__title t-headline" style="margin-top: var(--space-sm)"
+                data-i18n="personalize.title">L'arcade vivante la nuit. Le repli lisible le jour.</h2>
+            <p class="t-body" style="margin-top: var(--space-md); max-width: 48ch" data-i18n="personalize.intro">
+              Basculez le thème du site en direct.
+            </p>
+
+            <!-- Démo jour/nuit LOCALE : ne change QUE l'image du mockup.
+                 data-phone-theme-toggle != data-theme-toggle (header).
+                 Le thème global du site reste intact ("N'éteins pas la lumière du site"). -->
+            <div class="theme-demo theme-demo--local" data-phone-theme-demo>
+              <button class="switch switch--phone" type="button" data-phone-theme-toggle role="switch"
+                      aria-checked="false" aria-label="Basculer l'écran du téléphone entre jour et nuit"
+                      data-i18n-aria="personalize.toggle_label">
+                <span class="switch__thumb" aria-hidden="true"></span>
+              </button>
+              <div class="theme-demo__labels">
+                <div class="t-label" data-i18n="personalize.toggle_label">Bascule l'écran du téléphone</div>
+                <div class="t-body" style="margin-top: 2px">
+                  <span class="theme-demo__pill theme-demo__pill--day" aria-hidden="true">☀️ <span data-i18n="personalize.day_label">Jour</span></span>
+                  <span class="theme-demo__pill theme-demo__pill--night is-on" aria-hidden="true">🌙 <span data-i18n="personalize.night_label">Nuit</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal>
+            <figure class="personalize__figure">
+              <!-- Badges flottants (DA transverse) -->
+              <span class="float-badge float-badge--cyan personalize__badge-night" aria-hidden="true">🌙 <span data-i18n="personalize.night_label">Nuit</span></span>
+              <span class="float-badge float-badge--gold personalize__badge-day" aria-hidden="true">☀️ <span data-i18n="personalize.day_label">Jour</span></span>
+
+              <!-- Mockup téléphone : 2 images superposées (jour + nuit), crossfade 400ms.
+                   NUIT visible par défaut (l'arcade vivante est la vedette). -->
+              <div class="phone phone--themable" data-phone-mockup>
+                <span class="phone__notch" aria-hidden="true"></span>
+                <div class="phone__screen">
+                  <img class="phone__img phone__img--night"
+                       src="assets/screenshots/mobile/mobile-night.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Mode nuit de l'écran téléphone"
+                       data-i18n-alt="personalize.night_label" />
+                  <img class="phone__img phone__img--day"
+                       src="assets/screenshots/mobile/mobile-day.jpg"
+                       width="540" height="1140" loading="lazy"
+                       alt="Mode jour de l'écran téléphone"
+                       data-i18n-alt="personalize.day_label" />
+                </div>
+              </div>
+              <figcaption class="gallery__caption" style="text-align: center; margin-top: var(--space-md)">
+                <span class="t-body" data-i18n="personalize.caption">L'arcade vivante la nuit, le repli lisible le jour. C'est votre style.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PLUS / PRICING ===================== -->
+    <section class="section" id="plus" aria-labelledby="plus-title">
+      <div class="container">
+        <div class="section__head section__head--center" data-reveal>
+          <span class="t-eyebrow" data-i18n="plus.eyebrow">MyGamingTips Plus</span>
+          <h2 id="plus-title" class="section__title t-headline" data-i18n="plus.title">Passez à MyGamingTips Plus</h2>
+        </div>
+
+        <div class="plus">
+          <!-- Colonne gauche : composition promo multi-langue (V4) -->
+          <div class="plus__visual" data-reveal>
+            <div class="plus__poster plus__poster--live">
+              <!-- Composition vivante : glow + éclairs néon + téléphone + texte + stores -->
+              <div class="promo-poster" role="img"
+                   data-i18n-aria="promo.alt"
+                   aria-label="Affiche promotionnelle MyGamingTips">
+
+                <!-- Éclairs néon droits (12 rayons flicker — V5 Chantier E) -->
+                <div class="promo-poster__bolts" aria-hidden="true">
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                  <span class="promo-bolt"></span>
+                </div>
+
+                <!-- Néons qui se baladent (6 orbes drift — V5 Chantier E) -->
+                <div class="promo-poster__drifts" aria-hidden="true">
+                  <span class="promo-drift"></span>
+                  <span class="promo-drift"></span>
+                  <span class="promo-drift"></span>
+                  <span class="promo-drift"></span>
+                  <span class="promo-drift"></span>
+                  <span class="promo-drift"></span>
+                </div>
+
+                <!-- Éclairs SVG zigzag (4 flashs épisodiques) -->
+                <div class="promo-poster__sparks" aria-hidden="true">
+                  <svg class="promo-spark" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M0,20 L40,8 L70,30 L110,10 L140,28 L200,20" />
+                  </svg>
+                  <svg class="promo-spark promo-spark--violet" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M0,20 L50,12 L80,32 L120,8 L150,30 L200,18" />
+                  </svg>
+                  <svg class="promo-spark promo-spark--magenta" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M0,22 L45,10 L75,28 L115,12 L145,30 L200,20" />
+                  </svg>
+                  <svg class="promo-spark" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M0,18 L42,30 L72,10 L112,28 L142,8 L200,22" />
+                  </svg>
+                </div>
+
+                <!-- Texte marketing (i18n) -->
+                <div class="promo-poster__text">
+                  <h3 class="promo-poster__title">
+                    <span data-i18n="promo.title_1">TOUS TES GUIDES</span><br>
+                    <span data-i18n="promo.title_2" class="promo-poster__title-accent">AU MÊME ENDROIT</span>
+                  </h3>
+                  <p class="promo-poster__subtitle" data-i18n="promo.subtitle">
+                    Vidéos, liens et astuces pour Aion 2, Diablo 4, Star Citizen et plus.
+                  </p>
+                </div>
+
+                <!-- Téléphone central (screenshot commute avec la langue via js/promo.js) -->
+                <div class="promo-phone">
+                  <span class="promo-phone__notch" aria-hidden="true"></span>
+                  <div class="promo-phone__screen">
+                    <img class="promo-phone__img"
+                         src="assets/screenshots/promo/promo-screen-FR.jpg"
+                         alt="Capture d'écran de l'application MyGamingTips"
+                         data-promo-screen
+                         data-i18n-alt="promo.alt"
+                         width="540" height="1170" loading="lazy" />
+                  </div>
+                </div>
+
+                <!-- Badges stores -->
+                <div class="promo-poster__stores">
+                  <a class="store-badge store-badge--play" href="#play-store">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                      <path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35z" opacity=".9"/>
+                      <path d="M16.81 15.12 6.05 20.96l8.49-8.49 2.27 2.65zm3.99-5.02c.5.39.5 1.11 0 1.5l-2.98 1.84-2.59-2.59 2.59-2.59 2.98 1.84zM6.05 3.04l10.76 5.84-2.27 2.65L6.05 3.04z"/>
+                    </svg>
+                    <span data-i18n="promo.store_play">DISPONIBLE SUR Google Play</span>
+                  </a>
+                  <span class="store-badge store-badge--ios">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                      <path d="M16.36 12.93c.02 2.26 1.98 3.02 2 3.03-.02.05-.31 1.08-1.04 2.14-.63.92-1.29 1.83-2.33 1.85-1.01.02-1.34-.6-2.5-.6-1.16 0-1.52.58-2.48.62-1 .04-1.76-1-2.4-1.91-1.31-1.89-2.31-5.35-.96-7.69.66-1.16 1.85-1.89 3.14-1.91.98-.02 1.9.66 2.5.66.59 0 1.71-.82 2.88-.7.49.02 1.87.2 2.76 1.49-.07.04-1.65.96-1.63 2.87M14.6 6.59c.53-.64.89-1.53.79-2.42-.76.03-1.69.51-2.24 1.15-.49.57-.92 1.48-.81 2.35.85.07 1.72-.43 2.26-1.08"/>
+                    </svg>
+                    <span data-i18n="promo.store_ios">BIENTÔT SUR iOS</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Badge PLUS flottant en superposition (DA transverse) -->
+              <span class="plus__poster-badge" aria-hidden="true">
+                <span class="float-badge float-badge--gold">★ <span data-i18n="plus.badge">Plus</span></span>
+              </span>
+            </div>
+            <span class="plus__free">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                   stroke="var(--neon-green)" stroke-width="2.4"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span data-i18n="plus.free_badge">L'app est 100% gratuite</span>
+            </span>
+          </div>
+
+          <!-- Colonne droite : NeonContainer premium -->
+          <div class="neon-premium" data-reveal>
+            <span class="neon-premium__badge">
+              <span aria-hidden="true">★</span>
+              <span data-i18n="plus.badge">Plus</span>
+            </span>
+            <!-- V8 C.2 : doublon de titre h3 supprimé.
+                 Le h2 .section__head (décalé à droite) reste le seul titre. -->
+            <p class="t-body" style="margin-top: var(--space-md)" data-i18n-html="plus.subtitle">
+              L'app reste gratuite. Le menu <strong>My Playlist</strong> devient Plus.
+            </p>
+
+            <ul class="plus__benefits">
+              <li class="benefit">
+                <span class="benefit__icon" aria-hidden="true">🔖</span>
+                <div>
+                  <div class="benefit__label" data-i18n="plus.b1_label">My Playlist</div>
+                  <div class="benefit__desc" data-i18n="plus.b1_desc">Organisez, triez et retrouvez tous vos contenus sans les chercher.</div>
+                </div>
+              </li>
+              <li class="benefit">
+                <span class="benefit__icon" aria-hidden="true">🖼️</span>
+                <div>
+                  <div class="benefit__label" data-i18n="plus.b2_label">3 fonds d'écran exclusifs</div>
+                  <div class="benefit__desc" data-i18n="plus.b2_desc">Personnalisez l'app avec 3 wallpapers premium.</div>
+                </div>
+              </li>
+              <li class="benefit">
+                <span class="benefit__icon" aria-hidden="true">💻</span>
+                <div>
+                  <div class="benefit__label" data-i18n="plus.b3_label">Application Windows dédiée</div>
+                  <div class="benefit__desc" data-i18n="plus.b3_desc">Retrouvez tous vos contenus sur PC Windows, synchronisés avec votre mobile.</div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="plans">
+              <!-- Mensuel -->
+              <button class="plan" type="button" data-plan="monthly" aria-pressed="false">
+                <div class="plan__name" data-i18n="plus.plan_monthly_name">Mensuel</div>
+                <div class="plan__price">
+                  <span data-i18n="plus.plan_monthly_price">1,99 €</span>
+                  <small data-i18n="plus.plan_monthly_unit">/ mois</small>
+                </div>
+              </button>
+              <!-- Annuel (sélectionné par défaut — V6 Chantier D : halo suit is-selected) -->
+              <button class="plan is-selected" type="button" data-plan="annual" aria-pressed="true">
+                <span class="plan__badge" data-i18n="plus.plan_yearly_badge">Économisez 16%</span>
+                <div class="plan__name" data-i18n="plus.plan_yearly_name">Annuel</div>
+                <div class="plan__price">
+                  <span data-i18n="plus.plan_yearly_price">19,99 €</span>
+                  <small data-i18n="plus.plan_yearly_unit">/ an</small>
+                </div>
+                <div class="plan__sub" data-i18n="plus.plan_yearly_sub">~1,67 € / mois</div>
+              </button>
+            </div>
+
+            <p class="microcopy" data-i18n="plus.microcopy">Annulez à tout moment. Aucun engagement.</p>
+
+            <div style="margin-top: var(--space-md); text-align: center">
+              <a class="btn btn--plus btn--lg" href="#plus-subscribe">
+                <span data-i18n="plus.cta">Passer à Plus</span>
+              </a>
+            </div>
+
+            <!-- V8 Chantier C.4 — Télécharger déplacé ici, sous la CTA.
+                 L'ancre #download (utilisé par le menu header) est posée sur
+                 ce conteneur .download-inline pour rester accessible.
+                 Le doublon de titre (download.title / eyebrow / intro) est
+                 supprimé : le panneau pricing porte déjà son propre titre. -->
+            <div class="download-inline" id="download" data-reveal>
+              <div class="download-grid">
+                <!-- Mobile -->
+                <a class="download-card" href="#play-store">
+                  <span class="download-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85c-.5-.25-.84-.76-.84-1.35z" opacity=".9"/>
+                      <path d="M16.81 15.12 6.05 20.96l8.49-8.49 2.27 2.65zm3.99-5.02c.5.39.5 1.11 0 1.5l-2.98 1.84-2.59-2.59 2.59-2.59 2.98 1.84zM6.05 3.04l10.76 5.84-2.27 2.65L6.05 3.04z"/>
+                    </svg>
+                  </span>
+                  <div class="download-card__title" data-i18n="download.mobile_title">Sur mobile</div>
+                  <span class="btn btn--neon">
+                    <span data-i18n="download.mobile_btn">Disponible sur Google Play</span>
+                  </span>
+                </a>
+
+                <!-- Windows -->
+                <a class="download-card" href="#windows-download" id="windows-download">
+                  <span class="download-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3 5.5 10.5 4.4v7.1H3V5.5zM10.5 12.5v7.1L3 18.5v-6h7.5zM11.5 4.3 21 3v8.5h-9.5V4.3zM21 12.5V21l-9.5-1.3v-7.2H21z"/>
+                    </svg>
+                  </span>
+                  <div class="download-card__title" data-i18n="download.windows_title">Sur Windows</div>
+                  <span class="btn btn--neon">
+                    <span data-i18n="download.windows_btn">Télécharger gratuitement</span>
+                  </span>
+                  <div class="download-card__req" data-i18n="download.windows_req">Windows 10 ou plus · 150 Mo</div>
+                </a>
+              </div>
+
+              <p class="microcopy" data-i18n="download.microcopy">Aucune publicité. Aucun compte requis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <a class="brand" href="#main">
+            <img class="brand__logo"
+                 src="assets/logo/logo-192.png"
+                 width="32" height="32"
+                 alt=""
+                 data-i18n-alt="a11y.logo_alt" />
+            <span class="brand__name">MyGamingTips</span>
+          </a>
+          <p class="site-footer__tagline t-body" data-i18n="brand.tagline">Vos meilleurs contenus gaming, triés et vérifiés.</p>
+        </div>
+
+        <div class="site-footer__col">
+          <h4 data-i18n="footer.lang_label">Langue</h4>
+          <div class="lang-switch">
+            <button class="iconbtn iconbtn--lang"
+                    type="button"
+                    data-lang-btn
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-i18n-aria="a11y.lang_open">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <span class="lang-code">FR</span>
+            </button>
+            <div class="lang-menu" data-lang-menu role="menu"></div>
+          </div>
+        </div>
+
+        <div class="site-footer__col">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.about">À propos</a></li>
+            <li><a href="#" data-i18n="footer.privacy">Confidentialité</a></li>
+            <li><a href="#" data-i18n="footer.contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© <span data-year>2026</span> MyGamingTips. <span data-i18n="footer.copyright" style="display:none">© 2026 MyGamingTips.</span></span>
+        <span data-i18n="footer.verified_note">Contenu vérifié par la communauté.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast protections -->
+  <div class="toast" data-protect-toast role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/promo.js"></script>
+  <script src="js/protections.js"></script>
+</body>
+</html>

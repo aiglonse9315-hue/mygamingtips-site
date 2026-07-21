@@ -1,0 +1,11 @@
+# Forcer les LF (line endings Unix) dans le repo
+# Évite les conflits CRLF/LF entre Windows et Linux (Cloudflare build)
+* text=auto eol=lf
+
+# Images binaires : ne pas toucher
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary

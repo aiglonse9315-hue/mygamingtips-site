@@ -1,0 +1,626 @@
+/* ============================================================
+   promo.css — Composition Promo Multi-langue (V4)
+   Affiche pub vivante : glow radial + éclairs néon + téléphone
+   central incliné + texte marketing + badges stores.
+   Le screenshot du téléphone commute avec la langue (js/promo.js).
+
+   Principes :
+   - DARK prioritaire (effets néon intenses).
+   - Mode clair : néon atténué pour rester lisible.
+   - prefers-reduced-motion : toutes les anims se figent.
+   - RTL (arabe) : composition reste lisible.
+   ============================================================ */
+
+/* ============================================================
+   1. Conteneur principal — .promo-poster
+   ============================================================ */
+.promo-poster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 4vw, 28px);
+  padding: clamp(28px, 6vw, 56px) clamp(16px, 4vw, 28px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+  /* Fond propre pour porter le glow (sinon transparent sur surface) */
+  background:
+    radial-gradient(120% 80% at 50% 35%,
+      rgba(138, 43, 226, 0.10) 0%,
+      rgba(7, 9, 18, 0.0) 60%),
+    var(--surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------- 2. Glow radial néon intense (derrière tout) ---------- */
+.promo-poster::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 50% 42%,
+      rgba(138, 43, 226, 0.38) 0%,
+      rgba(0, 229, 255, 0.22) 24%,
+      rgba(255, 45, 149, 0.16) 48%,
+      transparent 72%);
+  filter: blur(36px);
+  z-index: -2;
+  animation: promo-glow-pulse 4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Halo secondaire plus serré, cyan, derrière le téléphone */
+.promo-poster::after {
+  content: "";
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: clamp(220px, 60vw, 460px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(0, 229, 255, 0.30) 0%,
+    rgba(138, 43, 226, 0.18) 40%,
+    transparent 70%);
+  filter: blur(28px);
+  z-index: -2;
+  pointer-events: none;
+  animation: promo-halo-breath 5s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes promo-glow-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+@keyframes promo-halo-breath {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* ============================================================
+   3. Éclairs néon — rayons qui partent du téléphone
+   On combine deux couches pour l'effet arcade :
+   a) 8 rayons droits (gradient fin) qui flicker
+   b) 4 éclairs SVG en zigzag par-dessus, plus épisodiques
+   ============================================================ */
+.promo-poster__bolts {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Le centre des éclairs = le téléphone, situé ~44% verticalement */
+}
+
+/* a) Rayons droits — V5 Chantier E : intensifiés
+   (opacity 0.85, drop-shadow 12px, height 3px, flicker 2.4s) */
+.promo-bolt {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: 160%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(138, 43, 226, 1) 42%,
+    rgba(0, 229, 255, 1) 50%,
+    rgba(138, 43, 226, 1) 58%,
+    transparent 75%,
+    transparent 100%);
+  transform-origin: center center;
+  filter: blur(1px) drop-shadow(0 0 12px rgba(0, 229, 255, 1));
+  opacity: 0.85;
+  animation: promo-bolt-flicker 2.4s ease-in-out infinite;
+  will-change: opacity;
+}
+.promo-bolt:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg);   animation-delay: 0s; }
+.promo-bolt:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg);  animation-delay: 0.5s; }
+.promo-bolt:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg);  animation-delay: 1s; }
+.promo-bolt:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg); animation-delay: 1.5s; }
+.promo-bolt:nth-child(5) { transform: translate(-50%, -50%) rotate(22deg);  animation-delay: 0.3s; }
+.promo-bolt:nth-child(6) { transform: translate(-50%, -50%) rotate(67deg);  animation-delay: 0.8s; }
+.promo-bolt:nth-child(7) { transform: translate(-50%, -50%) rotate(112deg); animation-delay: 1.3s; }
+.promo-bolt:nth-child(8) { transform: translate(-50%, -50%) rotate(157deg); animation-delay: 1.8s; }
+/* V5 Chantier E — 4 bolts supplémentaires (total = 12) */
+.promo-bolt:nth-child(9)  { transform: translate(-50%, -50%) rotate(11deg);  animation-delay: 0.2s; }
+.promo-bolt:nth-child(10) { transform: translate(-50%, -50%) rotate(56deg);  animation-delay: 0.7s; }
+.promo-bolt:nth-child(11) { transform: translate(-50%, -50%) rotate(101deg); animation-delay: 1.2s; }
+.promo-bolt:nth-child(12) { transform: translate(-50%, -50%) rotate(146deg); animation-delay: 1.7s; }
+
+@keyframes promo-bolt-flicker {
+  0%, 100% { opacity: 0.55; }
+  18%      { opacity: 0.95; }
+  34%      { opacity: 0.25; }
+  52%      { opacity: 0.85; }
+  70%      { opacity: 0.40; }
+  86%      { opacity: 0.75; }
+}
+
+/* b) Éclairs SVG zigzag (flashs plus rares, par-dessus les rayons) */
+.promo-poster__sparks {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.promo-spark {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: clamp(180px, 42vw, 320px);
+  height: auto;
+  transform-origin: 0% 50%;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8))
+          drop-shadow(0 0 12px rgba(138, 43, 226, 0.6));
+  animation: promo-spark-flash 7s ease-in-out infinite;
+  will-change: opacity;
+}
+.promo-spark path {
+  stroke: var(--neon-cyan);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.promo-spark--violet path { stroke: var(--neon-violet); }
+.promo-spark--magenta path { stroke: var(--neon-magenta); }
+
+.promo-spark:nth-child(1) { transform: translate(0, 0) rotate(-30deg);  animation-delay: 0.4s; }
+.promo-spark:nth-child(2) { transform: translate(0, 0) rotate(60deg);   animation-delay: 2.1s; }
+.promo-spark:nth-child(3) { transform: translate(0, 0) rotate(150deg);  animation-delay: 3.8s; }
+.promo-spark:nth-child(4) { transform: translate(0, 0) rotate(-110deg); animation-delay: 5.5s; }
+
+@keyframes promo-spark-flash {
+  0%, 100%   { opacity: 0; }
+  3%, 9%     { opacity: 0.95; }
+  6%         { opacity: 0.3; }
+  12%, 100%  { opacity: 0; }
+}
+
+/* ============================================================
+   3.bis Néons qui se baladent — orbes cyan/violet/magenta/green
+   qui glissent à travers la composition (V5 Chantier E).
+   ============================================================ */
+.promo-poster__drifts {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.promo-drift {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow:
+    0 0 8px var(--neon-cyan),
+    0 0 16px rgba(0, 229, 255, 0.6),
+    0 0 24px rgba(0, 229, 255, 0.3);
+  opacity: 0;
+  animation: promo-drift 14s linear infinite;
+  will-change: transform, opacity;
+}
+/* Varier les couleurs, positions de départ et délais */
+.promo-drift:nth-child(1) {
+  background: var(--neon-violet);
+  box-shadow: 0 0 8px var(--neon-violet), 0 0 16px rgba(138,43,226,0.6), 0 0 24px rgba(138,43,226,0.3);
+  top: 80%; left: 10%;
+  animation-delay: 0s;
+}
+.promo-drift:nth-child(2) {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan), 0 0 16px rgba(0,229,255,0.6), 0 0 24px rgba(0,229,255,0.3);
+  top: 70%; left: 85%;
+  animation-delay: -2s;
+}
+.promo-drift:nth-child(3) {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 8px var(--neon-magenta), 0 0 16px rgba(255,45,149,0.6), 0 0 24px rgba(255,45,149,0.3);
+  top: 50%; left: 20%;
+  animation-delay: -5s;
+}
+.promo-drift:nth-child(4) {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan), 0 0 16px rgba(0,229,255,0.6), 0 0 24px rgba(0,229,255,0.3);
+  top: 30%; left: 75%;
+  animation-delay: -8s;
+}
+.promo-drift:nth-child(5) {
+  background: var(--neon-violet);
+  box-shadow: 0 0 8px var(--neon-violet), 0 0 16px rgba(138,43,226,0.6), 0 0 24px rgba(138,43,226,0.3);
+  top: 90%; left: 50%;
+  animation-delay: -11s;
+}
+.promo-drift:nth-child(6) {
+  background: var(--neon-green);
+  box-shadow: 0 0 8px var(--neon-green), 0 0 16px rgba(57,255,20,0.5);
+  top: 15%; left: 40%;
+  animation-delay: -4s;
+}
+@keyframes promo-drift {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(30px, -180px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   4. Texte marketing (au-dessus du téléphone)
+   ============================================================ */
+.promo-poster__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+.promo-poster__title {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-black);
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--text-primary);
+}
+.promo-poster__title-accent {
+  background: linear-gradient(90deg, var(--neon-violet), var(--neon-cyan));
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+  filter: drop-shadow(0 0 12px rgba(138, 43, 226, 0.6));
+}
+.promo-poster__subtitle {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-secondary); /* pas de néon sur le corps : lisible */
+  max-width: 320px;
+  margin: 0;
+}
+
+/* ============================================================
+   5. Téléphone central — mockup + halo néon intense
+   ============================================================ */
+.promo-phone {
+  position: relative;
+  z-index: 1;
+  width: clamp(170px, 32vw, 255px);  /* V9.4 : -15% (était 200/38vw/300) */
+  aspect-ratio: 9 / 19.5;
+  border-radius: 36px;
+  padding: 8px;
+  background: linear-gradient(145deg, #1a1d2e, #070912);
+  border: 1px solid rgba(138, 43, 226, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(138, 43, 226, 0.35),
+    0 0 40px rgba(138, 43, 226, 0.45),
+    0 0 80px rgba(0, 229, 255, 0.28),
+    0 20px 60px rgba(0, 0, 0, 0.55);
+  transform: rotate(-3deg);
+  animation: promo-phone-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes promo-phone-float {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50%      { transform: rotate(-3deg) translateY(-8px); }
+}
+
+/* Liseré néon interne autour de l'écran */
+.promo-phone::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 32px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Notch centrale en haut du téléphone */
+.promo-phone__notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  height: 18px;
+  background: #05060c;
+  border-radius: 0 0 14px 14px;
+  z-index: 3;
+}
+
+.promo-phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #05060c;
+}
+.promo-phone__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Transition douce lors de la permutation de langue (préchargée) */
+  transition: opacity 220ms ease-out;
+}
+
+/* ============================================================
+   6. Badges stores (Google Play + iOS)
+   ============================================================ */
+.promo-poster__stores {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  max-width: 100%;
+}
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-pill);
+  background: var(--surface-alt);
+  border: 1px solid var(--border-strong);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-body);
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.store-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+.store-badge svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+.store-badge--play {
+  color: var(--neon-green);
+  border-color: rgba(57, 255, 20, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(57, 255, 20, 0.3),
+    0 0 16px rgba(57, 255, 20, 0.35);
+}
+.store-badge--play:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(57, 255, 20, 0.5),
+    0 0 24px rgba(57, 255, 20, 0.5);
+}
+.store-badge--play svg { color: var(--neon-green); }
+.store-badge--ios {
+  color: var(--text-secondary);
+  border-color: var(--border-strong);
+}
+.store-badge--ios svg { color: var(--text-primary); }
+
+/* ============================================================
+   7. MODE CLAIR — atténuation du néon pour rester lisible
+   ============================================================ */
+[data-theme="light"] .promo-poster {
+  background:
+    radial-gradient(120% 80% at 50% 35%,
+      rgba(106, 17, 203, 0.06) 0%,
+      rgba(255, 255, 255, 0) 60%),
+    var(--surface);
+  border-color: var(--border);
+}
+[data-theme="light"] .promo-poster::before {
+  background:
+    radial-gradient(circle at 50% 42%,
+      rgba(106, 17, 203, 0.14) 0%,
+      rgba(106, 17, 203, 0.08) 24%,
+      rgba(176, 38, 255, 0.05) 48%,
+      transparent 72%);
+  filter: blur(30px);
+  opacity: 0.7;
+}
+[data-theme="light"] .promo-poster::after {
+  background: radial-gradient(circle,
+    rgba(106, 17, 203, 0.12) 0%,
+    rgba(106, 17, 203, 0.06) 40%,
+    transparent 70%);
+  opacity: 0.6;
+}
+[data-theme="light"] .promo-bolt {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    transparent 32%,
+    rgba(106, 17, 203, 0.55) 46%,
+    rgba(176, 38, 255, 0.7) 50%,
+    rgba(106, 17, 203, 0.55) 54%,
+    transparent 68%,
+    transparent 100%);
+  filter: blur(1px);
+  opacity: 0.5;
+}
+[data-theme="light"] .promo-spark {
+  filter: drop-shadow(0 0 4px rgba(106, 17, 203, 0.4));
+  opacity: 0;
+}
+[data-theme="light"] .promo-spark path { stroke: #6A11CB; }
+[data-theme="light"] .promo-spark--violet path { stroke: #6A11CB; }
+[data-theme="light"] .promo-spark--magenta path { stroke: #B026FF; }
+
+/* V6 Chantier A — Drifts visibles en mode clair aussi.
+   On adapte les couleurs au mode clair (couleurs profondes
+   pour contraster sur fond blanc) au lieu de baisser l'opacity ou masquer.
+   L'@keyframes promo-drift (opacity 0 -> 0.9 -> 0) reste intacte. */
+[data-theme="light"] .promo-drift {
+  background: #6A11CB;  /* violet profond (lisible sur blanc) */
+  box-shadow:
+    0 0 8px #6A11CB,
+    0 0 16px rgba(106, 17, 203, 0.5),
+    0 0 24px rgba(106, 17, 203, 0.3);
+}
+[data-theme="light"] .promo-drift:nth-child(1),
+[data-theme="light"] .promo-drift:nth-child(5) {
+  background: #6A11CB;  /* violet profond */
+}
+[data-theme="light"] .promo-drift:nth-child(2),
+[data-theme="light"] .promo-drift:nth-child(4) {
+  background: #00798C;  /* cyan profond (pas le néon trop clair) */
+  box-shadow: 0 0 8px #00798C, 0 0 16px rgba(0, 121, 140, 0.5);
+}
+[data-theme="light"] .promo-drift:nth-child(3) {
+  background: #C2185B;  /* magenta foncé */
+  box-shadow: 0 0 8px #C2185B, 0 0 16px rgba(194, 24, 91, 0.5);
+}
+[data-theme="light"] .promo-drift:nth-child(6) {
+  background: #2E7D32;  /* vert foncé */
+  box-shadow: 0 0 8px #2E7D32, 0 0 16px rgba(46, 125, 50, 0.5);
+}
+
+[data-theme="light"] .promo-poster__title-accent {
+  background: linear-gradient(90deg, #6A11CB, #4A148C);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+  filter: none;
+}
+[data-theme="light"] .promo-phone {
+  background: linear-gradient(145deg, #2a2d3e, #15172a);
+  border-color: rgba(106, 17, 203, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(106, 17, 203, 0.25),
+    0 0 24px rgba(106, 17, 203, 0.18),
+    0 20px 50px rgba(17, 19, 26, 0.18);
+}
+[data-theme="light"] .promo-phone::before {
+  border-color: rgba(106, 17, 203, 0.25);
+}
+[data-theme="light"] .store-badge--play {
+  color: #2E7D32;
+  border-color: rgba(46, 125, 50, 0.55);
+  /* Glow vert atténué en mode clair (lisible, pas flashy) */
+  box-shadow:
+    0 0 0 1px rgba(46, 125, 50, 0.25),
+    0 0 12px rgba(46, 125, 50, 0.20);
+}
+[data-theme="light"] .store-badge--play:hover {
+  box-shadow:
+    0 0 0 1px rgba(46, 125, 50, 0.4),
+    0 0 18px rgba(46, 125, 50, 0.30);
+}
+[data-theme="light"] .store-badge--play svg { color: #2E7D32; }
+
+/* ============================================================
+   8. RTL (arabe) — la composition reste lisible
+   Le téléphone est centré, pas d'impact. On s'assure juste que
+   les badges et le texte s'alignent naturellement (déjà le cas
+   via flex centering). On neutralise la rotation du téléphone
+   pour éviter une lecture "inversée" perçue en RTL.
+   ============================================================ */
+html[dir="rtl"] .promo-phone {
+  transform: rotate(3deg);
+  animation-name: promo-phone-float-rtl;
+}
+@keyframes promo-phone-float-rtl {
+  0%, 100% { transform: rotate(3deg) translateY(0); }
+  50%      { transform: rotate(3deg) translateY(-8px); }
+}
+
+/* ============================================================
+   9. Reduced motion — tout se fige
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .promo-poster::before,
+  .promo-poster::after,
+  .promo-bolt,
+  .promo-drift,
+  .promo-spark,
+  .promo-phone {
+    animation: none !important;
+  }
+  .promo-bolt   { opacity: 0.6; }
+  .promo-drift  { opacity: 0; } /* pas d'orbes qui se baladent si reduced motion */
+  .promo-spark  { opacity: 0; } /* pas de flashs si reduced motion */
+  .promo-poster::before { opacity: 0.9; }
+  .promo-poster::after  { opacity: 0.75; }
+  html[dir="rtl"] .promo-phone { transform: rotate(3deg); }
+}
+
+/* ============================================================
+   10. Responsive — la composition s'adapte
+   Sur la colonne .plus__visual (max 340px) la composition reste
+   cohérente grâce au clamp(). On borne la largeur du poster pour
+   qu'il ne déborde pas de la colonne gauche du pricing.
+   ============================================================ */
+.plus__poster .promo-poster,
+.plus__visual .promo-poster {
+  width: 100%;
+  max-width: 360px;
+}
+.promo-poster__stores {
+  /* Sur très petit écran on laisse les badges se wrapper */
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   11. Intégration dans .plus__poster (existante)
+   Le conteneur .plus__poster (défini dans components.css) a :
+   - un border + box-shadow violet (glow-violet)
+   - une rotation -2deg sur desktop
+   - overflow: hidden
+   Quand on y loge .promo-poster, on veut :
+   - NE PAS doubler la rotation (le téléphone est déjà incliné -3deg,
+     une seconde rotation du conteneur donnerait un effet "penché"
+     peu naturel). On neutralise donc la rotation du poster.
+   - NE PAS doubler le glow violet (la composition a son propre glow).
+     On retire donc le glow externe du poster quand il contient
+     une composition vivante.
+   ============================================================ */
+.plus__poster:has(.promo-poster) {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible; /* laisse respirer le halo externe */
+  max-width: 323px;  /* V9.4 : -15% (était 380px) */
+}
+@media (min-width: 900px) {
+  .plus__poster:has(.promo-poster) { transform: none; }
+}
+/* Fallback navigateurs sans :has() : on retire aussi le glow via une
+   classe explicite posée dans le HTML. (On ne dépend pas de :has().) */
+.plus__poster--live {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  max-width: 323px;  /* V9.4 : -15% (était 380px) */
+}
+@media (min-width: 900px) {
+  .plus__poster--live { transform: none; }
+}

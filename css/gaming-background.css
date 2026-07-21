@@ -1,0 +1,273 @@
+/* ============================================================
+   gaming-background.css — composant signature de l'app.
+   Toile peinte en dessous de tout : Encre Nuit + grille néon
+   subtile + halos flottants.
+
+   V3 "Arcade Vivante" (mode DARK uniquement) :
+   - Halos néon intensifiés (alpha 0.22-0.30, blur 80-100px)
+   - 4e halo vert néon (#39FF14) subtil
+   - Scanlines CRT très discrètes
+   - Pulse global (la salle d'arcade respire)
+   - Particules flottantes (8 orbes) + aurora animé
+   - Respect absolu de prefers-reduced-motion.
+
+   Le mode clair ([data-theme="light"]) reste 100% inchangé :
+   les nouveaux effets sont neutralisés pour lui.
+   ============================================================ */
+
+/* La toile fixe derrière toute la page */
+.gbg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+/* Grille néon subtile (cyan alpha ~0.05-0.08, 36px) */
+.gbg__grid {
+  position: absolute;
+  inset: -2px;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%,
+              #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 0%,
+              #000 30%, transparent 100%);
+}
+
+/* ---------- V3 : Aurora effect (mode dark) ----------
+   Gradient conique très lent (45s) — les zones néon "dansent"
+   comme une aurore boréale. Très flou, bas en opacité. */
+.gbg__aurora {
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(138, 43, 226, 0.12) 0deg,
+    rgba(0, 229, 255, 0.10) 120deg,
+    rgba(255, 45, 149, 0.10) 240deg,
+    rgba(138, 43, 226, 0.12) 360deg
+  );
+  filter: blur(100px);
+  animation: gbg-aurora-rotate 45s linear infinite;
+  opacity: 0.6;
+  will-change: transform;
+}
+@keyframes gbg-aurora-rotate {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ---------- Halos néon flottants (V3 : intensifiés) ----------
+   Alpha 0.22-0.30 sur :root (mode dark par défaut).
+   Blur 80-100px pour un effet plus diffus et enveloppant.
+   Chaque halo flotte ET pulse (respiration de la salle d'arcade). */
+.gbg__halo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform, opacity;
+  /* Pulse global : opacité 1 -> 0.78 sur 6s. Combiné au float
+     (défini par chaque variante) cela donne l'effet "arcade vivante". */
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: ease-in-out, ease-in-out;
+}
+
+.gbg__halo--a {
+  width: 65vw;
+  height: 65vw;
+  max-width: 760px;
+  max-height: 760px;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, var(--halo-a) 0%, transparent 70%);
+  filter: blur(100px);
+  animation-name: gbg-float-a, gbg-pulse;
+  animation-duration: 22s, 6s;
+}
+
+.gbg__halo--b {
+  width: 55vw;
+  height: 55vw;
+  max-width: 660px;
+  max-height: 660px;
+  top: 30%;
+  right: -15%;
+  background: radial-gradient(circle, var(--halo-b) 0%, transparent 70%);
+  filter: blur(90px);
+  animation-name: gbg-float-b, gbg-pulse;
+  animation-duration: 28s, 7s;
+  animation-delay: 0s, -2s; /* décale le pulse pour désynchroniser */
+}
+
+.gbg__halo--c {
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  bottom: -15%;
+  left: 35%;
+  background: radial-gradient(circle, var(--halo-c) 0%, transparent 70%);
+  filter: blur(80px);
+  animation-name: gbg-float-c, gbg-pulse;
+  animation-duration: 32s, 8s;
+  animation-delay: 0s, -4s;
+}
+
+/* V3 : 4e halo vert néon — rare et subtil (alpha 0.10). */
+.gbg__halo--d {
+  width: 40vw;
+  height: 40vw;
+  max-width: 520px;
+  max-height: 520px;
+  top: 60%;
+  left: -8%;
+  background: radial-gradient(circle, var(--halo-d) 0%, transparent 70%);
+  filter: blur(90px);
+  animation-name: gbg-float-d, gbg-pulse;
+  animation-duration: 36s, 9s;
+  animation-delay: 0s, -1s;
+}
+
+/* ---------- V3 : Particules flottantes (mode dark) ----------
+   8 petites orbes néon qui se déplacent lentement, façon poussière
+   dans un faisceau lumineux. GPU-only (transform + opacity). */
+.gbg__particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: gbg-particle-float 18s linear infinite;
+}
+.gbg__particle:nth-child(1)  { top: 12%; left: 14%; background: var(--neon-violet);  box-shadow: 0 0 8px var(--neon-violet);  animation-delay: 0s; }
+.gbg__particle:nth-child(2)  { top: 22%; left: 78%; background: var(--neon-cyan);    box-shadow: 0 0 8px var(--neon-cyan);    animation-delay: -3s; animation-duration: 22s; }
+.gbg__particle:nth-child(3)  { top: 38%; left: 30%; background: var(--neon-magenta); box-shadow: 0 0 8px var(--neon-magenta); animation-delay: -7s; animation-duration: 20s; }
+.gbg__particle:nth-child(4)  { top: 48%; left: 88%; background: var(--neon-cyan);    box-shadow: 0 0 8px var(--neon-cyan);    animation-delay: -11s; animation-duration: 24s; }
+.gbg__particle:nth-child(5)  { top: 64%; left: 18%; background: var(--neon-violet);  box-shadow: 0 0 8px var(--neon-violet);  animation-delay: -5s; animation-duration: 19s; }
+.gbg__particle:nth-child(6)  { top: 72%; left: 62%; background: var(--neon-cyan);    box-shadow: 0 0 8px var(--neon-cyan);    animation-delay: -14s; animation-duration: 23s; }
+.gbg__particle:nth-child(7)  { top: 82%; left: 40%; background: var(--neon-green);   box-shadow: 0 0 8px var(--neon-green);   animation-delay: -2s; animation-duration: 21s; }
+.gbg__particle:nth-child(8)  { top: 16%; left: 52%; background: var(--neon-magenta); box-shadow: 0 0 8px var(--neon-magenta); animation-delay: -9s; animation-duration: 25s; }
+
+@keyframes gbg-particle-float {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translate(20vw, -30vh); opacity: 0; }
+}
+
+/* ---------- V3 : Scanlines CRT (mode dark uniquement) ----------
+   Lignes horizontales très fines, alpha 0.015 — façon vieille
+   borne d'arcade. Posées sur .gbg::after pour ne pas impacter
+   le reste de la pile. */
+[data-theme="dark"] .gbg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 229, 255, 0.015) 2px,
+    rgba(0, 229, 255, 0.015) 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+/* En mode clair : pas de scanlines. */
+[data-theme="light"] .gbg::after { content: none; }
+
+/* Voile pour lisibilité : on assombrit légèrement sans tuer les halos.
+   En mode dark on le garde très transparent pour laisser vivre le néon. */
+.gbg__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+              transparent 0%,
+              rgba(0, 0, 0, 0) 60%,
+              rgba(0, 0, 0, 0) 100%);
+}
+[data-theme="light"] .gbg__veil {
+  background: linear-gradient(to bottom,
+              rgba(255, 255, 255, 0) 0%,
+              rgba(245, 247, 251, 0.25) 100%);
+}
+
+/* ---------- Animations ----------
+   Floats lents (ease-out doux) + pulse global.
+   En mode clair on neutralise halos/aurora/particules pour
+   préserver le rendu V2 inchangé. */
+@keyframes gbg-float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(8vw, 6vh) scale(1.08); }
+}
+@keyframes gbg-float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-6vw, 8vh) scale(1.1); }
+}
+@keyframes gbg-float-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(5vw, -6vh) scale(1.06); }
+}
+@keyframes gbg-float-d {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(6vw, -5vh) scale(1.07); }
+}
+
+/* Pulse global : la salle d'arcade respire (opacité seule, GPU-only). */
+@keyframes gbg-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.78; }
+}
+
+/* ---------- Mode clair : neutralisation des nouveaux effets ----------
+   Le 4e halo, l'aurora et les particules sont des ajouts V3 réservés
+   au mode dark. On les cache en mode clair pour ne rien changer à V2. */
+[data-theme="light"] .gbg__halo--d,
+[data-theme="light"] .gbg__aurora,
+[data-theme="light"] .gbg__particle { display: none; }
+
+/* ---------- Reduced motion : tout se fige ----------
+   Les halos restent visibles (statiques), l'aurora et les particules
+   se fixent en opacité réduite, les scanlines restent (elles sont
+   statiques de toute façon). */
+@media (prefers-reduced-motion: reduce) {
+  .gbg__halo,
+  .gbg__halo--a,
+  .gbg__halo--b,
+  .gbg__halo--c,
+  .gbg__halo--d {
+    animation: none !important;
+    opacity: 1;
+  }
+  .gbg__aurora {
+    animation: none !important;
+    opacity: 0.3;
+  }
+  .gbg__particle {
+    animation: none !important;
+    opacity: 0.3;
+  }
+}
+
+/* ---------- Mobile-first : borner les halos sur petit écran ----------
+   Les halos en vw peuvent être trop envahissants sur mobile.
+   On plafonne plus sévèrement dès le plus petit écran (les max-width
+   ci-dessus s'appliquent déjà ; ce bloc est un filet de sécurité
+   pour les très petits écrans en paysage). */
+@media (max-width: 480px) {
+  .gbg__halo--a { width: 85vw; height: 85vw; }
+  .gbg__halo--b { width: 70vw; height: 70vw; }
+  .gbg__halo--c { width: 65vw; height: 65vw; }
+  .gbg__halo--d { width: 60vw; height: 60vw; }
+  /* L'aurora très floue peut saturer un petit écran : on l'adoucit. */
+  .gbg__aurora { opacity: 0.4; }
+}

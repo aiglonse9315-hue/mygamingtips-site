@@ -1,0 +1,163 @@
+/* ============================================================
+   base.css — typo, layout, a11y
+   Une seule famille (Roboto), hiérarchie par le poids.
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  /* Crossfade jour/nuit sur les propriétés concernées */
+  transition: background-color var(--t-theme), color var(--t-theme),
+              border-color var(--t-theme);
+  overflow-x: hidden;
+}
+
+/* Typographie utilitaire */
+.t-display {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.3px;
+}
+
+.t-headline {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-headline);
+  line-height: 1.2;
+  letter-spacing: var(--ls-headline);
+}
+
+.t-title {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-title);
+  line-height: 1.3;
+}
+
+.t-body {
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-secondary);
+}
+
+.t-body strong {
+  color: var(--text-primary);
+  font-weight: var(--fw-bold);
+}
+
+.t-label {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.t-eyebrow {
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Gradient text violet→cyan sur mots-clés courts (titres très courts) */
+.t-gradient {
+  background: linear-gradient(95deg, var(--neon-violet), var(--neon-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .t-gradient {
+  background: linear-gradient(95deg, var(--accent), var(--plus-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(28px, 5vw, 56px);
+}
+
+.section__head {
+  max-width: 640px;
+  margin-bottom: var(--space-xl);
+}
+
+.section__head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section__title {
+  margin-top: var(--space-sm);
+}
+
+.section__intro {
+  margin-top: var(--space-md);
+}
+
+/* ---------- Skip link (a11y) ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--surface-solid);
+  color: var(--text-primary);
+  border-radius: 0 0 var(--radius-md) 0;
+  font-weight: var(--fw-bold);
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---------- Visually hidden (a11y) ---------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- RTL : corrections fine ----------
+   On inverse les offsets directionnels sans tout retourner.
+   Les éléments symétriques n'ont pas besoin d'être touchés. */
+html[dir="rtl"] .container {
+  /* RAS : padding-inline est déjà logique */
+}
+
+/* Reduced motion : on coupe aussi les halos flottants */
+@media (prefers-reduced-motion: reduce) {
+  .float,
+  .pulse,
+  [data-anim] {
+    animation: none !important;
+  }
+}

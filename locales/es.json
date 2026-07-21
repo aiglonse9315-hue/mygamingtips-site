@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "lang": "es",
+    "dir": "ltr",
+    "htmlLang": "es"
+  },
+  "seo": {
+    "title": "MyGamingTips — Tu mejor contenido gaming, ordenado y verificado.",
+    "description": "MyGamingTips reúne vídeos, guías y enlaces gaming útiles, organizados por juego y verificados por la comunidad. Gratis, sin anuncios. Móvil + Windows."
+  },
+  "nav": {
+    "features": "Funciones",
+    "mobile": "Móvil",
+    "windows": "Windows",
+    "community": "Comunidad",
+    "plus": "Plus",
+    "download": "Descargar"
+  },
+  "brand": {
+    "name": "MyGamingTips",
+    "tagline": "Tu mejor contenido gaming, ordenado y verificado."
+  },
+  "hero": {
+    "eyebrow": "El arcade viviente",
+    "title_pre": "Cada juego tiene su",
+    "title_highlight": "mejor contenido",
+    "title_post": ", ordenado y verificado.",
+    "subtitle": "MyGamingTips centraliza vídeos, guías y enlaces útiles, organizados por juego. Cada contenido es analizado por IA y luego verificado por un humano para garantizarle información fiable y de calidad.",
+    "cta_play": "Disponible en Google Play",
+    "cta_windows": "Descargar para Windows",
+    "trust_games": "juegos referenciados",
+    "trust_verified": "Contenido analizado por IA y verificado por un humano",
+    "badge_new": "NUEVO",
+    "badge_free": "100% GRATIS",
+    "badge_lang": "12 IDIOMAS"
+  },
+  "features": {
+    "eyebrow": "Por qué MyGamingTips",
+    "title": "Diseñado para encontrar rápido, sin ahogarse.",
+    "intro": "Todo parte de una idea simple: el contenido correcto ya existe. Solo está enterrado bajo el ruido del algoritmo.",
+    "f1_title": "Ordenado y verificado",
+    "f1_desc": "No un algoritmo, humanos. Cada contenido se selecciona y valida para ganarse su lugar.",
+    "f2_title": "Listas que terminan",
+    "f2_desc": "Cada juego tiene un número finito de contenidos útiles. Sales satisfecho, nunca cautivo de un feed.",
+    "f3_title": "Favoritos y playlists",
+    "f3_desc": "Encuentra tu contenido en un toque, ordénalo, organízalo a tu manera, en varias sesiones.",
+    "f4_title": "Modo día y noche",
+    "f4_desc": "El arcade viviente de noche, el refugio legible de día. El tema sigue tu estilo, no al revés.",
+    "f5_title": "12 idiomas",
+    "f5_desc": "Encuentra contenido en tu idioma. Y si aún no existe nada, el inglés siempre te cubre.",
+    "f6_title": "Inicio instantáneo",
+    "f6_desc": "Caché local, sincronización en segundo plano. La app se abre antes de que termines de pensarlo."
+  },
+  "mobile": {
+    "eyebrow": "La experiencia móvil",
+    "title": "Pensado para sesiones cortas.",
+    "intro": "Entre dos partidas, en el transporte, durante una descarga. Unos toques, el contenido correcto, y cerrar.",
+    "home_title": "Inicio",
+    "home_caption": "Todos tus trucos, guías y tips en un solo lugar. Inicio instantáneo.",
+    "explore_title": "Explorar",
+    "explore_caption": "Descubre los juegos más populares, compartidos por la comunidad, ordenados y verificados.",
+    "mygames_title": "Mis juegos",
+    "mygames_caption": "Tu lista personalizada, a un toque.",
+    "playlist_title": "My Playlist",
+    "playlist_caption": "Encuentra tu contenido sin buscarlo. Ordena, organiza a tu manera.",
+    "playlist_bygame_title": "Playlists por juego",
+    "playlist_bygame_caption": "Una organización siempre más clara, juego por juego.",
+    "profile_title": "Perfil",
+    "profile_caption": "Personaliza tu imagen de setup y descubre el contribuidor del mes.",
+    "swipe_hint": "Desliza para explorar"
+  },
+  "windows": {
+    "eyebrow": "El compañero Windows",
+    "title": "El reproductor de vídeo overlay sin anuncios.",
+    "intro": "Mira tus guías favoritas en superposición mientras juegas. Sin anuncios, sin interrupciones, nunca.",
+    "b1": "Reproducción en overlay sobre tu juego",
+    "b2": "Cero anuncios, cero interrupciones",
+    "b3": "Todo tu contenido sincronizado con el móvil",
+    "demo_hint": "Haz clic para lanzar el vídeo overlay",
+    "demo_active": "Vídeo overlay activo — sin anuncios",
+    "demo_idle": "Vídeo oculto",
+    "demo_show": "Mostrar vídeo",
+    "demo_hide": "Ocultar vídeo",
+    "home_title": "Inicio Windows",
+    "home_caption": "Todo el poder de MyGamingTips en pantalla grande.",
+    "mygames_title": "Mis juegos",
+    "mygames_caption": "Tu biblioteca, versión de escritorio.",
+    "overlay_title": "Reproductor overlay sin anuncios",
+    "overlay_caption": "Mira tus guías favoritas en superposición mientras juegas. Sin anuncios, sin interrupciones.",
+    "languages_title": "12 idiomas",
+    "languages_caption": "Encuentra contenido en tu idioma. Y si aún no existe nada, el inglés siempre te cubre."
+  },
+  "community": {
+    "eyebrow": "La comunidad",
+    "title": "Verificado, primero por una IA. Pronto por ti.",
+    "intro": "El contenido no lo sirve un algoritmo a ciegas. Hoy, una IA muy activa valida cada contenido — más de 3.000 ya. Mañana, la comunidad humana tomará el relevo.",
+    "month_badge": "IA colaboradora",
+    "month_desc": "Por ahora, una <strong>IA súper activa</strong> alimenta y valida la base — <strong>más de 3.000 contenidos</strong> ya validados. Pero la app está diseñada para <strong>vivir por y para su comunidad</strong>: con el tiempo, serán los jugadores quienes contribuyan, ordenen y mantengan vivo cada juego.",
+    "contrib_eyebrow": "Contribuye tú también",
+    "contrib_desc": "Comparte tus mejores hallazgos directamente desde tu aplicación favorita con la función <strong>Compartir</strong> hacia MyGamingTips. Cada mes, los <strong>3 mejores contribuyentes</strong> reciben una <strong>suscripción Premium de un mes</strong> — el ranking se reinicia cada mes para que todos tengan su oportunidad.",
+    "stat_contents": "Contenidos validados",
+    "stat_ai": "Bot colaborador",
+    "stat_community": "Vivir por su comunidad"
+  },
+  "personalize": {
+    "eyebrow": "Personalización",
+    "title": "El arcade viviente de noche. El refugio legible de día.",
+    "intro": "Cambia el tema del sitio en directo. Eso es justo lo que hace la app: un modo noche vibrante donde el neón cobra sentido, y un modo día legible a pleno sol.",
+    "toggle_dark": "Noche",
+    "toggle_light": "Día",
+    "toggle_label": "Cambia el tema en directo",
+    "caption": "El arcade vivo por la noche, el refugio legible de día. Es tu estilo.",
+    "day_label": "Día",
+    "night_label": "Noche"
+  },
+  "plus": {
+    "eyebrow": "MyGamingTips Plus",
+    "title": "Pasa a MyGamingTips Plus",
+    "subtitle": "La app sigue siendo gratis. El menú My Playlist pasa a ser Plus.",
+    "free_badge": "La app es 100% gratis",
+    "b1_label": "My Playlist",
+    "b1_desc": "Organiza, ordena y encuentra todo tu contenido sin buscarlo (el único menú reservado a Plus).",
+    "b2_label": "3 fondos exclusivos",
+    "b2_desc": "Personaliza la app con 3 wallpapers premium.",
+    "b3_label": "App Windows dedicada",
+    "b3_desc": "Encuentra todo tu contenido en PC Windows, sincronizado con tu móvil.",
+    "plan_monthly_name": "Mensual",
+    "plan_monthly_price": "1,99 €",
+    "plan_monthly_unit": "/ mes",
+    "plan_yearly_name": "Anual",
+    "plan_yearly_price": "19,99 €",
+    "plan_yearly_unit": "/ año",
+    "plan_yearly_badge": "Ahorra 16%",
+    "plan_yearly_sub": "aprox. 1,67 € / mes",
+    "microcopy": "Cancela cuando quieras. Sin compromiso.",
+    "cta": "Pasar a Plus",
+    "badge": "Plus"
+  },
+  "promo": {
+    "title_1": "TODAS TUS GUÍAS",
+    "title_2": "EN UN SITIO",
+    "subtitle": "Vídeos, enlaces y consejos para Aion 2, Diablo 4, Star Citizen y más.",
+    "store_play": "DISPONIBLE EN Google Play",
+    "store_ios": "PRÓXIMAMENTE EN iOS",
+    "alt": "Captura de pantalla de la aplicación MyGamingTips — tus guías gaming ordenadas y verificadas."
+  },
+  "download": {
+    "eyebrow": "Descargar",
+    "title": "Gratis. Sin anuncios. Sin cuenta.",
+    "intro": "MyGamingTips es gratis para todos, en móvil y en Windows.",
+    "mobile_title": "En móvil",
+    "mobile_btn": "Disponible en Google Play",
+    "windows_title": "En Windows",
+    "windows_btn": "Descargar gratis",
+    "windows_req": "Windows 10 o superior · 150 MB de espacio",
+    "microcopy": "Sin anuncios. Sin cuenta. Sin recopilación excesiva."
+  },
+  "footer": {
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "contact": "Contacto",
+    "verified_note": "Contenido verificado por la comunidad.",
+    "copyright": "© 2026 MyGamingTips. Todos los derechos reservados.",
+    "lang_label": "Idioma"
+  },
+  "protections": {
+    "toast": "Contenido protegido."
+  },
+  "a11y": {
+    "skip": "Ir al contenido principal",
+    "menu_open": "Abrir menú",
+    "menu_close": "Cerrar menú",
+    "lang_open": "Elegir idioma",
+    "theme_dark": "Activar modo noche",
+    "theme_light": "Activar modo día",
+    "logo_alt": "Logo de MyGamingTips"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "lang": "ko",
+    "dir": "ltr",
+    "htmlLang": "ko"
+  },
+  "seo": {
+    "title": "MyGamingTips — 가장 좋은 게임 콘텐츠, 정리되고 검증됨.",
+    "description": "MyGamingTips는 유용한 게임 영상, 가이드, 링크를 게임별로 정리하고 코뮤니티가 검증한 형태로 모습니다. 무료, 광고 없음. 모바일 + Windows."
+  },
+  "nav": {
+    "features": "기능",
+    "mobile": "모바일",
+    "windows": "Windows",
+    "community": "커뮤니티",
+    "plus": "Plus",
+    "download": "다운로드"
+  },
+  "brand": {
+    "name": "MyGamingTips",
+    "tagline": "가장 좋은 게임 콘텐츠, 정리되고 검증됨."
+  },
+  "hero": {
+    "eyebrow": "살아 있는 아케이드",
+    "title_pre": "모든 게임에는 그만의",
+    "title_highlight": "최고 콘텐츠",
+    "title_post": "가, 정리되고 검증되어 있습니다.",
+    "subtitle": "MyGamingTips는 게임별로 정리된 동영상, 가이드, 유용한 링크를 한곳에 모읍니다. 모든 콘텐츠는 AI가 분석한 후 사람이 검수하여 신뢰할 수 있고 양질의 정보를 보장합니다.",
+    "cta_play": "Google Play에서 다운로드",
+    "cta_windows": "Windows용 다운로드",
+    "trust_games": "등록된 게임",
+    "trust_verified": "AI가 분석하고 사람이 검수한 콘텐츠",
+    "badge_new": "NEW",
+    "badge_free": "100% 무료",
+    "badge_lang": "12개 언어"
+  },
+  "features": {
+    "eyebrow": "MyGamingTips를 쓰는 이유",
+    "title": "빠르게 찾도록, 가라앉지 않도록.",
+    "intro": "모든 것은 단순한 생각에서 시작됩니다. 올바른 콘텐츠는 이미 존재하며, 단지 알고리즘의 소음 아래 묻혀 있을 뿐.",
+    "f1_title": "정리 및 검증됨",
+    "f1_desc": "알고리즘이 아니라 사람입니다. 모든 콘텐츠는 선택되고 검증되어 자리를 얻습니다.",
+    "f2_title": "끝이 있는 리스트",
+    "f2_desc": "각 게임의 유용한 콘텐츠는 유한합니다. 만족하며 떠나지, 피드의 포로가 되지 않습니다.",
+    "f3_title": "즐겨찾기와 재생목록",
+    "f3_desc": "한 번의 탭으로 콘텐츠를 찾고, 당신 방식대로 정렬하고, 여러 세션에 걸쳐 정리합니다.",
+    "f4_title": "낮과 밤 모드",
+    "f4_desc": "밤에는 살아 있는 아케이드, 낮에는 읽기 좋은 후퇴. 테마는 당신 스타일을 따르며, 그 반대가 아닙니다.",
+    "f5_title": "12개 언어",
+    "f5_desc": "당신 언어로 콘텐츠를 찾으세요. 아직 없다면 영어가 항상 덮어줍니다.",
+    "f6_title": "즉시 실행",
+    "f6_desc": "로컬 캐시, 백그라운드 동기화. 생각이 끝나기 전에 앱이 열립니다."
+  },
+  "mobile": {
+    "eyebrow": "모바일 경험",
+    "title": "짧은 세션을 위해.",
+    "intro": "두 경기 사이, 출근길, 다운로드 대기 중. 몇 번의 탭, 올바른 콘텐츠, 닫기.",
+    "home_title": "홈",
+    "home_caption": "당신의 모든 팁, 가이드, 팁이 한곳에. 즉시 실행.",
+    "explore_title": "탐색",
+    "explore_caption": "커뮤니티가 공유한 가장 인기 있는 게임을 정렬 및 검증된 상태로 만나보세요.",
+    "mygames_title": "내 게임",
+    "mygames_caption": "당신만의 맞춤 리스트, 한 번의 탭으로.",
+    "playlist_title": "My Playlist",
+    "playlist_caption": "검색 없이 콘텐츠를 찾으세요. 당신 방식대로 정렬·정리.",
+    "playlist_bygame_title": "게임별 재생목록",
+    "playlist_bygame_caption": "게임마다 더욱 명확한 정리.",
+    "profile_title": "프로필",
+    "profile_caption": "설정 이미지를 맞춤화하고, 이달의 기여자를 발견하세요.",
+    "swipe_hint": "스와이프하여 탐색"
+  },
+  "windows": {
+    "eyebrow": "Windows 동반자",
+    "title": "광고 없는 오버레이 영상 플레이어.",
+    "intro": "게임을 하면서 좋아하는 가이드를 겹쳐서 보세요. 어떤 광고도, 어떤 중단도, 결코 없습니다.",
+    "b1": "게임 위에 오버레이 재생",
+    "b2": "광고 제로, 중단 제로",
+    "b3": "모든 콘텐츠를 모바일과 동기화",
+    "demo_hint": "클릭하여 오버레이 영상 실행",
+    "demo_active": "오버레이 영상 활성 — 광고 없음",
+    "demo_idle": "영상 숨김",
+    "demo_show": "영상 표시",
+    "demo_hide": "영상 숨기기",
+    "home_title": "Windows 홈",
+    "home_caption": "큰 화면에서 MyGamingTips의 모든 힘을.",
+    "mygames_title": "내 게임",
+    "mygames_caption": "당신의 보관함, 데스크톱 버전.",
+    "overlay_title": "광고 없는 오버레이 플레이어",
+    "overlay_caption": "게임을 하면서 좋아하는 가이드를 겹쳐 보세요. 어떤 광고도, 어떤 중단도 없습니다.",
+    "languages_title": "12개 언어",
+    "languages_caption": "당신 언어로 콘텐츠를 찾으세요. 아직 없다면 영어가 항상 덮어줍니다."
+  },
+  "community": {
+    "eyebrow": "커뮤니티",
+    "title": "먼저 AI가 검증합니다. 곧 여러분이.",
+    "intro": "콘텐츠는 맹목적인 알고리즘이 제공하지 않습니다. 오늘은 매우 활동적인 AI가 각 콘텐츠를 검증하며, 이미 3,000개 이상입니다. 내일은 사람 커뮤니티가 이어받습니다.",
+    "month_badge": "AI 기여자",
+    "month_desc": "현재 <strong>초활성 AI</strong>가 데이터베이스를 채우고 검증하며, <strong>3,000개 이상</strong>이 이미 확인되었습니다. 하지만 이 앱은 <strong>커뮤니티에 의해, 커뮤니티를 위해</strong> 존재하도록 설계되었습니다. 장기적으로는 플레이어가 직접 기여하고, 정리하며, 게임마다 활력을 불어넣게 됩니다.",
+    "contrib_eyebrow": "여러분도 기여하세요",
+    "contrib_desc": "가장 좋아하는 앱에서 <strong>공유</strong> 기능으로 MyGamingTips에 훌륭한 발견을 직접 공유하세요. 매월 <strong>상위 3명의 기여자</strong>에게 <strong>1개월 Premium 구독</strong>이 제공됩니다 — 순위는 매월 초기화되어 누구에게나 기회가 주어집니다.",
+    "stat_contents": "검증된 콘텐츠",
+    "stat_ai": "기여 봇",
+    "stat_community": "커뮤니티가 살리다"
+  },
+  "personalize": {
+    "eyebrow": "개인화",
+    "title": "밤에는 살아 있는 아케이드. 낮에는 읽기 좋은 후퇴.",
+    "intro": "사이트 테마를 라이브로 전환하세요. 그것이 앱이 하는 일입니다. 네온이 의미를 갖는 생생한 밤 모드와, 강한 햇빛 아래서도 읽기 좋은 낮 모드.",
+    "toggle_dark": "밤",
+    "toggle_light": "낮",
+    "toggle_label": "테마 라이브 전환",
+    "caption": "밤에는 살아있는 아케이드, 낮에는 읽기 편한 차분함. 그것이 당신의 스타일입니다.",
+    "day_label": "낮",
+    "night_label": "밤"
+  },
+  "plus": {
+    "eyebrow": "MyGamingTips Plus",
+    "title": "MyGamingTips Plus로 전환",
+    "subtitle": "앱은 무료로 유지됩니다. My Playlist 메뉴가 Plus가 됩니다.",
+    "free_badge": "앱은 100% 무료",
+    "b1_label": "My Playlist",
+    "b1_desc": "검색 없이 모든 콘텐츠를 정리·정렬·발견 (Plus 전용 유일 메뉴).",
+    "b2_label": "3개의 독점 배경화면",
+    "b2_desc": "3개의 프리미엄 배경화면으로 앱을 맞춤화하세요.",
+    "b3_label": "전용 Windows 앱",
+    "b3_desc": "Windows PC에서 모든 콘텐츠를, 모바일과 동기화하여.",
+    "plan_monthly_name": "월간",
+    "plan_monthly_price": "₩2,500",
+    "plan_monthly_unit": "/ 월",
+    "plan_yearly_name": "연간",
+    "plan_yearly_price": "₩25,000",
+    "plan_yearly_unit": "/ 년",
+    "plan_yearly_badge": "16% 절약",
+    "plan_yearly_sub": "약 ₩2,080 / 월",
+    "microcopy": "언제든 해지 가능. 약정 없음.",
+    "cta": "Plus로 전환",
+    "badge": "Plus"
+  },
+  "promo": {
+    "title_1": "모든 가이드를",
+    "title_2": "한곳에서",
+    "subtitle": "Aion 2, Diablo 4, Star Citizen 등을 위한 영상, 링크, 팁.",
+    "store_play": "Google Play에서 만나보기",
+    "store_ios": "iOS는 곧 출시 예정",
+    "alt": "MyGamingTips 앱 스크린샷 — 엄선되고 검증된 게임 가이드."
+  },
+  "download": {
+    "eyebrow": "다운로드",
+    "title": "무료. 광고 없음. 계정 불필요.",
+    "intro": "MyGamingTips는 모두에게 무료이며, 모바일과 Windows 모두에서.",
+    "mobile_title": "모바일에서",
+    "mobile_btn": "Google Play에서 다운로드",
+    "windows_title": "Windows에서",
+    "windows_btn": "무료로 다운로드",
+    "windows_req": "Windows 10 이상 · 150 MB 여유",
+    "microcopy": "광고 없음. 계정 불필요. 과도한 수집 없음."
+  },
+  "footer": {
+    "about": "소개",
+    "privacy": "개인정보",
+    "contact": "연락처",
+    "verified_note": "커뮤니티가 검증한 콘텐츠.",
+    "copyright": "© 2026 MyGamingTips. 모든 권리 보유.",
+    "lang_label": "언어"
+  },
+  "protections": {
+    "toast": "보호된 콘텐츠입니다."
+  },
+  "a11y": {
+    "skip": "주요 콘텐츠로 건너뛰기",
+    "menu_open": "메뉴 열기",
+    "menu_close": "메뉴 닫기",
+    "lang_open": "언어 선택",
+    "theme_dark": "밤 모드 활성화",
+    "theme_light": "낮 모드 활성화",
+    "logo_alt": "MyGamingTips 로고"
+  }
+}

@@ -1,0 +1,44 @@
+# ============================================================
+# .gitignore — Site MyGamingTips
+# ============================================================
+
+# === Dossiers de travail / sources non web ===
+# Sources d'images originales (noms français, versions non utilisées)
+imageapp/
+
+# Dossier de travail de l'agent ZCode (mockups, sessions brainstorm)
+.superpowers/
+
+# === OS / éditeur ===
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# === Logs ===
+*.log
+npm-debug.log*
+
+# === Dépendances (au cas où on ajoute un build plus tard) ===
+node_modules/
+
+# === Build outputs ===
+dist/
+build/
+
+# === Fichiers sensibles / env ===
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# === Cache ===
+.cache/
+.parcel-cache/
+.netlify/
+.vercel/

@@ -63,6 +63,12 @@
     "mygames_caption": "你的个性化清单，一点即达。",
     "playlist_title": "My Playlist",
     "playlist_caption": "无需搜索即可找到你的内容。按你的方式排序、整理。",
+    "playlist_genre_title": "按类型播放列表",
+    "playlist_genre_caption": "按类型整理你的内容，以丰富游戏体验。",
+    "abo_title": "Plus 订阅",
+    "abo_caption": "升级到 MyGamingTips Plus，解锁 My Playlist、3款独家壁纸和专属 Windows 应用。",
+    "playlist_game_title": "按游戏播放列表",
+    "playlist_game_caption": "按游戏归类所有内容，让组织更加清晰。",
     "playlist_bygame_title": "按游戏分播放列表",
     "playlist_bygame_caption": "逐款游戏，组织愈发清晰。",
     "profile_title": "个人资料",
@@ -88,7 +94,11 @@
     "overlay_title": "无广告悬浮播放器",
     "overlay_caption": "在玩游戏的同时以悬浮方式观看喜爱的攻略。无广告，无打断。",
     "languages_title": "12 种语言",
-    "languages_caption": "用你的语言找到内容。即便还没有，英语也总能覆盖你。"
+    "languages_caption": "用你的语言找到内容。即便还没有，英语也总能覆盖你。",
+    "playlist_game_title": "按游戏播放列表",
+    "playlist_game_caption": "按游戏归类的所有内容。",
+    "playlist_genre_title": "按类型播放列表",
+    "playlist_genre_caption": "整理资料库的另一种方式。"
   },
   "community": {
     "eyebrow": "社区",

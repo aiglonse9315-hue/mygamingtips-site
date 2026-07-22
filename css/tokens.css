@@ -59,7 +59,7 @@
   --ls-label: 0.6px;
 
   /* ---------- Layout ---------- */
-  --container-max: 1200px;
+  --container-max: clamp(1200px, 90vw, 1440px);
   --container-narrow: 760px;
   --header-h: 64px;
 

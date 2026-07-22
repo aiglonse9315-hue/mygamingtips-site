@@ -63,6 +63,12 @@
     "mygames_caption": "قائمتك المخصصة، على بُعد نقرة.",
     "playlist_title": "My Playlist",
     "playlist_caption": "اعثر على محتواك دون بحث. رتّب، نظّم بطريقتك.",
+    "playlist_genre_title": "قائمة التشغيل حسب النوع",
+    "playlist_genre_caption": "نظّم محتواك حسب النوع، لتنويع جلسات اللعب.",
+    "abo_title": "اشتراك Plus",
+    "abo_caption": "احصل على MyGamingTips Plus وافتح My Playlist، و3 خلفيات حصرية، وتطبيق Windows المخصص.",
+    "playlist_game_title": "قوائم التشغيل حسب اللعبة",
+    "playlist_game_caption": "كل محتواك مجمّع حسب اللعبة، لتنظيم أوضح باستمرار.",
     "playlist_bygame_title": "قوائم تشغيل حسب اللعبة",
     "playlist_bygame_caption": "تنظيم أوضح دائماً، لعبة تلو الأخرى.",
     "profile_title": "الملف الشخصي",
@@ -88,7 +94,11 @@
     "overlay_title": "مشغّل متراكب بلا إعلانات",
     "overlay_caption": "شاهد أدلتك المفضلة متراكبة وأنت تلعب. بلا إعلانات، بلا مقاطعات.",
     "languages_title": "12 لغة",
-    "languages_caption": "اعثر على محتوى بلغتك. وإن لم يوجد شيء بعد، فإن الإنجليزية دائماً تغطيك."
+    "languages_caption": "اعثر على محتوى بلغتك. وإن لم يوجد شيء بعد، فإن الإنجليزية دائماً تغطيك.",
+    "playlist_game_title": "قائمة التشغيل حسب اللعبة",
+    "playlist_game_caption": "كل محتواك مجمّع حسب اللعبة.",
+    "playlist_genre_title": "قائمة التشغيل حسب النوع",
+    "playlist_genre_caption": "طريقة أخرى لتنظيم مكتبتك."
   },
   "community": {
     "eyebrow": "المجتمع",

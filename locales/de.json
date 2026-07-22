@@ -63,6 +63,12 @@
     "mygames_caption": "Deine personalisierte Liste, einen Tipp entfernt.",
     "playlist_title": "My Playlist",
     "playlist_caption": "Finde deinen Inhalt ohne Suche. Sortiere, organisiere auf deine Weise.",
+    "playlist_genre_title": "Playlist nach Genre",
+    "playlist_genre_caption": "Ordne deine Inhalte nach Genre, um deine Spielsessions zu variieren.",
+    "abo_title": "Plus-Abonnement",
+    "abo_caption": "Hol dir MyGamingTips Plus und schalte My Playlist, 3 exklusive Hintergründe und die eigene Windows-App frei.",
+    "playlist_game_title": "Playlists nach Spiel",
+    "playlist_game_caption": "Alle deine Inhalte, nach Spiel geordnet, für eine immer klarere Organisation.",
     "playlist_bygame_title": "Playlists pro Spiel",
     "playlist_bygame_caption": "Immer klarere Organisation, Spiel für Spiel.",
     "profile_title": "Profil",
@@ -88,7 +94,11 @@
     "overlay_title": "Werbefreier Overlay-Player",
     "overlay_caption": "Schau deine Lieblings-Guides eingeblendet, während du spielst. Keine Werbung, keine Unterbrechungen.",
     "languages_title": "12 Sprachen",
-    "languages_caption": "Finde Inhalt in deiner Sprache. Und wenn noch nichts existiert, deckt dich Englisch immer ab."
+    "languages_caption": "Finde Inhalt in deiner Sprache. Und wenn noch nichts existiert, deckt dich Englisch immer ab.",
+    "playlist_game_title": "Playlist nach Spiel",
+    "playlist_game_caption": "Alle deine Inhalte, nach Spiel geordnet.",
+    "playlist_genre_title": "Playlist nach Genre",
+    "playlist_genre_caption": "Eine andere Art, deine Bibliothek zu organisieren."
   },
   "community": {
     "eyebrow": "Die Community",

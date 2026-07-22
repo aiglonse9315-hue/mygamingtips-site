@@ -1,0 +1,35 @@
+# ============================================================
+# _headers — Configuration des headers HTTP pour Cloudflare Pages
+# Documentation : https://developers.cloudflare.com/pages/configuration/headers/
+# ============================================================
+
+# === Assets immuables (cache long, 1 an) ===
+# Les fichiers versionnés par nom ne changent jamais de contenu
+# → cache navigateur + CDN maximal. Le hash du nom garantit l'invalidation.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# === CSS et JS (cache court, 1 heure) ===
+# Pas de versionnage par hash → cache court pour propager les MAJ rapidement
+/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# === Locales JSON (cache court, 1 heure) ===
+# Les traductions peuvent être mises à jour → cache court
+/locales/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# === HTML principal (jamais en cache) ===
+# Le index.html doit toujours être à jour pour les MAJ de structure
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# === Pages d'erreur ===
+/#404
+  Cache-Control: public, max-age=0, must-revalidate

@@ -63,6 +63,12 @@
     "mygames_caption": "आपकी वैयक्तिकृत सूची, एक टैप में।",
     "playlist_title": "My Playlist",
     "playlist_caption": "बिना खोजे अपना कंटेंट ढूँढें। क्रमबद्ध करें, अपने तरीके से।",
+    "playlist_genre_title": "शैली अनुसार प्लेलिस्ट",
+    "playlist_genre_caption": "अपनी सामग्री को शैली अनुसार व्यवस्थित करें, ताकि गेमिंग सत्र बदलते रहें।",
+    "abo_title": "Plus सदस्यता",
+    "abo_caption": "MyGamingTips Plus पाएं और My Playlist, 3 विशेष वॉलपेपर और समर्पित Windows ऐप अनलॉक करें।",
+    "playlist_game_title": "गेम अनुसार प्लेलिस्ट",
+    "playlist_game_caption": "गेम अनुसार सभी सामग्री समूहबद्ध, हमेशा स्पष्ट संगठन के लिए।",
     "playlist_bygame_title": "गेम अनुसार प्लेलिस्ट",
     "playlist_bygame_caption": "हर गेम के साथ और स्पष्ट व्यवस्था।",
     "profile_title": "प्रोफ़ाइल",
@@ -88,7 +94,11 @@
     "overlay_title": "विज्ञापन-मुक्त ओवरले प्लेयर",
     "overlay_caption": "खेलते हुए ओवरले में अपने पसंदीदा गाइड देखें। कोई विज्ञापन नहीं, कोई रुकावट नहीं।",
     "languages_title": "12 भाषाएँ",
-    "languages_caption": "अपनी भाषा में कंटेंट ढूँढें। और यदि कुछ न हो, तो अंग्रेज़ी हमेशा कवर करती है।"
+    "languages_caption": "अपनी भाषा में कंटेंट ढूँढें। और यदि कुछ न हो, तो अंग्रेज़ी हमेशा कवर करती है।",
+    "playlist_game_title": "गेम अनुसार प्लेलिस्ट",
+    "playlist_game_caption": "गेम अनुसार समूहबद्ध सभी सामग्री।",
+    "playlist_genre_title": "शैली अनुसार प्लेलिस्ट",
+    "playlist_genre_caption": "अपनी लाइब्रेरी को व्यवस्थित करने का एक और तरीका।"
   },
   "community": {
     "eyebrow": "समुदाय",

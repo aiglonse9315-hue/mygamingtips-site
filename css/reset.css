@@ -24,6 +24,7 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh; /* Safari iOS — dynamic viewport height (progressive enhancement) */
   line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

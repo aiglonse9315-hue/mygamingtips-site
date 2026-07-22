@@ -63,6 +63,12 @@
     "mygames_caption": "당신만의 맞춤 리스트, 한 번의 탭으로.",
     "playlist_title": "My Playlist",
     "playlist_caption": "검색 없이 콘텐츠를 찾으세요. 당신 방식대로 정렬·정리.",
+    "playlist_genre_title": "장르별 재생목록",
+    "playlist_genre_caption": "장르별로 콘텐츠를 정리하여 게임 세션을 다양하게 즐기세요.",
+    "abo_title": "Plus 구독",
+    "abo_caption": "MyGamingTips Plus로 업그레이드하고 My Playlist, 3개의 독점 배경화면, 전용 Windows 앱의 잠금을 해제하세요.",
+    "playlist_game_title": "게임별 재생목록",
+    "playlist_game_caption": "게임별로 모든 콘텐츠를 그룹화하여 더욱 명확한 정리를 제공합니다.",
     "playlist_bygame_title": "게임별 재생목록",
     "playlist_bygame_caption": "게임마다 더욱 명확한 정리.",
     "profile_title": "프로필",
@@ -88,7 +94,11 @@
     "overlay_title": "광고 없는 오버레이 플레이어",
     "overlay_caption": "게임을 하면서 좋아하는 가이드를 겹쳐 보세요. 어떤 광고도, 어떤 중단도 없습니다.",
     "languages_title": "12개 언어",
-    "languages_caption": "당신 언어로 콘텐츠를 찾으세요. 아직 없다면 영어가 항상 덮어줍니다."
+    "languages_caption": "당신 언어로 콘텐츠를 찾으세요. 아직 없다면 영어가 항상 덮어줍니다.",
+    "playlist_game_title": "게임별 재생목록",
+    "playlist_game_caption": "게임별로 그룹화된 모든 콘텐츠.",
+    "playlist_genre_title": "장르별 재생목록",
+    "playlist_genre_caption": "라이브러리를 정리하는 또 다른 방법."
   },
   "community": {
     "eyebrow": "커뮤니티",

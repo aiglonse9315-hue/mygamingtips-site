@@ -124,6 +124,12 @@
 }
 .iconbtn--lang .lang-code { letter-spacing: 0.5px; }
 
+/* Très petit mobile : on ne garde que le drapeau/icône, le code texte
+   (FR/EN/...) prend trop de place dans le header à 320px. */
+@media (max-width: 380px) {
+  .iconbtn--lang .lang-code { display: none; }
+}
+
 /* Burger mobile */
 .burger {
   display: inline-flex;
@@ -328,10 +334,10 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 .hero__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 820px) {
   .hero__grid { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-3xl); }
 }
 .hero__eyebrow {
@@ -417,7 +423,7 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 .phone {
   position: relative;
   width: 100%;
-  max-width: 280px;
+  max-width: clamp(280px, 22vw, 340px);
   aspect-ratio: 9 / 19;
   border-radius: 36px;
   background: var(--surface-solid);
@@ -720,7 +726,9 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   .mobile-scene__phone--featured { margin-top: 0; transform: none; }
 }
 
-/* Grille pour les 3 autres windows screenshots (home, mygames, languages) */
+/* Grille pour les 5 windows screenshots (home, mygames, languages,
+   playlist-game, playlist-genre). 3 cols max : plus lisible qu'un
+   pavé de 5, et garde l'effet asymétrique "gamer/pub". */
 .grid--windows {
   grid-template-columns: 1fr;
   gap: var(--space-xl);
@@ -740,17 +748,32 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 .windows-gallery__item--a { transform: rotate(-2deg) translateY(8px); }
 .windows-gallery__item--b { transform: rotate(1.5deg) translateY(-6px); z-index: 2; }
 .windows-gallery__item--c { transform: rotate(-1deg) translateY(4px); }
+.windows-gallery__item--d { transform: rotate(1deg) translateY(10px); }
+.windows-gallery__item--e { transform: rotate(-1.5deg) translateY(-6px); z-index: 2; }
 .windows-gallery__item:hover { transform: rotate(0) translateY(-4px); }
-@media (max-width: 999px) {
-  /* Sur 2 colonnes : la 3e (languages) prend toute la largeur, plus petite,
-     décalée pour casser l'alignement. */
-  .windows-gallery__item--c { grid-column: 1 / -1; max-width: 460px; margin-inline: auto; }
+/* Mobile-first (1 col) : les 5 cartes sont empilées et centrées,
+   plus petites, pour casser l'alignement. Dès qu'on passe en grille
+   (≥700px), chaque carte reprend sa place normale dans la grille. */
+.windows-gallery__item--c,
+.windows-gallery__item--d,
+.windows-gallery__item--e {
+  grid-column: 1 / -1;
+  max-width: 460px;
+  margin-inline: auto;
+}
+@media (min-width: 700px) {
+  /* Grille 2 cols : tous les items reprennent leur place normale. */
+  .windows-gallery__item--c,
+  .windows-gallery__item--d,
+  .windows-gallery__item--e { grid-column: auto; max-width: none; margin-inline: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .windows-gallery__item,
   .windows-gallery__item--a,
   .windows-gallery__item--b,
-  .windows-gallery__item--c { transform: none; }
+  .windows-gallery__item--c,
+  .windows-gallery__item--d,
+  .windows-gallery__item--e { transform: none; }
 }
 
 /* Réduction de la taille des screenshots Windows : max-width contrôlé.
@@ -776,10 +799,10 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 .windows-feature {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 820px) {
   .windows-feature { grid-template-columns: 1.1fr 0.9fr; }
 }
 
@@ -962,10 +985,10 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 .community {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 820px) {
   .community { grid-template-columns: 0.9fr 1.1fr; }
 }
 .community__stats {
@@ -973,6 +996,14 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
+}
+/* Mobile étroit : 3 stats en 3 colonnes trop tassées -> on empile en 1 colonne. */
+@media (max-width: 480px) {
+  .community__stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .stat { padding: var(--space-md); }
 }
 .stat {
   position: relative;
@@ -1052,10 +1083,10 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 .personalize {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 820px) {
   .personalize { grid-template-columns: 1.1fr 0.9fr; }
 }
 
@@ -1353,6 +1384,14 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   transform: rotate(6deg);
   animation-delay: 0.8s;
 }
+/* Mobile étroit : on ramène les badges rotés à l'intérieur du conteneur
+   pour éviter qu'ils soient clippés par l'overflow de la grille. */
+@media (max-width: 480px) {
+  .hero__badge--new  { inset-inline-start: 0%; }
+  .hero__badge--free { inset-inline-end: 0%; }
+  .personalize__badge-night { inset-inline-start: -8px; }
+  .personalize__badge-day   { inset-inline-end: -8px; }
+}
 .hero__badge--lang {
   bottom: 6%;
   inset-inline-start: 8%;
@@ -1462,12 +1501,12 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 .plus {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: start;  /* V8 C.5 : start (au lieu de center) — le pricing
                           est plus haut avec download intégré, l'alignement
                           en haut garde la cohérence colonne-gauche/colonne-droite. */
 }
-@media (min-width: 900px) {
+@media (min-width: 820px) {
   .plus { grid-template-columns: 0.85fr 1.15fr; }
 }
 
@@ -1478,14 +1517,13 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   flex-direction: column;
   gap: var(--space-lg);
   align-items: center;
+  justify-content: flex-start;
 }
 
 /* V9.2 : remonte la bannière publicitaire de quelques cm en desktop
    pour qu'elle arrive plus haut, en contrepoint du pricing descendu. */
 @media (min-width: 900px) {
   .plus__visual { margin-top: calc(-1 * clamp(40px, 5vw, 80px)); }
-}
-  justify-content: flex-start;
 }
 .plus__poster {
   position: relative;
@@ -1526,6 +1564,11 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
    V9.2 : descendu encore de quelques cm, couplé à la remontée du poster. */
 @media (min-width: 900px) {
   .neon-premium { margin-top: clamp(80px, 9vw, 140px); }
+}
+/* Adoucit le saut visuel du margin-top entre le passage en 2 colonnes
+   (820px) et l'application du décalage desktop complet (900px). */
+@media (min-width: 820px) and (max-width: 899px) {
+  .neon-premium { margin-top: clamp(40px, 5vw, 60px); }
 }
 .neon-premium::before {
   content: "";
@@ -1592,7 +1635,7 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 /* Plans de prix */
 .plans {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: var(--space-md);
   margin-block: var(--space-md);
 }
@@ -1763,6 +1806,12 @@ button.plan {
 .download-inline .download-grid {
   grid-template-columns: 1fr 1fr;  /* toujours 2 colonnes dans le panneau */
   gap: var(--space-md);
+}
+/* Très petit mobile : le panneau pricing est trop étroit pour 2 colonnes. */
+@media (max-width: 380px) {
+  .download-inline .download-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .download-inline .download-card {
   /* Cartes plus compactes que la version section standalone */

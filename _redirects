@@ -1,0 +1,8 @@
+# ============================================================
+# _redirects — Redirections Cloudflare Pages
+# Documentation : https://developers.cloudflare.com/pages/configuration/redirects/
+# ============================================================
+
+# Par défaut, toute URL non trouvée revient sur index.html
+# (site one-page → ancres gérées en JS)
+/*    /index.html   200

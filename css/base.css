@@ -9,6 +9,12 @@ html {
   font-weight: var(--fw-regular);
 }
 
+/* Grands écrans (4K / 1920px+) : on fait légèrement grossir la typo
+   racine pour que les rem restent lisibles sans scale absurde. */
+@media (min-width: 1920px) {
+  html { font-size: 18px; }
+}
+
 body {
   background: var(--bg);
   color: var(--text-primary);

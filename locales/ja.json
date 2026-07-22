@@ -63,6 +63,12 @@
     "mygames_caption": "あなた専用のリスト、ワンタップで。",
     "playlist_title": "My Playlist",
     "playlist_caption": "探さずにコンテンツを見つけられます。あなた流に並べ替え・整理。",
+    "playlist_genre_title": "ジャンル別プレイリスト",
+    "playlist_genre_caption": "ジャンル別にコンテンツを整理し、プレイを変化させよう。",
+    "abo_title": "Plus サブスクリプション",
+    "abo_caption": "MyGamingTips Plus にアップグレードして、My Playlist、3つの限定壁紙、専用 Windows アプリのロックを解除。",
+    "playlist_game_title": "ゲーム別プレイリスト",
+    "playlist_game_caption": "ゲームごとにすべてのコンテンツをグループ化し、より明確な整理を実現。",
     "playlist_bygame_title": "ゲーム別プレイリスト",
     "playlist_bygame_caption": "ゲームごとに、より明快な整理。",
     "profile_title": "プロフィール",
@@ -88,7 +94,11 @@
     "overlay_title": "広告なしオーバーレイプレーヤー",
     "overlay_caption": "遊びながら、お気に入りのガイドを重ねて視聴。広告も中断もなし。",
     "languages_title": "12 言語",
-    "languages_caption": "あなたの言語でコンテンツを見つけられます。まだ無ければ、英語が必ずカバーします。"
+    "languages_caption": "あなたの言語でコンテンツを見つけられます。まだ無ければ、英語が必ずカバーします。",
+    "playlist_game_title": "ゲーム別プレイリスト",
+    "playlist_game_caption": "ゲームごとにまとめたすべてのコンテンツ。",
+    "playlist_genre_title": "ジャンル別プレイリスト",
+    "playlist_genre_caption": "ライブラリを整理するもう一つの方法。"
   },
   "community": {
     "eyebrow": "コミュニティ",

@@ -20,6 +20,7 @@ html {
   scroll-behavior: smooth;
   /* Compense le header sticky lors de l'ancrage */
   scroll-padding-top: calc(var(--header-h) + 12px);
+  overflow-x: hidden;  /* AJOUT V12 — anti-scroll horizontal mobile */
 }
 
 body {

@@ -92,8 +92,17 @@
      - Pour les autres catégories : crossfade opacity -> 0 -> 1
        (transition CSS gère l'effet). Image préchargée -> instantané. */
   function setScreen(img, url, category, langLower) {
-    if (currentByCategory[category] === langLower && img.src.indexOf(url) !== -1) {
-      return; // déjà affiché pour cette catégorie
+    // Garde V12/P4b : si l'image affiche DÉJÀ l'URL cible, ne rien faire.
+    // Au boot, le cache currentByCategory est vide mais l'<img> a déjà le bon
+    // src (home-FR.jpg posé en HTML). Sans cette garde, on relançait un
+    // crossfade opacity:0 → l'image restait invisible si pas encore décodée.
+    if (img.src.indexOf(url) !== -1 && img.src.indexOf(category) !== -1) {
+      currentByCategory[category] = langLower;
+      return;
+    }
+    // Sécurité : même langue déjà mémorisée → on sort sans crossfade.
+    if (currentByCategory[category] === langLower) {
+      return;
     }
 
     var noFade = category.indexOf(NO_FADE_PREFIX) === 0;

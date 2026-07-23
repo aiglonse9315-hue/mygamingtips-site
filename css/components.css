@@ -628,20 +628,26 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   align-items: center;
 }
 @media (min-width: 760px) {
-  /* Composition asymétrique : grid 0.9fr 1.3fr, alternance gauche/droite */
+  /* V12/P6a : présentation en 1 colonne — illustration AU-DESSUS, texte SOUS.
+     On neutralise l'ancienne composition asymétrique 0.95fr/1.05fr. */
   .mobile-scene {
-    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-columns: 1fr;          /* 1 colonne : texte sous illustration */
     gap: var(--space-lg);
+    justify-items: center;
+    text-align: center;
   }
-  .mobile-scene--left .mobile-scene__phone { order: 1; }
-  .mobile-scene--left .mobile-scene__text  { order: 2; }
-  .mobile-scene--right .mobile-scene__text  { order: 1; }
-  .mobile-scene--right .mobile-scene__phone { order: 2; }
+  .mobile-scene__text { max-width: 42ch; }
+  /* Les order deviennent inutiles (1 colonne) — neutraliser */
+  .mobile-scene--left .mobile-scene__phone,
+  .mobile-scene--left .mobile-scene__text,
+  .mobile-scene--right .mobile-scene__text,
+  .mobile-scene--right .mobile-scene__phone { order: initial; }
 }
-/* Décalages verticaux pour casser l'alignement (desktop) */
+/* Décalages verticaux : neutralisés en desktop 1 colonne pour garder un
+   rythme propre (sinon les scènes décalées grincent verticalement). */
 @media (min-width: 760px) {
-  .mobile-scene--offset-down { margin-top: var(--space-sm); }
-  .mobile-scene--offset-up   { margin-top: calc(-1 * var(--space-xs)); }
+  .mobile-scene--offset-down { margin-top: 0; }
+  .mobile-scene--offset-up   { margin-top: 0; }
 }
 
 /* Le conteneur du phone : position relative pour le step-badge flottant */
@@ -676,11 +682,13 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 #mobile   { padding-block-end:   clamp(8px, 1.5vw, 16px); }
 #windows  { padding-block-start: clamp(8px, 1.5vw, 16px); }
 
-/* Step-badge flottant (numéro d'étape) */
+/* Step-badge flottant (numéro d'étape) — V12/P6b : position unifiée
+   en HAUT à DROITE du téléphone, quelle que soit la scène (left/right). */
 .step-badge {
   position: absolute;
-  top: -14px;
-  inset-inline-end: -6px;
+  top: -14px;             /* haut */
+  inset-inline-end: -6px; /* droite */
+  inset-inline-start: auto;
   z-index: 5;
   display: inline-flex;
   align-items: center;
@@ -697,11 +705,21 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   letter-spacing: 0.5px;
   box-shadow: var(--glow-violet);
 }
-.mobile-scene--right .step-badge { inset-inline: auto -6px; }
+/* (règle --right spécifique supprimée : la base place déjà le badge en
+   haut-droite ; avec la grille 1 colonne + justify-items:center, le badge
+   reste accroché en haut-droite du téléphone centré.) */
 .step-badge--cyan {
   border-color: rgba(0,229,255,0.55);
   color: var(--neon-cyan);
   box-shadow: var(--glow-cyan);
+}
+/* V12/P3b — garde mobile : ramène les badges négatifs à l'intérieur (anti-débordement) */
+@media (max-width: 760px) {
+  .step-badge,
+  .mobile-scene--right .step-badge {
+    inset-inline-end: 2px;   /* était -6px */
+    inset-inline-start: auto;
+  }
 }
 
 /* Texte de scène */
@@ -715,10 +733,11 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   color: var(--text-secondary);
   max-width: 42ch;
 }
-/* Sur desktop, les scènes --right ont le texte aligné à fin pour le rythme */
+/* V12/P6a : en présentation 1 colonne centrée, on neutralise l'ancien
+   alignement "end" des scènes --right (héritage de la composition 2 colonnes). */
 @media (min-width: 760px) {
-  .mobile-scene--right .mobile-scene__text { text-align: end; }
-  .mobile-scene--right .scene-desc { margin-inline-start: auto; }
+  .mobile-scene--right .mobile-scene__text { text-align: center; }
+  .mobile-scene--right .scene-desc { margin-inline: auto; }
 }
 
 /* Respect reduced motion : annule rotations et décalages */
@@ -1091,7 +1110,12 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   align-items: center;
 }
 @media (min-width: 820px) {
-  .personalize { grid-template-columns: 1.1fr 0.9fr; }
+  .personalize {
+    grid-template-columns: 1fr;          /* 1 colonne : switch + téléphone empilés */
+    justify-items: center;
+    max-width: var(--container-narrow);  /* 760px : recentre tout en colonne étroite */
+    margin-inline: auto;
+  }
 }
 
 .theme-demo {
@@ -1379,7 +1403,7 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 }
 .hero__badge--new {
   top: 8%;
-  inset-inline-start: -4%;
+  inset-inline-start: 6%;   /* était -4% → reste DANS le visuel, à droite du bord gauche du téléphone */
   transform: rotate(-8deg);
 }
 .hero__badge--free {
@@ -1391,10 +1415,10 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 /* Mobile étroit : on ramène les badges rotés à l'intérieur du conteneur
    pour éviter qu'ils soient clippés par l'overflow de la grille. */
 @media (max-width: 480px) {
-  .hero__badge--new  { inset-inline-start: 0%; }
+  .hero__badge--new  { display: none; }                  /* V12/P5 : étiquette verticale bizarre isolée → masquée */
   .hero__badge--free { inset-inline-end: 0%; }
-  .personalize__badge-night { inset-inline-start: -8px; }
-  .personalize__badge-day   { inset-inline-end: -8px; }
+  .personalize__badge-night { inset-inline-start: 2px; }  /* V12/P3b : était -8px */
+  .personalize__badge-day   { inset-inline-end: 2px; }    /* V12/P3b : était -8px */
 }
 .hero__badge--lang {
   bottom: 6%;

@@ -623,6 +623,15 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   gap: clamp(var(--space-sm), 1.5vw, var(--space-md));
   padding-block: var(--space-xs) var(--space-sm);
 }
+/* V14 — Sur desktop, on place les fiches 2 par 2 (grille 2 colonnes)
+   pour profiter de l'espace horizontal PC/Mac. */
+@media (min-width: 760px) {
+  .mobile-scenes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(var(--space-lg), 3vw, var(--space-2xl));
+  }
+}
 .mobile-scene {
   display: grid;
   grid-template-columns: 1fr;
@@ -630,20 +639,20 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   align-items: center;
 }
 @media (min-width: 760px) {
-  /* V12/P6a : présentation en 1 colonne — illustration AU-DESSUS, texte SOUS.
-     On neutralise l'ancienne composition asymétrique 0.95fr/1.05fr. */
+  /* V14 : présentation en 1 colonne par fiche — illustration AU-DESSUS, texte SOUS.
+     ET on force le phone en order 1 (texte en order 2) pour TOUTES les scènes,
+     y compris --right (qui ont le texte avant le phone dans le DOM). */
   .mobile-scene {
-    grid-template-columns: 1fr;          /* 1 colonne : texte sous illustration */
+    grid-template-columns: 1fr;
     gap: var(--space-lg);
     justify-items: center;
     text-align: center;
   }
   .mobile-scene__text { max-width: 42ch; }
-  /* Les order deviennent inutiles (1 colonne) — neutraliser */
-  .mobile-scene--left .mobile-scene__phone,
-  .mobile-scene--left .mobile-scene__text,
-  .mobile-scene--right .mobile-scene__text,
-  .mobile-scene--right .mobile-scene__phone { order: initial; }
+  /* Phone TOUJOURS au-dessus (order 1), texte TOUJOURS sous (order 2),
+     quel que soit l'ordre DOM --left/--right. */
+  .mobile-scene__phone { order: 1; }
+  .mobile-scene__text  { order: 2; }
 }
 /* Décalages verticaux : neutralisés en desktop 1 colonne pour garder un
    rythme propre (sinon les scènes décalées grincent verticalement). */

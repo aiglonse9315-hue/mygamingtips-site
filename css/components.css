@@ -1420,6 +1420,31 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   .personalize__badge-night { inset-inline-start: 2px; }  /* V12/P3b : était -8px */
   .personalize__badge-day   { inset-inline-end: 2px; }    /* V12/P3b : était -8px */
 }
+
+/* V13 — Sur mobile (<=760px), les badges 100% GRATUIT et 12 LANGUES
+   passent AU-DESSUS du téléphone en flux normal (scroll vertical propre),
+   au lieu d'être superposés en absolu. */
+@media (max-width: 760px) {
+  .hero__visual {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .hero__badge--new { display: none; }  /* déjà masqué, on confirme */
+  /* Les badges free + lang sortent de l'absolu pour rejoindre le flux */
+  .hero__badge--free,
+  .hero__badge--lang {
+    position: static;
+    transform: none;
+    top: auto;
+    bottom: auto;
+    inset-inline-start: auto;
+    inset-inline-end: auto;
+    animation: none;  /* pas de bob en flux normal */
+  }
+  .hero__badge--free { order: 1; }
+  .hero__badge--lang { order: 2; }
+  .phone--hero       { order: 3; }  /* téléphone sous les badges */
+}
 .hero__badge--lang {
   bottom: 6%;
   inset-inline-start: 8%;

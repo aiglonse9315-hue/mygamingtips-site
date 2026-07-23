@@ -95,7 +95,11 @@
 }
 
 /* a) Rayons droits — V5 Chantier E : intensifiés
-   (opacity 0.85, drop-shadow 12px, height 3px, flicker 2.4s) */
+   (opacity 0.85, height 3px, flicker 2.4s).
+   V-PERF : on retire le filter:blur(1px)+drop-shadow(12px) (très coûteux :
+   repaint/frame sur 12 éléments). Le glow est simulé par un box-shadow
+   statique, et l'animation promo-bolt-flicker ne touche que opacity
+   (GPU-friendly). Visuellement équivalent. */
 .promo-bolt {
   position: absolute;
   top: 44%;
@@ -111,7 +115,7 @@
     transparent 75%,
     transparent 100%);
   transform-origin: center center;
-  filter: blur(1px) drop-shadow(0 0 12px rgba(0, 229, 255, 1));
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
   opacity: 0.85;
   animation: promo-bolt-flicker 2.4s ease-in-out infinite;
   will-change: opacity;
@@ -154,8 +158,9 @@
   height: auto;
   transform-origin: 0% 50%;
   opacity: 0;
-  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8))
-          drop-shadow(0 0 12px rgba(138, 43, 226, 0.6));
+  /* V-PERF : un seul drop-shadow (était 2 empilés). L'animation
+     promo-spark-flash ne touche que opacity (GPU-friendly). */
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6));
   animation: promo-spark-flash 7s ease-in-out infinite;
   will-change: opacity;
 }
@@ -465,6 +470,9 @@
   filter: blur(1px);
   opacity: 0.5;
 }
+/* V-PERF : promo-bolt a perdu son filter coûteux ; on retire aussi le
+   glow en mode clair pour rester cohérent (le rayon reste visible). */
+[data-theme="light"] .promo-bolt { box-shadow: none; }
 [data-theme="light"] .promo-spark {
   filter: drop-shadow(0 0 4px rgba(106, 17, 203, 0.4));
   opacity: 0;
@@ -624,3 +632,37 @@ html[dir="rtl"] .promo-phone {
 @media (min-width: 900px) {
   .plus__poster--live { transform: none; }
 }
+
+/* ============================================================
+   12. V-PERF — Auto-adaptation intelligente (TOP 7)
+   L'attribut data-power="high|medium|low" est posé sur <html> par
+   js/performance.js. Dégradation progressive des effets signature.
+
+   IMPORTANT : on ne touche ni au téléphone central ni au titre (signal
+   marketing) — seuls les éléments purement décoratifs (bolts, sparks,
+   drifts, glows d'ambiance) sont adaptés. HIGH = tout (défaut).
+
+   Ces règles sont placées APRÈS le bloc reduced-motion (§9) mais le
+   filet de sécurité ultime reste prefers-reduced-motion (reset.css).
+   ============================================================ */
+
+/* ---- MODE FAIBLE (low) : retirer les effets les plus coûteux ---- */
+[data-power="low"] .promo-bolt,
+[data-power="low"] .promo-spark,
+[data-power="low"] .promo-drift {
+  display: none;
+}
+/* Le glow d'ambiance (::before conique + halo cyan) reste mais figé. */
+[data-power="low"] .promo-poster::before,
+[data-power="low"] .promo-poster::after {
+  animation: none;
+}
+
+/* ---- MODE MOYEN (medium) : réduire les quantités ---- */
+/* 12 bolts → 6 (on garde les 6 premiers via :nth-child(n+7)). */
+[data-power="medium"] .promo-bolt:nth-child(n+7) { display: none; }
+/* 4 sparks → 2. */
+[data-power="medium"] .promo-spark:nth-child(n+3) { display: none; }
+/* 6 drifts → 3. */
+[data-power="medium"] .promo-drift:nth-child(n+4) { display: none; }
+

@@ -255,6 +255,39 @@
     nodes.forEach(function (n) { n.textContent = new Date().getFullYear(); });
   }
 
+  /* ---------- V-PERF : pause des animations .gbg hors viewport (TOP 5)
+     La toile .gbg est position:fixed : elle anime en permanence même quand
+     l'utilisateur a scrollé loin du hero. On pose un sentinel collé en bas
+     de la page et on l'observe. Quand l'utilisateur dépasse ~1 viewport de
+     scroll, on met .gbg en pause (animation-play-state: paused via la classe
+     CSS .is-paused). Les éléments restent visibles (statiques), seul le
+     mouvement est figé. Respecte reduced-motion (rien à figer dans ce cas,
+     les animations sont déjà neutralisées par le CSS). */
+  function initBackgroundPause() {
+    if (prefersReduced) return; // rien à gagner, déjà figé
+    if (!("IntersectionObserver" in window)) return;
+    var gbg = document.querySelector(".gbg");
+    if (!gbg) return;
+
+    // Sentinel : 1px en bas du document. Il n'est visible (dans le viewport)
+    // que lorsque l'utilisateur est tout en bas de page. Dès qu'il sort par
+    // le haut (scrollY grand), on met le fond en pause.
+    var sentinel = document.createElement("div");
+    sentinel.style.cssText = "position:absolute;bottom:0;left:0;width:1px;height:1px;pointer-events:none;";
+    document.body.appendChild(sentinel);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        // entry.isIntersecting = true => sentinel visible (utilisateur vers
+        // le bas / page courte) => on réanime. boundingClientRect.top < 0 =>
+        // sentinel passé au-dessus => utilisateur a scrollé loin => on fige.
+        var scrolledFar = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        gbg.classList.toggle("is-paused", scrolledFar);
+      });
+    }, { threshold: 0 });
+    observer.observe(sentinel);
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     // Theme d'abord (déjà partiellement posé par le script inline en <head>)
@@ -270,6 +303,7 @@
       initPlanSelector();
       initReveal();
       initYear();
+      initBackgroundPause();
     });
   }
 

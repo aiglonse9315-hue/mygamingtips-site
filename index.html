@@ -21,6 +21,13 @@
     })();
   </script>
 
+  <!-- Auto-adaptation des effets selon la puissance matérielle.
+       Placé très tôt (dans le <head>) pour poser data-power AVANT la
+       première peinture des effets signature (halos, particules, bolts).
+       Sur un appareil faible, les effets coûteux sont retirés de suite,
+       sans flash. Ne casse pas prefers-reduced-motion (filet CSS ultime). -->
+  <script src="js/performance.js"></script>
+
   <!-- SEO -->
   <title>MyGamingTips — Vos meilleurs contenus gaming, triés et vérifiés.</title>
   <meta name="description" content="MyGamingTips centralise les vidéos, guides et liens gaming utiles, organisés par jeu et vérifiés par la communauté. Gratuit, sans pub. Mobile + Windows." />
@@ -48,10 +55,20 @@
   <link rel="icon" type="image/png" href="assets/logo/logo-192.png" />
   <link rel="apple-touch-icon" href="assets/logo/logo-192.png" />
 
-  <!-- Fonts : preconnect + Roboto (400/700/800) + Noto fallbacks CJK/AR -->
+  <!-- Fonts : preconnect + Roboto (400/700/800) + Noto fallbacks CJK/AR.
+       V-PERF : media="print" swap trick → le CSS des fonts se charge de
+       manière non-bloquante, puis bascule en media="all" une fois prêt
+       (évite le render-blocking sur ces 5 familles, dont 4 CJK lourdes).
+       Fallback <noscript> pour les visiteurs sans JavaScript. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" />
+  </noscript>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/reset.css" />

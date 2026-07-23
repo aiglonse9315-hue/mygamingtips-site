@@ -282,7 +282,10 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 [data-theme="light"] .btn--neon:hover {
   background: #5a0eab;
 }
-.btn--neon .pulse { animation: btn-pulse var(--t-pulse) ease-in-out infinite; }
+/* V-PERF : la pulsation néon des CTA est désormais portée par un ::after
+   animé en opacity (cf. bloc Chantier 4 / V-PERF plus bas). L'ancien
+   enfant .pulse (animation box-shadow) était inutilisé dans le HTML et
+   est retiré pour ne plus générer de repaint. */
 
 /* Ghost / Secondary : bordure cyan, fond transparent */
 .btn--ghost {
@@ -315,13 +318,8 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
 .btn--lg { padding: 16px 28px; font-size: 1rem; }
 .btn--block { width: 100%; }
 
-@keyframes btn-pulse {
-  0%, 100% { box-shadow: var(--glow-violet); opacity: 1; }
-  50%      { box-shadow: var(--glow-violet), 0 0 36px rgba(138,43,226,0.25); opacity: 0.92; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .btn--neon .pulse { animation: none !important; }
-}
+/* V-PERF : l'ancienne keyframe btn-pulse (animation box-shadow) est retirée —
+   la pulsation néon est désormais GPU-friendly (cf. bloc Chantier 4). */
 
 /* ============================================================
    HERO
@@ -541,17 +539,23 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* V-PERF : backdrop-filter retiré au repos (le fond --surface est déjà
+     opaque à ~0.86 alpha, le flou n'apporte quasiment rien et coûte cher
+     sur 6 cards). On ne l'active qu'au hover pour l'effet "lever". */
   transition: border-color var(--t-fast),
               background-color var(--t-fast),
               box-shadow 200ms ease-out,
-              transform var(--t-fast);
+              transform var(--t-fast),
+              backdrop-filter var(--t-fast),
+              -webkit-backdrop-filter var(--t-fast);
 }
-/* Hover subtil : pas de néon sur une carte au repos (Règle du Signal) */
+/* Hover subtil : pas de néon sur une carte au repos (Règle du Signal).
+   Le backdrop-filter ne s'active qu'au survol (effet premium ponctuel). */
 .card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* Feature card */
@@ -1764,15 +1768,18 @@ button.plan {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* V-PERF : backdrop-filter retiré au repos, activé au hover seulement. */
   transition: border-color var(--t-fast),
               box-shadow 200ms ease-out,
-              transform var(--t-fast);
+              transform var(--t-fast),
+              backdrop-filter var(--t-fast),
+              -webkit-backdrop-filter var(--t-fast);
 }
 .download-card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .download-card__icon {
   width: 64px;
@@ -1996,31 +2003,39 @@ img {
    ============================================================ */
 
 /* --- Pulsation néon (cf. DESIGN.md §4) ---
-   Opacité + box-shadow, 1600ms. Sur les CTA primaires seulement. */
-@keyframes neon-pulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.6),
-                0 0 20px rgba(138, 43, 226, 0.30),
-                0 0 40px rgba(138, 43, 226, 0.18);
-  }
-  50% {
-    opacity: 0.92;
-    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.85),
-                0 0 30px rgba(138, 43, 226, 0.50),
-                0 0 60px rgba(138, 43, 226, 0.28);
-  }
+   V-PERF : le glow est porté par un pseudo-élément ::after animé
+   UNIQUEMENT en opacity (GPU-friendly), au lieu d'animer la box-shadow
+   de l'élément lui-même (qui provoque un repaint/coût par frame).
+   Visuellement identique au rendu précédent. */
+@keyframes neon-glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
 }
 
-/* Bouton CTA primaire néon : glow intense + pulsation.
-   On surcharge le box-shadow statique du V2 par l'animation.
-   Un hover désactive la pulsation (pour laisser le hover prendre le relais). */
+/* Bouton CTA primaire néon : glow intense porté par ::after.
+   On pose position: relative (sécurité) pour servir d'origine au ::after.
+   On neutralise le box-shadow statique du V2 (--glow-violet) car le ::after
+   fournit désormais tout le glow (sinon double-glow trop intense). */
 [data-theme="dark"] .btn--neon {
-  animation: neon-pulse var(--t-pulse) ease-in-out infinite;
-  will-change: box-shadow, opacity;
+  position: relative;
+  box-shadow: none;
 }
-[data-theme="dark"] .btn--neon:hover,
-[data-theme="dark"] .btn--neon:focus-visible {
+[data-theme="dark"] .btn--neon::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  /* Glow violet multi-couches = le même rendu que les anciennes keyframes */
+  box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.7),
+              0 0 30px rgba(138, 43, 226, 0.50),
+              0 0 60px rgba(138, 43, 226, 0.28);
+  opacity: 0.7;
+  animation: neon-glow-pulse var(--t-pulse) ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+[data-theme="dark"] .btn--neon:hover::after,
+[data-theme="dark"] .btn--neon:focus-visible::after {
   animation: none;
   opacity: 1;
   box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.85),
@@ -2038,30 +2053,42 @@ img {
               0 0 56px rgba(138, 43, 226, 0.20);
 }
 
-/* Phone hero : halo violet renforcé + pulsation très douce. */
-@keyframes hero-phone-glow {
-  0%, 100% {
-    box-shadow: var(--shadow-soft),
-                0 0 0 1px rgba(138, 43, 226, 0.55),
-                0 0 26px rgba(138, 43, 226, 0.35),
-                0 0 52px rgba(138, 43, 226, 0.18);
-  }
-  50% {
-    box-shadow: var(--shadow-soft),
-                0 0 0 1px rgba(138, 43, 226, 0.8),
-                0 0 38px rgba(138, 43, 226, 0.50),
-                0 0 70px rgba(138, 43, 226, 0.25);
-  }
+/* Phone hero : halo violet renforcé + pulsation très douce.
+   V-PERF : le glow pulsé est porté par un ::after posé sur le wrapper
+   .hero__visual (qui n'est PAS clippé par overflow, contrairement au
+   .phone lui-même qui a overflow:hidden). Animé en OPACITY seule
+   (GPU-friendly). Le téléphone conserve son box-shadow statique.
+
+   On utilise un dégradé radial violet (et non un box-shadow rectangulaire)
+   pour éviter tout artefact de "cadre fantôme" : seul le halo diffus est
+   visible, exactement comme l'ancien glow qui enveloppait le téléphone. */
+@keyframes hero-phone-glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
 }
-[data-theme="dark"] .phone--hero {
-  animation: hero-phone-glow var(--t-pulse) ease-in-out infinite;
-  will-change: box-shadow;
+[data-theme="dark"] .hero__visual::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Blob englobant le téléphone (max 300px large, ~633px haut) avec
+     de la marge pour que le halo déborde tout autour. */
+  width: 420px;
+  height: 720px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse 50% 55% at 50% 50%,
+              rgba(138, 43, 226, 0.45) 0%,
+              rgba(138, 43, 226, 0.18) 45%,
+              transparent 72%);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: hero-phone-glow-pulse var(--t-pulse) ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
 }
-/* Le hero phone a déjà une animation mockup-float-tilt (transform). On compose
-   via une seconde animation ? Non : une seule propriété `animation` par élément.
-   Ici .phone--hero.float porte déjà mockup-float-tilt. Pour éviter le conflit,
-   on n'anime le glow QUE si l'élément n'est pas .float (sinon on garde un glow
-   statique renforcé pour ne pas écraser le transform de flottaison). */
+/* Le hero phone a déjà une animation mockup-float-tilt (transform). On
+   conserve cette flottaison + un box-shadow statique de fond (le pulse est
+   désormais porté par le ::after ci-dessus, on n'anime plus le téléphone). */
 [data-theme="dark"] .hero__visual .phone--hero.float {
   animation: mockup-float-tilt 6s ease-in-out infinite;
   box-shadow: var(--shadow-soft),
@@ -2086,49 +2113,65 @@ img {
               0 0 52px rgba(138, 43, 226, 0.18);
 }
 
-/* --- Badges : pulse très léger selon leur couleur --- */
-/* On ne pulse QUE les badges qui "signalent" (hero, step-badge, float-badge).
-   Pas de pulse sur le texte corps ni sur les chips de catégorie. */
-@keyframes badge-pulse-violet {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.55), 0 0 14px rgba(138, 43, 226, 0.25); }
-  50%      { box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.8),  0 0 22px rgba(138, 43, 226, 0.45); }
-}
-@keyframes badge-pulse-cyan {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.5), 0 0 14px rgba(0, 229, 255, 0.22); }
-  50%      { box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.8), 0 0 22px rgba(0, 229, 255, 0.42); }
-}
-@keyframes badge-pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.55), 0 0 14px rgba(255, 201, 60, 0.25); }
-  50%      { box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.8),  0 0 22px rgba(255, 201, 60, 0.45); }
-}
-@keyframes badge-pulse-green {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.45), 0 0 12px rgba(57, 255, 20, 0.22); }
-  50%      { box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.7),  0 0 20px rgba(57, 255, 20, 0.40); }
+/* --- Badges : pulse très léger selon leur couleur ---
+   V-PERF : on n'anime plus la box-shadow de l'élément (repaint/frame coûteux).
+   Le glow est porté par un pseudo-élément ::after animé UNIQUEMENT en opacity
+   (GPU-friendly). Visuellement identique. Chaque couleur a sa propre keyframe
+   d'opacity (toutes identiques, mais nommées pour la lisibilité). */
+@keyframes badge-glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
 }
 
-/* Step-badges : pulse selon leur couleur (violet par défaut, cyan si --cyan). */
-[data-theme="dark"] .step-badge {
-  animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite;
-  will-change: box-shadow;
+/* Helper : pose le ::after glow. On surcharge juste box-shadow par couleur.
+   V-PERF : en mode dark on neutralise le box-shadow statique de base des
+   badges/stats (sinon double-glow trop intense). Le ::after fournit seul
+   le glow pulsé, comme l'ancienne animation le faisait sur l'élément. */
+[data-theme="dark"] .step-badge,
+[data-theme="dark"] .step-badge--cyan,
+[data-theme="dark"] .float-badge--violet,
+[data-theme="dark"] .float-badge--cyan,
+[data-theme="dark"] .float-badge--gold,
+[data-theme="dark"] .float-badge--green,
+[data-theme="dark"] .stat--accent,
+[data-theme="dark"] .stat--infinity {
+  position: relative;
+  box-shadow: none;
 }
-[data-theme="dark"] .step-badge--cyan {
-  animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite;
+[data-theme="dark"] .step-badge::after,
+[data-theme="dark"] .float-badge--violet::after,
+[data-theme="dark"] .float-badge--cyan::after,
+[data-theme="dark"] .float-badge--gold::after,
+[data-theme="dark"] .float-badge--green::after,
+[data-theme="dark"] .stat--accent::after,
+[data-theme="dark"] .stat--infinity::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.7;
+  animation: badge-glow-pulse var(--t-pulse) ease-in-out infinite;
 }
 
-/* Float-badges (DA transverse) : pulse selon leur variante.
-   Attention : .hero__badge porte déjà badge-bob (translate). On n'écrase
-   pas cette animation : on pulse via les float-badge internes si présents,
-   et on laisse les hero__badge eux-mêmes avec leur bob. */
-[data-theme="dark"] .float-badge--violet { animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
-[data-theme="dark"] .float-badge--cyan   { animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
-[data-theme="dark"] .float-badge--gold   { animation: badge-pulse-gold var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
-[data-theme="dark"] .float-badge--green  { animation: badge-pulse-green var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
-
-/* Stat IA (accent violet) : pulse douce. La stat porte déjà un transform
-   nth-child (rotation) — on évite le conflit en n'animant QUE box-shadow
-   (les keyframes badge-pulse-* ne touchent que box-shadow, pas transform). */
-[data-theme="dark"] .stat--accent    { animation: badge-pulse-violet var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
-[data-theme="dark"] .stat--infinity  { animation: badge-pulse-cyan var(--t-pulse) ease-in-out infinite; will-change: box-shadow; }
+/* Couleurs du glow (mêmes valeurs que les anciennes keyframes, au max). */
+[data-theme="dark"] .step-badge::after,
+[data-theme="dark"] .float-badge--violet::after,
+[data-theme="dark"] .stat--accent::after {
+  box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.8), 0 0 22px rgba(138, 43, 226, 0.45);
+}
+[data-theme="dark"] .step-badge--cyan::after,
+[data-theme="dark"] .float-badge--cyan::after,
+[data-theme="dark"] .stat--infinity::after {
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.8), 0 0 22px rgba(0, 229, 255, 0.42);
+}
+[data-theme="dark"] .float-badge--gold::after {
+  box-shadow: 0 0 0 1px rgba(255, 201, 60, 0.8), 0 0 22px rgba(255, 201, 60, 0.45);
+}
+[data-theme="dark"] .float-badge--green::after {
+  box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.40);
+}
 
 /* --- Screenshots mis en avant : contour néon + halo ---
    L'overlay-demo (démo vidéo Windows) reçoit un halo cyan pour le signaler
@@ -2146,26 +2189,49 @@ img {
 }
 
 /* --- Reduced motion : on fige toutes les pulsations néon ---
-   Les glows restent visibles (box-shadow statique), sans animation. */
+   V-PERF : les glows sont désormais portés par des ::after animés en opacity.
+   On fige ces ::after à une opacité statique (glow visible mais immobile).
+   Le kill-switch global de reset.css (*, *::before, *::after) fige déjà les
+   durations ; ce bloc gère l'opacité résiduelle pour un rendu propre. */
 @media (prefers-reduced-motion: reduce) {
-  [data-theme="dark"] .btn--neon,
-  [data-theme="dark"] .phone--hero,
-  [data-theme="dark"] .step-badge,
-  [data-theme="dark"] .step-badge--cyan,
-  [data-theme="dark"] .float-badge--violet,
-  [data-theme="dark"] .float-badge--cyan,
-  [data-theme="dark"] .float-badge--gold,
-  [data-theme="dark"] .float-badge--green,
-  [data-theme="dark"] .stat--accent,
-  [data-theme="dark"] .stat--infinity {
+  [data-theme="dark"] .btn--neon::after,
+  [data-theme="dark"] .hero__visual::after,
+  [data-theme="dark"] .step-badge::after,
+  [data-theme="dark"] .step-badge--cyan::after,
+  [data-theme="dark"] .float-badge--violet::after,
+  [data-theme="dark"] .float-badge--cyan::after,
+  [data-theme="dark"] .float-badge--gold::after,
+  [data-theme="dark"] .float-badge--green::after,
+  [data-theme="dark"] .stat--accent::after,
+  [data-theme="dark"] .stat--infinity::after {
     animation: none !important;
-    opacity: 0.9;
+    opacity: 0.75;
   }
-  /* En reduced motion on garde quand même un glow statique marqué sur le CTA. */
-  [data-theme="dark"] .btn--neon {
-    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.7),
-                0 0 26px rgba(138, 43, 226, 0.40);
-  }
+}
+
+/* ============================================================
+   V-PERF — Auto-adaptation intelligente (TOP 7)
+   L'attribut data-power="high|medium|low" est posé sur <html> par
+   js/performance.js. Sur un appareil faible, on fige les pulsations
+   néon (le glow ::after reste visible à opacité statique, sans
+   animation). HIGH = tout (défaut). Le filet reduced-motion reste
+   prioritaire en cas de chevauchement (placement après son bloc).
+
+   NB : data-power et data-theme sont TOUS DEUX sur <html>, on les
+   combine donc sur le même élément (sans espace) dans le sélecteur.
+   ============================================================ */
+[data-power="low"][data-theme="dark"] .btn--neon::after,
+[data-power="low"][data-theme="dark"] .hero__visual::after,
+[data-power="low"][data-theme="dark"] .step-badge::after,
+[data-power="low"][data-theme="dark"] .step-badge--cyan::after,
+[data-power="low"][data-theme="dark"] .float-badge--violet::after,
+[data-power="low"][data-theme="dark"] .float-badge--cyan::after,
+[data-power="low"][data-theme="dark"] .float-badge--gold::after,
+[data-power="low"][data-theme="dark"] .float-badge--green::after,
+[data-power="low"][data-theme="dark"] .stat--accent::after,
+[data-power="low"][data-theme="dark"] .stat--infinity::after {
+  animation: none;
+  opacity: 0.7;
 }
 
 

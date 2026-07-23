@@ -52,7 +52,7 @@
     rgba(255, 45, 149, 0.10) 240deg,
     rgba(138, 43, 226, 0.12) 360deg
   );
-  filter: blur(100px);
+  filter: blur(40px);
   animation: gbg-aurora-rotate 45s linear infinite;
   opacity: 0.6;
   will-change: transform;
@@ -70,7 +70,7 @@
 .gbg__halo {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(40px);
   will-change: transform, opacity;
   /* Pulse global : opacité 1 -> 0.78 sur 6s. Combiné au float
      (défini par chaque variante) cela donne l'effet "arcade vivante". */
@@ -86,7 +86,7 @@
   top: -10%;
   left: -10%;
   background: radial-gradient(circle, var(--halo-a) 0%, transparent 70%);
-  filter: blur(100px);
+  filter: blur(40px);
   animation-name: gbg-float-a, gbg-pulse;
   animation-duration: 22s, 6s;
 }
@@ -99,7 +99,7 @@
   top: 30%;
   right: -15%;
   background: radial-gradient(circle, var(--halo-b) 0%, transparent 70%);
-  filter: blur(90px);
+  filter: blur(40px);
   animation-name: gbg-float-b, gbg-pulse;
   animation-duration: 28s, 7s;
   animation-delay: 0s, -2s; /* décale le pulse pour désynchroniser */
@@ -113,7 +113,7 @@
   bottom: -15%;
   left: 35%;
   background: radial-gradient(circle, var(--halo-c) 0%, transparent 70%);
-  filter: blur(80px);
+  filter: blur(40px);
   animation-name: gbg-float-c, gbg-pulse;
   animation-duration: 32s, 8s;
   animation-delay: 0s, -4s;
@@ -128,7 +128,7 @@
   top: 60%;
   left: -8%;
   background: radial-gradient(circle, var(--halo-d) 0%, transparent 70%);
-  filter: blur(90px);
+  filter: blur(40px);
   animation-name: gbg-float-d, gbg-pulse;
   animation-duration: 36s, 9s;
   animation-delay: 0s, -1s;
@@ -271,3 +271,51 @@
   /* L'aurora très floue peut saturer un petit écran : on l'adoucit. */
   .gbg__aurora { opacity: 0.4; }
 }
+
+/* ============================================================
+   V-PERF — Pause hors viewport (TOP 1 / TOP 5)
+   La toile .gbg est position:fixed et anime en permanence, même quand
+   l'utilisateur a scrollé loin du hero. La classe .is-paused est posée
+   par js/main.js (IntersectionObserver sur un sentinel en bas de page)
+   pour mettre en pause les animations lourdes. Les éléments restent
+   visibles (statiques) : on ne fige que le mouvement. */
+.gbg.is-paused .gbg__halo,
+.gbg.is-paused .gbg__halo--a,
+.gbg.is-paused .gbg__halo--b,
+.gbg.is-paused .gbg__halo--c,
+.gbg.is-paused .gbg__halo--d,
+.gbg.is-paused .gbg__aurora,
+.gbg.is-paused .gbg__particle {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   V-PERF — Auto-adaptation intelligente (TOP 7)
+   L'attribut data-power="high|medium|low" est posé sur <html> par
+   js/performance.js dès le boot (dans le <head>). Dégradation
+   progressive : LOW retire les éléments les plus coûteux, MEDIUM
+   réduit les quantités, HIGH garde tout (défaut).
+
+   NB : le filet de sécurité ultime prefers-reduced-motion (bloc plus
+   haut) utilise !important : il reste prioritaire sur ces règles en cas
+   de chevauchement (un appareil faible + reduced-motion = tout figé). */
+
+/* ---- MODE FAIBLE (low) : retirer les effets les plus coûteux ---- */
+[data-power="low"] .gbg__halo,
+[data-power="low"] .gbg__halo--a,
+[data-power="low"] .gbg__halo--b,
+[data-power="low"] .gbg__halo--c,
+[data-power="low"] .gbg__halo--d {
+  animation: none;
+  opacity: 0.5;
+}
+[data-power="low"] .gbg__aurora,
+[data-power="low"] .gbg__particle {
+  display: none;
+}
+
+/* ---- MODE MOYEN (medium) : réduire les quantités ---- */
+/* On garde 4 halos sur 4 (tous utiles) mais on ralentit leurs floats
+   pour alléger le compositing. On coupe aussi l'aurora continue. */
+[data-power="medium"] .gbg__aurora { animation: none; opacity: 0.3; }
+

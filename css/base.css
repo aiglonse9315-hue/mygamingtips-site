@@ -24,6 +24,13 @@ body {
   overflow-x: hidden;
 }
 
+/* V13 — Header en position:fixed (le sticky était cassé par overflow-x:hidden
+   sur html). On compense avec un padding-top sur main pour ne pas cacher
+   le contenu sous le header fixe. */
+main {
+  padding-top: var(--header-h);
+}
+
 /* Typographie utilitaire */
 .t-display {
   font-weight: var(--fw-black);

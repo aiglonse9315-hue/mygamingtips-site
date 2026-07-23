@@ -13,8 +13,10 @@
    HEADER (sticky, transparent -> opaque au scroll)
    ============================================================ */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   height: var(--header-h);
   display: flex;

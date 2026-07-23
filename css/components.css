@@ -637,7 +637,15 @@ html[dir="rtl"] .drawer.is-open { transform: translateX(0); }
   grid-template-columns: 1fr;
   gap: var(--space-lg);
   align-items: center;
+  justify-items: center;
+  text-align: center;
+  /* V14.1 — Phone TOUJOURS au-dessus (order 1), texte TOUJOURS sous (order 2),
+     y compris sur mobile, pour les scènes --right qui ont le texte avant le
+     phone dans le DOM. Sans ça, sur mobile les fiches 2,4,6 affichent le
+     texte au-dessus de l'image. */
 }
+.mobile-scene__phone { order: 1; }
+.mobile-scene__text  { order: 2; max-width: 42ch; }
 @media (min-width: 760px) {
   /* V14 : présentation en 1 colonne par fiche — illustration AU-DESSUS, texte SOUS.
      ET on force le phone en order 1 (texte en order 2) pour TOUTES les scènes,

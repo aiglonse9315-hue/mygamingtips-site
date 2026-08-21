@@ -1144,10 +1144,13 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   align-items: center;
 }
 @media (min-width: 820px) {
+  /* V18 — Texte + bouton "Bascule le thème en direct" À GAUCHE du téléphone.
+     2 colonnes resserrées (le switch reste proche du modèle, cf. demande V12). */
   .personalize {
-    grid-template-columns: 1fr;          /* 1 colonne : switch + téléphone empilés */
-    justify-items: center;
-    max-width: var(--container-narrow);  /* 760px : recentre tout en colonne étroite */
+    grid-template-columns: 1fr 1fr;      /* texte gauche, téléphone droite */
+    gap: clamp(var(--space-xl), 4vw, var(--space-2xl));
+    align-items: center;
+    max-width: 1000px;                   /* largeur modérée : garde le duo compact */
     margin-inline: auto;
   }
 }

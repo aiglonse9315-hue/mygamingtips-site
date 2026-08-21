@@ -1055,6 +1055,12 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   background: var(--surface);
   border: 1px solid var(--border);
   transition: transform var(--t-fast), border-color var(--t-fast);
+  /* V17 — Centre le contenu verticalement (la carte image étant plus haute,
+     le chiffre + label des autres cartes reste sinon coincé en haut). */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* DA transverse : asymétrie — chaque stat légèrement décalée et pivotée */
 .stat:nth-child(1) { transform: rotate(-1.5deg) translateY(6px); }

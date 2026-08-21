@@ -1087,6 +1087,20 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   height: auto;
   border-radius: 8px;
 }
+/* V16 — Variante expérimentale : pas de carte (fond/bordure/padding retirés),
+   l'image AI powered occupe directement la place de l'étiquette. */
+.stat--image {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  align-items: center;      /* centre verticalement face aux autres cartes */
+}
+.stat--image .stat__img {
+  width: 100%;              /* toute la place de la colonne */
+  border-radius: var(--radius-md);
+}
 /* Stat IA (accent) — halo violet doux, c'est le signal */
 .stat--accent {
   border-color: rgba(var(--accent-rgb), 0.55);

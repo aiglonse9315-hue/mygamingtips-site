@@ -1078,18 +1078,14 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   color: var(--text-secondary);
   font-weight: var(--fw-bold);
 }
-/* V15 — Image "AI powered" dans la stat de gauche (remplace le chiffre). */
+/* V15.1 — Image "AI powered" pleine carte (remplace le chiffre).
+   Elle remplit la stat moins un petit pourtour, comme demandé. */
 .stat__img {
   display: block;
   margin-inline: auto;
-  width: auto;
-  height: 32px;              /* ~ même gabarit visuel qu'un stat__num */
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 6px;
-}
-@media (max-width: 480px) {
-  .stat__img { height: 26px; }
+  width: calc(100% - 12px);  /* remplis la carte, léger retrait */
+  height: auto;
+  border-radius: 8px;
 }
 /* Stat IA (accent) — halo violet doux, c'est le signal */
 .stat--accent {

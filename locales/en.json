@@ -102,14 +102,13 @@
   },
   "community": {
     "eyebrow": "The community",
-    "title": "Verified, first by an AI. Soon by you.",
-    "intro": "Content isn't served by a blind algorithm. Today, a super-active AI validates every piece — over 3,000 already. Tomorrow, the human community takes over.",
+    "title": "Proposed for now by an AI, soon by you.",
+    "intro": "Today, content is proposed by an algorithm which is then verified by an LLM to ensure quality. Everything is reviewed by a human before final validation. Today, this super-active algorithm has already proposed over 9,000 items. Tomorrow, the community will take over.",
     "month_badge": "AI contributor",
-    "month_desc": "For now, a <strong>super-active AI</strong> feeds and validates the database — <strong>over 3,000 contents</strong> already validated. But the app is designed to <strong>live by and for its community</strong>: eventually, players will contribute, sort and keep every game alive.",
+    "month_desc": "For now, a <strong>super-active AI</strong> feeds the database — <strong>over 9,000 contents</strong> already validated. But the app is designed to <strong>live by and for its community</strong>: eventually, it's the players who will contribute and keep each game alive.",
     "contrib_eyebrow": "Contribute yourself",
     "contrib_desc": "Share your best finds directly from your favorite app via the <strong>Share</strong> function to MyGamingTips. Each month, the <strong>top 3 contributors</strong> receive a <strong>one-month Premium subscription</strong> — ranking resets every month so everyone gets a chance.",
     "stat_contents": "Validated contents",
-    "stat_ai": "Contributor bot",
     "stat_community": "Live by its community"
   },
   "personalize": {

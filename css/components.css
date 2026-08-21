@@ -1078,6 +1078,19 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   color: var(--text-secondary);
   font-weight: var(--fw-bold);
 }
+/* V15 — Image "AI powered" dans la stat de gauche (remplace le chiffre). */
+.stat__img {
+  display: block;
+  margin-inline: auto;
+  width: auto;
+  height: 32px;              /* ~ même gabarit visuel qu'un stat__num */
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+@media (max-width: 480px) {
+  .stat__img { height: 26px; }
+}
 /* Stat IA (accent) — halo violet doux, c'est le signal */
 .stat--accent {
   border-color: rgba(var(--accent-rgb), 0.55);

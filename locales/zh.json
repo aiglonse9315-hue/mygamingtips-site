@@ -102,14 +102,13 @@
   },
   "community": {
     "eyebrow": "社区",
-    "title": "先由 AI 校验。很快会由你来校验。",
-    "intro": "内容不是由盲目的算法推送的。今天，一个超活跃的 AI 校验每一条内容 —— 已超过 3000 条。明天，人类社区将接手。",
+    "title": "目前由 AI 推荐，即将由你来推荐。",
+    "intro": "如今，内容由算法推荐，再经 LLM 验证以确保质量。所有内容在最终确认前都会经过人工审核。今天，这个超级活跃的算法已推荐超过 9,000 条内容。明天，社区将接过接力棒。",
     "month_badge": "AI 贡献者",
-    "month_desc": "目前，一个<strong>超级活跃的 AI</strong>在填充和验证数据库——已验证<strong>超过 3,000 条内容</strong>。但这款应用旨在<strong>由社区主导、为社区服务</strong>：最终，玩家将贡献、整理并让每款游戏保持活力。",
+    "month_desc": "目前，一个<strong>超级活跃的 AI</strong>在充实数据库——已验证<strong>超过 9,000 条内容</strong>。但这款应用旨在<strong>由社区主导、为社区服务</strong>：最终，将由玩家们来贡献并让每款游戏保持活力。",
     "contrib_eyebrow": "你也可以贡献",
     "contrib_desc": "直接从你喜欢的应用通过<strong>分享</strong>功能分享你的发现到 MyGamingTips。每个月，<strong>前 3 名贡献者</strong>将获得<strong>一个月 Premium 订阅</strong>——排名每月重置一次，让每个人都有机会。",
     "stat_contents": "已校验内容",
-    "stat_ai": "贡献机器人",
     "stat_community": "由社区而活"
   },
   "personalize": {

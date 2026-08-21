@@ -102,14 +102,13 @@
   },
   "community": {
     "eyebrow": "Die Community",
-    "title": "Verifiziert, zuerst von einer KI. Bald von dir.",
-    "intro": "Inhalte werden nicht von einem blinden Algorithmus ausgeliefert. Heute validiert eine sehr aktive KI jeden Inhalt — über 3.000 bereits. Morgen übernimmt die menschliche Community.",
+    "title": "Vorerst von einer KI vorgeschlagen, bald von euch.",
+    "intro": "Heute wird Inhalt von einem Algorithmus vorgeschlagen, der anschließend von einem LLM geprüft wird, um Qualität sicherzustellen. Alles wird vor der finalen Freigabe von einem Menschen geprüft. Heute hat dieser superaktive Algorithmus bereits über 9.000 Beiträge vorgeschlagen. Morgen wird die Community übernehmen.",
     "month_badge": "KI-Mitwirkender",
-    "month_desc": "Aktuell speist und validiert eine <strong>superaktive KI</strong> die Datenbank — <strong>über 3.000 Inhalte</strong> bereits geprüft. Doch die App soll <strong>von und für ihre Community leben</strong>: langfristig werden die Spieler beitragen, sortieren und jedes Spiel am Leben halten.",
+    "month_desc": "Aktuell speist eine <strong>superaktive KI</strong> die Datenbank — <strong>über 9.000 Inhalte</strong> bereits geprüft. Doch die App soll <strong>von und für ihre Community leben</strong>: langfristig sind es die Spielerinnen und Spieler, die beitragen und jedes Spiel am Leben halten.",
     "contrib_eyebrow": "Tragen auch Sie bei",
     "contrib_desc": "Teilen Sie Ihre besten Funde direkt aus Ihrer Lieblings-App über die <strong>Teilen</strong>-Funktion an MyGamingTips. Jeden Monat erhalten die <strong>Top 3 Mitwirkenden</strong> ein <strong>einmonatiges Premium-Abo</strong> — die Rangliste wird monatlich zurückgesetzt, damit jeder die Chance hat.",
     "stat_contents": "Validierte Inhalte",
-    "stat_ai": "Beitragender Bot",
     "stat_community": "Von der Community leben"
   },
   "personalize": {

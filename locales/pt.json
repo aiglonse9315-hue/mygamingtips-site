@@ -102,14 +102,13 @@
   },
   "community": {
     "eyebrow": "A comunidade",
-    "title": "Verificado, primeiro por uma IA. Em breve por você.",
-    "intro": "O conteúdo não é servido por um algoritmo cego. Hoje, uma IA super ativa valida cada conteúdo — mais de 3.000 já feitos. Amanhã, a comunidade humana assume.",
+    "title": "Proposto por enquanto por uma IA, em breve por você.",
+    "intro": "Hoje, o conteúdo é proposto por um algoritmo que em seguida é verificado por um LLM para garantir qualidade. Tudo é revisado por um humano antes da validação final. Hoje, esse algoritmo super ativo já propôs mais de 9.000 conteúdos. Amanhã, a comunidade assumirá o papel.",
     "month_badge": "IA contribuidora",
-    "month_desc": "Por enquanto, uma <strong>IA super ativa</strong> alimenta e valida a base — <strong>mais de 3.000 conteúdos</strong> já validados. Mas o app é feito para <strong>viver pela e para a sua comunidade</strong>: com o tempo, serão os jogadores a contribuir, organizar e manter vivo cada jogo.",
+    "month_desc": "Por enquanto, uma <strong>IA super ativa</strong> alimenta o banco de dados — <strong>mais de 9.000 conteúdos</strong> já validados. Mas o app é feito para <strong>viver pela e para a sua comunidade</strong>: com o tempo, serão as pessoas jogadoras que vão contribuir e manter cada jogo vivo.",
     "contrib_eyebrow": "Contribua você também",
     "contrib_desc": "Compartilhe suas melhores descobertas diretamente do seu app favorito pela função <strong>Compartilhar</strong> para o MyGamingTips. Todo mês, os <strong>3 principais contribuidores</strong> recebem uma <strong>assinatura Premium de um mês</strong> — o ranking é zerado todo mês para que todos tenham a chance.",
     "stat_contents": "Conteúdos validados",
-    "stat_ai": "Bot contribuidor",
     "stat_community": "Viver pela sua comunidade"
   },
   "personalize": {

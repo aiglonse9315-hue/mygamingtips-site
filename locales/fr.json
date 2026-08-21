@@ -162,7 +162,8 @@
     "windows_title": "Sur Windows",
     "windows_btn": "Télécharger gratuitement",
     "windows_req": "Windows 10 ou plus · 150 Mo d'espace",
-    "microcopy": "Aucune publicité. Aucun compte requis. Aucune collecte excessive."
+    "microcopy": "Aucune publicité. Aucun compte requis. Aucune collecte excessive.",
+    "smartscreen": "Windows affiche « Éditeur inconnu » au premier lancement ? C'est normal : l'application n'est pas encore signée par un certificat payant. Cliquez sur <strong>Informations complémentaires</strong> puis <strong>Exécuter quand même</strong> — elle est 100 % sûre."
   },
   "footer": {
     "about": "À propos",

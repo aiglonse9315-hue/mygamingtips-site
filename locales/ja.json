@@ -162,7 +162,8 @@
     "windows_title": "Windows で",
     "windows_btn": "無料でダウンロード",
     "windows_req": "Windows 10 以降 ・ 150 MB の空き容量",
-    "microcopy": "広告なし。アカウント不要。過剰な収集なし。"
+    "microcopy": "広告なし。アカウント不要。過剰な収集なし。",
+    "smartscreen": "初回起動時に Windows が「発行元が不明」と表示されますか？ これは正常です。アプリはまだ有料の証明書で署名されていません。<strong>詳細情報</strong>をクリックし、<strong>実行</strong>を選択してください。100% 安全です。"
   },
   "footer": {
     "about": "概要",

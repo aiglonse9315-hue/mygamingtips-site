@@ -162,7 +162,8 @@
     "windows_title": "在 Windows 上",
     "windows_btn": "免费下载",
     "windows_req": "Windows 10 或更高 · 150 MB 空间",
-    "microcopy": "无广告。无需账号。无过度收集。"
+    "microcopy": "无广告。无需账号。无过度收集。",
+    "smartscreen": "首次运行时 Windows 显示“未知的发布者”？这是正常的：应用尚未购买代码签名证书。点击<strong>更多信息</strong>，然后选择<strong>仍要运行</strong>——它是 100% 安全的。"
   },
   "footer": {
     "about": "关于",

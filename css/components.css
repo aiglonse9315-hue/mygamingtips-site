@@ -1832,6 +1832,26 @@ button.plan {
   text-align: center;
   margin-top: var(--space-md);
 }
+/* V19 — Note rassurante SmartScreen (exe non signé) */
+.download-smartscreen {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-sm);
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-top: var(--space-sm);
+  text-align: start;
+  line-height: 1.5;
+}
+.download-smartscreen svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+.download-smartscreen strong {
+  color: var(--text-primary);
+}
 
 /* ============================================================
    DOWNLOAD

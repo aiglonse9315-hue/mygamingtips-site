@@ -162,7 +162,8 @@
     "windows_title": "On Windows",
     "windows_btn": "Download for free",
     "windows_req": "Windows 10 or higher · 150 MB of space",
-    "microcopy": "No ads. No account required. No excessive tracking."
+    "microcopy": "No ads. No account required. No excessive tracking.",
+    "smartscreen": "Windows shows \"Unknown publisher\" on first launch? That's normal: the app isn't signed with a paid certificate yet. Click <strong>More info</strong> then <strong>Run anyway</strong> — it's 100% safe."
   },
   "footer": {
     "about": "About",

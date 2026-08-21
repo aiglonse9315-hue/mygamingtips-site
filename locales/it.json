@@ -162,7 +162,8 @@
     "windows_title": "Su Windows",
     "windows_btn": "Scarica gratis",
     "windows_req": "Windows 10 o superiore · 150 MB di spazio",
-    "microcopy": "Nessuna pubblicità. Nessun account richiesto. Nessuna raccolta eccessiva."
+    "microcopy": "Nessuna pubblicità. Nessun account richiesto. Nessuna raccolta eccessiva.",
+    "smartscreen": "Windows mostra \"Editore sconosciuto\" al primo avvio? È normale: l'app non è ancora firmata con un certificato a pagamento. Fai clic su <strong>Ulteriori informazioni</strong> e poi su <strong>Esegui comunque</strong> — è sicura al 100%."
   },
   "footer": {
     "about": "Informazioni",

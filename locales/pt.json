@@ -162,7 +162,8 @@
     "windows_title": "No Windows",
     "windows_btn": "Baixar grátis",
     "windows_req": "Windows 10 ou superior · 150 MB de espaço",
-    "microcopy": "Sem anúncios. Sem conta necessária. Sem coleta excessiva."
+    "microcopy": "Sem anúncios. Sem conta necessária. Sem coleta excessiva.",
+    "smartscreen": "O Windows mostra «Editor desconhecido» na primeira execução? É normal: o aplicativo ainda não é assinado com um certificado pago. Clique em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong> — ele é 100% seguro."
   },
   "footer": {
     "about": "Sobre",

@@ -162,7 +162,8 @@
     "windows_title": "Auf Windows",
     "windows_btn": "Kostenlos herunterladen",
     "windows_req": "Windows 10 oder höher · 150 MB Speicher",
-    "microcopy": "Keine Werbung. Kein Konto nötig. Keine übermäßige Datenerhebung."
+    "microcopy": "Keine Werbung. Kein Konto nötig. Keine übermäßige Datenerhebung.",
+    "smartscreen": "Zeigt Windows beim ersten Start „Unbekannter Herausgeber“ an? Das ist normal: Die App ist noch nicht mit einem kostenpflichtigen Zertifikat signiert. Klicken Sie auf <strong>Weitere Informationen</strong> und dann auf <strong>Trotzdem ausführen</strong> — sie ist 100 % sicher."
   },
   "footer": {
     "about": "Über",

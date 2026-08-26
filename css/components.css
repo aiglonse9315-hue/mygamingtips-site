@@ -1368,15 +1368,16 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 }
 /* V21 — Badges dans les COINS SUPÉRIEURS du téléphone, légèrement à
    l'extérieur : Jour à GAUCHE, Nuit à DROITE, à la même hauteur.
+   V21.1 : remontés de ~50px (top -62px) pour ne pas chevaucher l'image.
    La figure a la largeur du téléphone (figcaption borné à 300px). */
 .personalize .personalize__figure .personalize__badge-day {
-  top: -12px;
+  top: -62px;
   inset-inline-start: -22px;
   transform: rotate(-6deg);
   opacity: 0.45;
 }
 .personalize .personalize__figure .personalize__badge-night {
-  top: -12px;
+  top: -62px;
   inset-inline-end: -22px;
   transform: rotate(6deg);
   opacity: 1;
@@ -1472,11 +1473,11 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 @media (max-width: 480px) {
   .hero__badge--new  { display: none; }                  /* V12/P5 : étiquette verticale bizarre isolée → masquée */
   .hero__badge--free { inset-inline-end: 0%; }
-  /* V21 — mobile : Jour gauche, Nuit droite, même niveau (anti-débordement).
+  /* V21.1 — mobile : Jour gauche, Nuit droite, même niveau, remontés ~50px.
      Sélecteurs 0,3,0 (identiques à la base V21) : ces overrides doivent
      gagner sur les offsets desktop quel que soit l'ordre du fichier. */
-  .personalize .personalize__figure .personalize__badge-day   { top: -10px; inset-inline-start: 2px; }
-  .personalize .personalize__figure .personalize__badge-night { top: -10px; inset-inline-end: 2px; }
+  .personalize .personalize__figure .personalize__badge-day   { top: -58px; inset-inline-start: 2px; }
+  .personalize .personalize__figure .personalize__badge-night { top: -58px; inset-inline-end: 2px; }
 }
 
 /* V13 — Sur mobile (<=760px), les badges 100% GRATUIT et 12 LANGUES

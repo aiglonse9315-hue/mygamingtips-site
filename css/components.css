@@ -1754,7 +1754,8 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: var(--space-md);
-  margin-block: var(--space-md);
+  /* V25 : +25px d'air au-dessus des plans (sous le texte du bénéfice Windows) */
+  margin-block: calc(var(--space-md) + 25px) var(--space-md);
 }
 .plan {
   position: relative;

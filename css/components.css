@@ -1351,17 +1351,19 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   letter-spacing: 0.4px;
   transition: opacity var(--t-fast), transform var(--t-fast);
 }
-.personalize__badge-night {
+/* V20 — Badges de part et d'autre du téléphone, au même niveau (en haut) :
+   Jour à GAUCHE (place de l'ancien Nuit), Nuit à DROITE à la même hauteur. */
+.personalize__badge-day {
   top: -10px;
   inset-inline-start: -18px;
   transform: rotate(-6deg);
-  opacity: 1;
-}
-.personalize__badge-day {
-  bottom: 60px;
-  inset-inline-end: -22px;
-  transform: rotate(5deg);
   opacity: 0.45;
+}
+.personalize__badge-night {
+  top: -10px;
+  inset-inline-end: -18px;
+  transform: rotate(6deg);
+  opacity: 1;
 }
 /* Quand le visiteur bascule le mockup en jour : les badges s'inversent.
    On cible la figure parent qui recoit is-day via le JS (fonctionne partout),
@@ -1454,8 +1456,9 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 @media (max-width: 480px) {
   .hero__badge--new  { display: none; }                  /* V12/P5 : étiquette verticale bizarre isolée → masquée */
   .hero__badge--free { inset-inline-end: 0%; }
-  .personalize__badge-night { inset-inline-start: 2px; }  /* V12/P3b : était -8px */
-  .personalize__badge-day   { inset-inline-end: 2px; }    /* V12/P3b : était -8px */
+  /* V20 — mobile : Jour gauche, Nuit droite, même niveau (anti-débordement) */
+  .personalize__badge-day   { top: -10px; inset-inline-start: 2px; }
+  .personalize__badge-night { top: -10px; inset-inline-end: 2px; }
 }
 
 /* V13 — Sur mobile (<=760px), les badges 100% GRATUIT et 12 LANGUES

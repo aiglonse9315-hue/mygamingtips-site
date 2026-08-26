@@ -1016,7 +1016,7 @@
             <!-- V8 C.2 : doublon de titre h3 supprimé.
                  Le h2 .section__head (décalé à droite) reste le seul titre. -->
             <p class="t-body" style="margin-top: var(--space-md)" data-i18n-html="plus.subtitle">
-              L'app reste gratuite. Le menu <strong>My Playlist</strong> devient Plus.
+              L'application est gratuite, seul le menu Ma Playlists est réservé aux membres Plus.
             </p>
 
             <ul class="plus__benefits">
@@ -1044,16 +1044,19 @@
             </ul>
 
             <div class="plans">
+              <!-- V24 : plans informatifs, non cliquables (plus de <button>).
+                   Le halo is-selected alterne automatiquement (initPlanAutoCycle). -->
               <!-- Mensuel -->
-              <button class="plan" type="button" data-plan="monthly" aria-pressed="false">
+              <div class="plan">
                 <div class="plan__name" data-i18n="plus.plan_monthly_name">Mensuel</div>
                 <div class="plan__price">
                   <span data-i18n="plus.plan_monthly_price">1,99 €</span>
                   <small data-i18n="plus.plan_monthly_unit">/ mois</small>
                 </div>
-              </button>
-              <!-- Annuel (sélectionné par défaut — V6 Chantier D : halo suit is-selected) -->
-              <button class="plan is-selected" type="button" data-plan="annual" aria-pressed="true">
+              </div>
+              <!-- Annuel (mis en avant au chargement — V24 : le halo alterne
+                   automatiquement toutes les 5 s, figé sur Annuel en reduced-motion) -->
+              <div class="plan is-selected">
                 <span class="plan__badge" data-i18n="plus.plan_yearly_badge">Économisez 16%</span>
                 <div class="plan__name" data-i18n="plus.plan_yearly_name">Annuel</div>
                 <div class="plan__price">
@@ -1061,16 +1064,15 @@
                   <small data-i18n="plus.plan_yearly_unit">/ an</small>
                 </div>
                 <div class="plan__sub" data-i18n="plus.plan_yearly_sub">~1,67 € / mois</div>
-              </button>
+              </div>
             </div>
+
+            <!-- V24 : indications d'abonnement (remplace l'ancien CTA "Passer à Plus") -->
+            <p class="plus__subscribe-info" data-i18n-html="plus.subscribe_info">
+              L'abonnement s'effectue <strong>via Google Play dans l'application mobile</strong>. Il donne également <strong>accès à l'application Windows</strong> — l'application Windows seule n'est pas utilisable sans abonnement.
+            </p>
 
             <p class="microcopy" data-i18n="plus.microcopy">Annulez à tout moment. Aucun engagement.</p>
-
-            <div style="margin-top: var(--space-md); text-align: center">
-              <a class="btn btn--plus btn--lg" href="#plus-subscribe">
-                <span data-i18n="plus.cta">Passer à Plus</span>
-              </a>
-            </div>
 
             <!-- V8 Chantier C.4 — Télécharger déplacé ici, sous la CTA.
                  L'ancre #download (utilisé par le menu header) est posée sur

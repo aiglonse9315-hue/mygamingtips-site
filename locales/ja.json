@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "MyGamingTips Plus へ",
-    "subtitle": "アプリは無料のまま。My Playlist メニューが Plus になります。",
+    "subtitle": "アプリは無料でご利用いただけます。My Playlist メニューのみ Plus メンバー専用です。",
     "free_badge": "アプリは 100% 無料",
     "b1_label": "My Playlist",
     "b1_desc": "探さずに、すべてのコンテンツを整理・並べ替え・発見（Plus 専用の唯一のメニュー）。",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "約 ¥208 / 月",
     "microcopy": "いつでも解約可能。縛りなし。",
     "cta": "Plus に切り替え",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "サブスクリプションの登録は<strong>モバイルアプリ内の Google Play で行います</strong>。登録すると<strong>Windows アプリもご利用いただけます</strong>。Windows アプリ単体では、サブスクリプションなしでは使用できません。"
   },
   "promo": {
     "title_1": "すべてのガイド",

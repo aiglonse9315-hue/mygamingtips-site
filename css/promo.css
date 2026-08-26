@@ -430,6 +430,29 @@
 }
 .store-badge--ios svg { color: var(--text-primary); }
 
+/* V24 — Badges stores : hiérarchie visuelle.
+   Google Play (disponible) légèrement plus grand (~+20-25%) :
+   padding 12/24 -> 15/30, texte fs-body -> fs-title, icône 24 -> 28.
+   iOS ("Bientôt") légèrement plus petit (~-20%) :
+   padding -> 10/19, texte -> 0.7rem, icône -> 19.
+   L'alignement du conteneur flex (align-items: center) est conservé. */
+.store-badge--play {
+  padding: 15px 30px;
+  font-size: var(--fs-title);
+}
+.store-badge--play svg {
+  width: 28px;
+  height: 28px;
+}
+.store-badge--ios {
+  padding: 10px 19px;
+  font-size: 0.7rem;
+}
+.store-badge--ios svg {
+  width: 19px;
+  height: 19px;
+}
+
 /* ============================================================
    7. MODE CLAIR — atténuation du néon pour rester lisible
    ============================================================ */

@@ -182,52 +182,25 @@
     });
   }
 
-  /* ---------- CHANTIER B (V5) : Sélecteur de plan Mensuel/Annuel + CTA.
-     Rend les <button class="plan"> sélectionnables (un seul à la fois) et
-     redirige le CTA "Passer à Plus" vers l'URL d'abonnement Google Play.
-     IMPORTANT : si l'utilisateur met une vraie URL dans le href du CTA,
-     le code la respecte (ne la surcharge que si href === "#plus-subscribe"). */
-  function initPlanSelector() {
-    var plans = document.querySelectorAll("[data-plan]");
-    var cta = document.querySelector(".btn--plus");
-    if (!plans.length) return;
+  /* ---------- V24 : alternance automatique du halo Mensuel/Annuel.
+     Les plans ne sont plus cliquables (informatifs, simples <div>).
+     Le halo (classe is-selected : bordure or, prix en jaune, badge
+     "Économisez 16%") alterne automatiquement toutes les 5 secondes.
+     prefers-reduced-motion : PAS d'alternance — on reste figé sur Annuel
+     (déjà is-selected dans le HTML, le plan mis en avant). */
+  function initPlanAutoCycle() {
+    var plans = document.querySelectorAll(".neon-premium .plan");
+    if (plans.length < 2) return;
+    if (prefersReduced) return; // figé sur Annuel
 
-    // URLs d'abonnement (placeholders — à remplacer par les vraies URLs
-    // Google Play quand elles seront disponibles).
-    var SUBSCRIBE_URLS = {
-      monthly: "https://play.google.com/store/apps/details?id=com.mygamingtips.app",
-      annual:  "https://play.google.com/store/apps/details?id=com.mygamingtips.app"
-    };
+    var current = 1; // index 1 = Annuel (sélectionné au chargement)
 
-    // État courant : annuel par défaut (mis en avant dans le HTML).
-    var currentPlan = "annual";
-
-    function selectPlan(planName) {
-      plans.forEach(function (plan) {
-        var isSelected = plan.getAttribute("data-plan") === planName;
-        plan.classList.toggle("is-selected", isSelected);
-        plan.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    window.setInterval(function () {
+      current = (current + 1) % plans.length;
+      plans.forEach(function (plan, i) {
+        plan.classList.toggle("is-selected", i === current);
       });
-      currentPlan = planName;
-    }
-
-    plans.forEach(function (plan) {
-      plan.addEventListener("click", function () {
-        selectPlan(plan.getAttribute("data-plan"));
-      });
-    });
-
-    // CTA "Passer à Plus" → redirige vers l'URL Google Play selon le plan
-    // sélectionné. Si le href est déjà une vraie URL (≠ "#plus-subscribe"),
-    // on laisse le navigateur faire (l'utilisateur aura mis sa vraie URL).
-    if (cta) {
-      cta.addEventListener("click", function (e) {
-        if (cta.getAttribute("href") !== "#plus-subscribe") return;
-        e.preventDefault();
-        var url = SUBSCRIBE_URLS[currentPlan] || SUBSCRIBE_URLS.annual;
-        window.open(url, "_blank", "noopener,noreferrer");
-      });
-    }
+    }, 5000);
   }
 
   /* ---------- Reveal au scroll (respect reduced-motion) ---------- */
@@ -300,7 +273,7 @@
       initDrawer();
       initOverlayDemo();
       initPhoneThemeDemo();
-      initPlanSelector();
+      initPlanAutoCycle();
       initReveal();
       initYear();
       initBackgroundPause();

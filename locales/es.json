@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "Pasa a MyGamingTips Plus",
-    "subtitle": "La app sigue siendo gratis. El menú My Playlist pasa a ser Plus.",
+    "subtitle": "La aplicación es gratuita; solo el menú My Playlist está reservado a los miembros Plus.",
     "free_badge": "La app es 100% gratis",
     "b1_label": "My Playlist",
     "b1_desc": "Organiza, ordena y encuentra todo tu contenido sin buscarlo (el único menú reservado a Plus).",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "aprox. 1,67 € / mes",
     "microcopy": "Cancela cuando quieras. Sin compromiso.",
     "cta": "Pasar a Plus",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "La suscripción se realiza <strong>a través de Google Play en la aplicación móvil</strong>. También <strong>da acceso a la aplicación de Windows</strong>: la aplicación de Windows no se puede usar por sí sola sin suscripción."
   },
   "promo": {
     "title_1": "TODAS TUS GUÍAS",

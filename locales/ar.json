@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "الترقية إلى MyGamingTips Plus",
-    "subtitle": "يبقى التطبيق مجانياً. تصبح قائمة My Playlist خاصة بـ Plus.",
+    "subtitle": "التطبيق مجاني، وقائمة My Playlist وحدها محجوزة لأعضاء Plus.",
     "free_badge": "التطبيق مجاني 100%",
     "b1_label": "My Playlist",
     "b1_desc": "نظّم، رتّب، واعثر على كل محتواك دون بحث (القائمة الوحيدة المخصصة لـ Plus).",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "حوالي 1.67 € / شهر",
     "microcopy": "ألغِ في أي وقت. بلا التزام.",
     "cta": "الترقية إلى Plus",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "يتم الاشتراك <strong>عبر Google Play داخل تطبيق الهاتف المحمول</strong>. كما يمنحك الاشتراك <strong>الوصول إلى تطبيق Windows</strong> — لا يمكن استخدام تطبيق Windows وحده دون اشتراك."
   },
   "promo": {
     "title_1": "كل الأدلة",

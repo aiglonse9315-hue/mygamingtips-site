@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "Перейдите на MyGamingTips Plus",
-    "subtitle": "Приложение остаётся бесплатным. Меню My Playlist становится Plus.",
+    "subtitle": "Приложение бесплатное — меню My Playlist доступно только участникам Plus.",
     "free_badge": "Приложение на 100% бесплатно",
     "b1_label": "My Playlist",
     "b1_desc": "Организуйте, сортируйте и находите весь свой контент без поиска (единственное меню, зарезервированное для Plus).",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "около 1,67 € / месяц",
     "microcopy": "Отмена в любое время. Без обязательств.",
     "cta": "Перейти на Plus",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "Подписка оформляется <strong>через Google Play в мобильном приложении</strong>. Она также <strong>даёт доступ к приложению для Windows</strong> — приложение для Windows само по себе не работает без подписки."
   },
   "promo": {
     "title_1": "ВСЕ ТВОИ ГАЙДЫ",

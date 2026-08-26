@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "MyGamingTips Plus로 전환",
-    "subtitle": "앱은 무료로 유지됩니다. My Playlist 메뉴가 Plus가 됩니다.",
+    "subtitle": "앱은 무료이며, My Playlist 메뉴만 Plus 회원 전용입니다.",
     "free_badge": "앱은 100% 무료",
     "b1_label": "My Playlist",
     "b1_desc": "검색 없이 모든 콘텐츠를 정리·정렬·발견 (Plus 전용 유일 메뉴).",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "약 ₩2,080 / 월",
     "microcopy": "언제든 해지 가능. 약정 없음.",
     "cta": "Plus로 전환",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "구독은 <strong>모바일 앱 내 Google Play를 통해 진행됩니다</strong>. 구독 시 <strong>Windows 앱 접근 권한도 함께 제공됩니다</strong> — Windows 앱은 구독 없이는 단독으로 사용할 수 없습니다."
   },
   "promo": {
     "title_1": "모든 가이드를",

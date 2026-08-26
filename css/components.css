@@ -1563,7 +1563,6 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
    V6 Chantier B — translateY atténué (-6px -> -4px). */
 @media (min-width: 600px) {
   .plan.is-selected { transform: rotate(-1.5deg) translateY(-4px); }
-  .plan.is-selected:hover { transform: rotate(0) translateY(-10px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .plus__poster,
@@ -1764,16 +1763,15 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   background: var(--surface-alt);
   border: 1px solid var(--border);
   text-align: center;
+  /* V24 : plans informatifs non cliquables — transition douce pour
+     l'alternance automatique du halo (initPlanAutoCycle). */
+  transition:
+    background-color var(--t-fast),
+    border-color var(--t-fast),
+    box-shadow var(--t-fast),
+    transform var(--t-fast);
 }
-/* V5 Chantier B — reset button pour que <button class="plan"> rende comme un div */
-button.plan {
-  font: inherit;
-  color: inherit;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
-/* V5 Chantier B + V6 Chantier D — état sélectionné (halo or + violet premium).
+/* V6 Chantier B + V6 Chantier D — état sélectionné (halo or + violet premium).
    La bordure dégradée gold->violet (ci-dessous ::before) suit la classe
    is-selected (anciennement .plan--featured permanent dans le HTML). */
 .plan.is-selected {
@@ -1788,12 +1786,7 @@ button.plan {
 .plan.is-selected .plan__name {
   color: var(--plus-gold);
 }
-/* V5 Chantier B — hover sur plan non sélectionné (feedback cliquable) */
-.plan:not(.is-selected):hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  transition: transform var(--t-fast), border-color var(--t-fast);
-}
+/* V24 : plus d'état hover cliquable — les plans sont informatifs. */
 /* En mode clair, le name sélectionné passe en violet profond (cohérent avec
    le reste du mode clair qui remplace le gold par le violet). */
 [data-theme="light"] .plan.is-selected .plan__name { color: var(--accent); }
@@ -1853,6 +1846,21 @@ button.plan {
 }
 .plan.is-selected .plan__price { color: var(--plus-gold); }
 [data-theme="light"] .plan.is-selected .plan__price { color: var(--accent); }
+
+/* V24 — Indications d'abonnement (remplace l'ancien CTA "Passer à Plus").
+   Contient du HTML (<strong>) : rendu via data-i18n-html. */
+.plus__subscribe-info {
+  margin-top: var(--space-md);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.plus__subscribe-info strong {
+  color: var(--text-primary);
+  font-weight: var(--fw-black);
+}
+[data-theme="light"] .plus__subscribe-info strong { color: var(--accent); }
 
 .microcopy {
   font-size: var(--fs-small);
@@ -1935,7 +1943,8 @@ button.plan {
 
 /* ============================================================
    V8 Chantier C.4 — .download-inline : grille download intégrée
-   dans le panneau pricing (.neon-premium), sous la CTA "Passer à Plus".
+   dans le panneau pricing (.neon-premium), sous les indications
+   d'abonnement (V24 : l'ancienne CTA "Passer à Plus" a été retirée).
    Le panneau étant plus étroit qu'une section pleine large, on compacte
    les cartes et on force la grille en 2 colonnes plus tôt.
    ============================================================ */

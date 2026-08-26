@@ -125,7 +125,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "MyGamingTips Plus में अपग्रेड करें",
-    "subtitle": "ऐप मुफ़्त रहता है। My Playlist मेनू Plus हो जाता है।",
+    "subtitle": "ऐप मुफ़्त है, केवल My Playlist मेनू Plus सदस्यों के लिए आरक्षित है।",
     "free_badge": "ऐप 100% मुफ़्त है",
     "b1_label": "My Playlist",
     "b1_desc": "बिना खोजे सारा कंटेंट व्यवस्थित, क्रमबद्ध और ढूँढें (केवल Plus के लिए आरक्षित इकलौता मेनू)।",
@@ -143,7 +143,8 @@
     "plan_yearly_sub": "लगभग ₹166 / माह",
     "microcopy": "कभी भी रद्द करें। कोई बाध्यता नहीं।",
     "cta": "Plus में अपग्रेड करें",
-    "badge": "Plus"
+    "badge": "Plus",
+    "subscribe_info": "सदस्यता <strong>मोबाइल ऐप में Google Play के माध्यम से ली जाती है</strong>। यह <strong>Windows ऐप की एक्सेस भी देती है</strong> — Windows ऐप को सदस्यता के बिना अकेले इस्तेमाल नहीं किया जा सकता।"
   },
   "promo": {
     "title_1": "सभी गाइड",

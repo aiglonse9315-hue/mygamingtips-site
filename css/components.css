@@ -1301,6 +1301,15 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   width: fit-content;
   max-width: 100%;
 }
+/* V21 FIX — Le figcaption (texte i18n de longueur variable) déterminait la
+   largeur fit-content de la figure, qui devenait plus large que le téléphone :
+   les badges, ancrés aux bords de la figure, se retrouvaient décalés des coins
+   du téléphone selon la langue. On borne la légende à la largeur du mockup
+   (300px, cf .phone--themable) pour que figure = téléphone dans toute langue. */
+.personalize__figure figcaption {
+  max-width: 300px;
+  margin-inline: auto;
+}
 .phone--themable {
   max-width: 300px;
   margin-inline: auto;
@@ -1341,9 +1350,15 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
               0 0 28px rgba(255,201,60,0.35);
 }
 
-/* Badges flottants jour/nuit autour du mockup (DA transverse) */
-.personalize__badge-night,
-.personalize__badge-day {
+/* Badges flottants jour/nuit autour du mockup (DA transverse).
+   V21 FIX — Sélecteurs 0,3,0 (.personalize .personalize__figure .badge) :
+   la règle générique [data-theme="dark"] .float-badge--* (0,2,0, plus bas
+   dans ce fichier) pose position:relative pour le glow ::after et ÉCRASAIT
+   le position:absolute -> les badges restaient dans le flux, superposés
+   en haut du téléphone. Spécificité supérieure = absolute garanti
+   quel que soit le thème et l'ordre des règles. */
+.personalize .personalize__figure .personalize__badge-night,
+.personalize .personalize__figure .personalize__badge-day {
   position: absolute;
   z-index: 5;
   font-size: var(--fs-small);
@@ -1351,17 +1366,18 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   letter-spacing: 0.4px;
   transition: opacity var(--t-fast), transform var(--t-fast);
 }
-/* V20 — Badges de part et d'autre du téléphone, au même niveau (en haut) :
-   Jour à GAUCHE (place de l'ancien Nuit), Nuit à DROITE à la même hauteur. */
-.personalize__badge-day {
-  top: -10px;
-  inset-inline-start: -18px;
+/* V21 — Badges dans les COINS SUPÉRIEURS du téléphone, légèrement à
+   l'extérieur : Jour à GAUCHE, Nuit à DROITE, à la même hauteur.
+   La figure a la largeur du téléphone (figcaption borné à 300px). */
+.personalize .personalize__figure .personalize__badge-day {
+  top: -12px;
+  inset-inline-start: -22px;
   transform: rotate(-6deg);
   opacity: 0.45;
 }
-.personalize__badge-night {
-  top: -10px;
-  inset-inline-end: -18px;
+.personalize .personalize__figure .personalize__badge-night {
+  top: -12px;
+  inset-inline-end: -22px;
   transform: rotate(6deg);
   opacity: 1;
 }
@@ -1456,9 +1472,11 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
 @media (max-width: 480px) {
   .hero__badge--new  { display: none; }                  /* V12/P5 : étiquette verticale bizarre isolée → masquée */
   .hero__badge--free { inset-inline-end: 0%; }
-  /* V20 — mobile : Jour gauche, Nuit droite, même niveau (anti-débordement) */
-  .personalize__badge-day   { top: -10px; inset-inline-start: 2px; }
-  .personalize__badge-night { top: -10px; inset-inline-end: 2px; }
+  /* V21 — mobile : Jour gauche, Nuit droite, même niveau (anti-débordement).
+     Sélecteurs 0,3,0 (identiques à la base V21) : ces overrides doivent
+     gagner sur les offsets desktop quel que soit l'ordre du fichier. */
+  .personalize .personalize__figure .personalize__badge-day   { top: -10px; inset-inline-start: 2px; }
+  .personalize .personalize__figure .personalize__badge-night { top: -10px; inset-inline-end: 2px; }
 }
 
 /* V13 — Sur mobile (<=760px), les badges 100% GRATUIT et 12 LANGUES

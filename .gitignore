@@ -42,3 +42,12 @@ build/
 .parcel-cache/
 .netlify/
 .vercel/
+
+# === Originaux images (2026-09-12) ===
+# Les sources lourdes restent sur disque pour régénérer les WebP
+# (compresser_images_web.py) mais ne sont plus versionnées : le site
+# ne sert que les .webp. Ne pas committer de jpg/png sous screenshots.
+assets/screenshots/**/*.jpg
+assets/screenshots/**/*.jpeg
+assets/screenshots/**/*.png
+assets/promo-hero.png

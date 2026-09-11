@@ -77,6 +77,7 @@
   },
   "windows": {
     "eyebrow": "El compañero Windows",
+    "plus_badge": "Disponible en modo Plus",
     "title": "El reproductor de vídeo overlay sin anuncios.",
     "intro": "Mira tus guías favoritas en superposición mientras juegas. Sin anuncios, sin interrupciones, nunca.",
     "b1": "Reproducción en overlay sobre tu juego",
@@ -125,7 +126,7 @@
   "plus": {
     "eyebrow": "MyGamingTips Plus",
     "title": "Pasa a MyGamingTips Plus",
-    "subtitle": "La aplicación es gratuita; solo el menú My Playlist está reservado a los miembros Plus.",
+    "subtitle": "La aplicación es gratuita; solo el menú My Playlist está <strong class=\"plus-gold\">reservado a los miembros Plus</strong>.",
     "free_badge": "La app es 100% gratis",
     "b1_label": "My Playlist",
     "b1_desc": "Organiza, ordena y encuentra todo tu contenido sin buscarlo (el único menú reservado a Plus).",

@@ -38,11 +38,11 @@
 
   function buildPath(category, langLower) {
     var code = normalizeLang(langLower);
-    return BASE + category + "-" + code.toUpperCase() + ".png";
+    return BASE + category + "-" + code.toUpperCase() + ".webp";
   }
 
   function buildFallbackPath(category) {
-    return BASE + category + "-" + FALLBACK_LANG + ".png";
+    return BASE + category + "-" + FALLBACK_LANG + ".webp";
   }
 
   /* Précharge une image, renvoie une Promise qui résout l'URL

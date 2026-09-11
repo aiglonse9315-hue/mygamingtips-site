@@ -11,7 +11,7 @@
   "use strict";
 
   var BASE = "assets/screenshots/promo/";
-  var FALLBACK = BASE + "promo-screen-FR.jpg";
+  var FALLBACK = BASE + "promo-screen-FR.webp";
 
   // Langues qui ont un screenshot dédié (codes i18n en minuscules).
   // Les fichiers sont en MAJUSCULES (promo-screen-FR.jpg) — on
@@ -26,7 +26,7 @@
   function buildPath(langLower) {
     var code = String(langLower || "").toLowerCase();
     if (SCREENED.indexOf(code) === -1) return null;
-    return BASE + "promo-screen-" + code.toUpperCase() + ".jpg";
+    return BASE + "promo-screen-" + code.toUpperCase() + ".webp";
   }
 
   /* Précharge une image, renvoie une Promise qui résout l'URL

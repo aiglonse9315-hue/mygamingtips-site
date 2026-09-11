@@ -1717,6 +1717,45 @@ html[dir="rtl"] .overlay-demo__player { transform: translateX(-40px); }
   margin-bottom: var(--space-sm);
 }
 
+/* V25 — Badge « Accessible en mode Plus » (eyebrow section Windows) :
+   même langage que .neon-premium__badge (pilule dorée premium),
+   posé à côté de l'eyebrow. */
+.badge-plus-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 201, 60, 0.14);
+  border: 1px solid rgba(255, 201, 60, 0.55);
+  color: var(--plus-gold);
+  font-weight: var(--fw-black);
+  font-size: var(--fs-small);
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-inline-start: var(--space-sm);
+  box-shadow: 0 0 14px rgba(255, 201, 60, 0.25);
+}
+[data-theme="light"] .badge-plus-pill {
+  /* Or assombri : le #FFC93C serait illisible sur surface blanche. */
+  color: #8A6D00;
+  background: rgba(255, 201, 60, 0.18);
+  border-color: rgba(184, 134, 11, 0.55);
+  box-shadow: none;
+}
+
+/* V25 — Accent doré premium dans le sous-titre du panneau Plus
+   (« réservé aux membres Plus ») : jaune + semi-gras.
+   Le sélectur .t-body .plus-gold est requis : .t-body strong (base.css)
+   impose text-primary avec une spécificité supérieure à la classe seule. */
+.plus-gold,
+.t-body .plus-gold {
+  color: var(--plus-gold);
+  font-weight: var(--fw-bold);
+}
+[data-theme="light"] .plus-gold,
+[data-theme="light"] .t-body .plus-gold { color: #8A6D00; }
+
 .plus__benefits {
   display: flex;
   flex-direction: column;

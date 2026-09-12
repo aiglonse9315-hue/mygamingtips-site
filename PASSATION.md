@@ -77,6 +77,9 @@ python generer_miniatures.py
 
 ## Problème ouvert (hors incident 413)
 
-~~Le site sert des images très lourdes~~ **Résolu le 2026-09-12** : le site sert les copies WebP ET les originaux ont été retirés du dépôt git (voir « Dernières modifications »). Restent en attente de tri par l'utilisateur (« plus tard ») :
-- `assets/screenshots/mobile/` : 5 JPG (~7 Mo) trackés mais **non référencés** par le site ;
+~~Le site sert des images très lourdes~~ **Résolu le 2026-09-12** : le site sert les copies WebP ET les originaux ont été retirés du dépôt git (voir « Dernières modifications »).
+
+*2e nettoyage (même jour)* : `assets/screenshots/mobile/` (9 JPG, jamais référencés par le site) a aussi été retiré du repo et est couvert par le `.gitignore` — conservé sur disque + miroir `miniatures/`. **Aucun jpg/png d'`assets/screenshots/` n'est donc plus versionné.**
+
+Ne restent en attente de tri par l'utilisateur (« plus tard ») :
 - fichiers non suivis : `Conversationini.txt` (à ne jamais committer), `generer_miniatures.py`, `miniatures/` (32 Mo, usage IA uniquement).
